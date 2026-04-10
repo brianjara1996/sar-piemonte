@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://lottorichiesta.xsd.nre.mirsac.sanita.finanze.it" xmlns="http://lottorichiesta.xsd.nre.mirsac.sanita.finanze.it" xmlns:td="http://tipodati.xsd.nre.mirsac.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema"> 
+	<xs:import namespace="http://tipodati.xsd.nre.mirsac.sanita.finanze.it" schemaLocation="TipiDatiNRE.xsd"/> 
+	<xs:annotation> 
+		<xs:documentation>Versione 1.2</xs:documentation>
+	</xs:annotation> 
+	<xs:element name="LottoRichiestaNRE"> 
+		<xs:annotation> 
+			<xs:documentation>Radice della richiesta di un lotto</xs:documentation> 
+		</xs:annotation> 
+		<xs:complexType> 
+			<xs:sequence> 
+				<xs:element name="CodRegione" type="td:CodRegioneType"> 
+					<xs:annotation> 
+						<xs:documentation>Codice regione</xs:documentation> 
+					</xs:annotation> 
+				</xs:element> 
+				<xs:element name="IdentificativoLotto" type="td:integer1"> 
+					<xs:annotation> 
+						<xs:documentation>Tipologia di lotto</xs:documentation> 
+					</xs:annotation> 
+				</xs:element> 
+				<xs:element minOccurs="0" name="CFMedico" type="td:CFMedicoType"> 
+					<xs:annotation> 
+						<xs:documentation>Codice fiscale medico</xs:documentation> 
+					</xs:annotation> 
+				</xs:element>
+			</xs:sequence> 
+		</xs:complexType> 
+	</xs:element> 
+</xs:schema>

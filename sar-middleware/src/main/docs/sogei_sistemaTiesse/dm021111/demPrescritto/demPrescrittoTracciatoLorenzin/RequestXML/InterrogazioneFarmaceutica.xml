@@ -1,0 +1,16 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://interroganreutilrichiesta.xsd.dem.sanita.finanze.it">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:InterrogaNreUtilRichiesta>
+         <int:pinCode>LsQiYtf7FcpMYVKvf+51V6t1BSUk+E/dGOB2vmwNl0DhirZ8QzvTI2Ay04p6+t+eH+DjzkJpXrlEEZvKRz6wKVNOt7uYSQUYKBIFcbcEQJnqT7zTgtz7jV3BK+QaEphfKRsOP1Iejv+vKvJ/3te2xNMHPkNYZIAjxEQHftw9Swk=</int:pinCode>
+         <int:codRegione>130</int:codRegione>
+         <int:nre></int:nre>
+         <int:codLotto></int:codLotto>
+         <int:cfMedico>PROVAX00X00X000Y</int:cfMedico>
+         <int:cfAssistito></int:cfAssistito>
+         <int:tipoPrescr>F</int:tipoPrescr>
+         <int:dataCompilazioneRicettaDal>2013-06-02 00:00:00</int:dataCompilazioneRicettaDal>
+         <int:dataCompilazioneRicettaAl>2013-06-03 00:00:00</int:dataCompilazioneRicettaAl>
+      </int:InterrogaNreUtilRichiesta>
+   </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="nreRequestService" targetNamespace="http://nre.other.frontend.interfacews.relbl.rel.csi.it/" xmlns:ns1="http://richiestanre.wsdl.dem.sanita.finanze.it" xmlns:ns4="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://nre.other.frontend.interfacews.relbl.rel.csi.it/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:import location="richiestaNrePT.wsdl"  namespace="http://richiestanre.wsdl.dem.sanita.finanze.it"/>
+	<wsdl:binding name="RichiestaNreImplServiceSoapBinding"  type="ns1:richiestaNrePT">
+		<soap:binding style="document"   transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="richiestaNre">
+			<soap:operation soapAction="http://richiestanre.wsdl.dem.sanita.finanze.it/richiestaNre" style="document" />
+			<wsdl:input name="richiestaNre">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="richiestaNreResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="nreRequestService">
+		<wsdl:port binding="tns:RichiestaNreImplServiceSoapBinding" name="RichiestaNreImplPort">
+			<soap:address location="https://tstapplogic.reteunitaria.piemonte.it:1449/DEM/Other/RichiestaNre" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

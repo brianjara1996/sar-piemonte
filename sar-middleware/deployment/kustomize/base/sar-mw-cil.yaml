@@ -1,0 +1,116 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: sar-mw-cil-service
+  name: svc-sar-mw-cil
+  namespace: default
+  annotations:
+    prometheus.io/path: /metrics
+    prometheus.io/port: '8088'
+    prometheus.io/scrape: 'true'
+spec:
+  clusterIP: ""
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080 
+  - name: prom
+    port: 8088
+    protocol: TCP
+    targetPort: 8088
+  - name: jmx
+    port: 9090
+    protocol: TCP
+    targetPort: 9090    
+  - name: debug
+    port: 8001
+    protocol: TCP
+    targetPort: 8001    
+  selector:
+    app: sar-mw-cil
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sar-mw-cil
+    microservice: integration
+  name: sar-mw-cil
+  namespace: default
+spec:
+  replicas: 2
+  minReadySeconds: 30
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: sar-mw-cil
+  template:
+    metadata:
+      labels:
+        deployment: sar-mw-cil
+        app: sar-mw-cil
+    spec:
+      containers:
+      - name: sar-mw-cil
+        image: registrysan.eng.it/healtheng/it.eng.cct.sar-mw-piemonte-axis2:1.0.0
+        resources:
+          limits:
+            memory: 3G
+            cpu: 2
+          requests:
+            memory: 1G
+            cpu: 1
+        envFrom:
+          - configMapRef:
+              name: cm-sar-mw-cil-env
+        livenessProbe:
+          exec:
+            command:
+              - /bin/bash
+              - -c
+              - nc -z localhost 8080       
+          initialDelaySeconds: 30  
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 2
+          successThreshold: 1
+        readinessProbe:
+          exec:
+            command:
+              - /bin/bash
+              - -c
+              - nc -z localhost 8080   
+          initialDelaySeconds: 30  
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 2
+          successThreshold: 1
+        startupProbe:
+          exec:
+            command:
+              - /bin/bash
+              - -c
+              - nc -z localhost 8080 
+          initialDelaySeconds: 30  
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 2
+          successThreshold: 1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8001
+          protocol: TCP
+        - containerPort: 8088
+          protocol: TCP
+      imagePullSecrets:
+      - name: registrysan

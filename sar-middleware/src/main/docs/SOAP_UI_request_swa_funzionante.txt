@@ -1,0 +1,35 @@
+POST https://localhost:1449/RELCIL/service/invioTelematicoSanita HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: multipart/related; type="text/xml"; start="<rootpart@soapui.org>"; boundary="----=_Part_1_18075256.1421335570554"
+SOAPAction: "invio"
+Authorization: Basic UkVfQVNMMjAyX1RPMjpBQUFBQUFBQQ==
+MIME-Version: 1.0
+Content-Length: 1468
+Host: localhost:1449
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
+
+
+------=_Part_1_18075256.1421335570554
+Content-Type: text/xml; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Content-ID: <rootpart@soapui.org>
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:attachment.ws.it">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:inputBean>
+         <nomeFileAllegato>20150114103628193-LOXY_eng.zip</nomeFileAllegato>
+         <telematico1/>
+         <telematico2/>
+         <telematico3/>
+      </urn:inputBean>
+   </soapenv:Body>
+</soapenv:Envelope>
+------=_Part_1_18075256.1421335570554
+Content-Type: application/zip; name=20150114103628193-LOXY_eng.zip
+Content-Transfer-Encoding: binary
+Content-ID: <20150114103628193-LOXY_eng.zip>
+Content-Disposition: attachment; name="20150114103628193-LOXY_eng.zip"; filename="20150114103628193-LOXY_eng.zip"
+
+PK

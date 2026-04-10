@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://elencoanaliticoesitoricette.ejb.auxservices.mir.sanita.finanze.it" xmlns:impl="http://elencoanaliticoesitoricette.ejb.auxservices.mir.sanita.finanze.it" xmlns:intf="http://elencoanaliticoesitoricette.ejb.auxservices.mir.sanita.finanze.it" xmlns:tns2="http://elencoanaliticoesitoricette.dto.auxservices.mir.sanita.finanze.it" xmlns:tns3="http://DTO.simossSsa.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsi="http://ws-
+i.org/profiles/basic/1.1/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<schema targetNamespace="http://elencoanaliticoesitoricette.dto.auxservices.mir.sanita.finanze.it" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns3="http://DTO.simossSsa.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://DTO.simossSsa.sanita.finanze.it" />
+			<complexType name="ElencoAnaliticoEsitoRicetteDTO">
+				<complexContent>
+					<extension base="tns3:BustaTS">
+						<sequence>
+							<element name="elencoEsitoRicetteRecords" nillable="true" type="tns2:ArrayOfElencoEsitoRicetteRecord" />
+							<element name="dataFineRange" nillable="true" type="xsd:string" />
+							<element name="dataIniRange" nillable="true" type="xsd:string" />
+							<element name="isOperazioneValida" nillable="true" type="xsd:boolean" />
+							<element name="listaMessaggi" nillable="true" type="tns2:ArrayOf_tns3_nillable_MessageObj" />
+							<element name="operazione" nillable="true" type="xsd:string" />
+							<element name="pinCodeIn" nillable="true" type="xsd:string" />
+							<element name="protocolloSac" nillable="true" type="xsd:string" />
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="ElencoEsitoRicetteRecord">
+				<sequence>
+					<element name="codRicetta" nillable="true" type="xsd:string" />
+					<element name="dataAccoglienza" nillable="true" type="xsd:string" />
+					<element name="protocolloSac" nillable="true" type="xsd:string" />
+					<element name="errori" nillable="true" type="tns2:ArrayOfErrori" />
+				</sequence>
+			</complexType>
+			<complexType name="Errori">
+				<sequence>
+					<element name="codice" nillable="true" type="xsd:string" />
+					<element name="descrizione" nillable="true" type="xsd:string" />
+				</sequence>
+			</complexType>
+			<complexType name="ArrayOfErrori">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0" name="Errori" nillable="true" type="tns2:Errori" />
+				</sequence>
+			</complexType>
+			<complexType name="ArrayOfElencoEsitoRicetteRecord">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0" name="ElencoEsitoRicetteRecord" nillable="true" type="tns2:ElencoEsitoRicetteRecord" />
+				</sequence>
+			</complexType>
+			<complexType name="ArrayOf_tns3_nillable_MessageObj">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0" name="MessageObj" nillable="true" type="tns3:MessageObj" />
+				</sequence>
+			</complexType>
+		</schema>
+		<schema targetNamespace="http://DTO.simossSsa.sanita.finanze.it" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<complexType name="BustaTS">
+				<sequence>
+					<element name="pwd" nillable="true" type="xsd:string" />
+					<element name="username" nillable="true" type="xsd:string" />
+					<element name="codiceAslUtente" nillable="true" type="xsd:string" />
+					<element name="codiceRegioneUtente" nillable="true" type="xsd:string" />
+					<element name="idUtenteRichiedente" nillable="true" type="xsd:string" />
+				</sequence>
+			</complexType>
+			<complexType name="MessageObj">
+				<sequence>
+					<element name="riferimento" nillable="true" type="xsd:string" />
+					<element name="codiceMessaggio" nillable="true" type="xsd:string" />
+					<element name="descrizioneMessaggio" nillable="true" type="xsd:string" />
+				</sequence>
+			</complexType>
+		</schema>
+		<schema targetNamespace="http://elencoanaliticoesitoricette.ejb.auxservices.mir.sanita.finanze.it" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns2="http://elencoanaliticoesitoricette.dto.auxservices.mir.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://elencoanaliticoesitoricette.dto.auxservices.mir.sanita.finanze.it" />
+			<element name="visualizzaElencoStatoRicetteResponse">
+				<complexType>
+					<sequence>
+						<element name="visualizzaElencoStatoRicetteReturn" nillable="true" type="tns2:ElencoAnaliticoEsitoRicetteDTO" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="visualizzaElencoStatoRicette">
+				<complexType>
+					<sequence>
+						<element name="elencoAnaliticoEsitoRicetteDTO" nillable="true" type="tns2:ElencoAnaliticoEsitoRicetteDTO" />
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="visualizzaElencoStatoRicetteResponse">
+		<wsdl:part element="intf:visualizzaElencoStatoRicetteResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="visualizzaElencoStatoRicetteRequest">
+		<wsdl:part element="intf:visualizzaElencoStatoRicette" name="parameters" />
+	</wsdl:message>
+	<wsdl:portType name="ElencoAnaliticoEsitoRicette">
+		<wsdl:operation name="visualizzaElencoStatoRicette">
+			<wsdl:input message="intf:visualizzaElencoStatoRicetteRequest" name="visualizzaElencoStatoRicetteRequest" />
+			<wsdl:output message="intf:visualizzaElencoStatoRicetteResponse" name="visualizzaElencoStatoRicetteResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ElencoAnaliticoEsitoRicetteSoapBinding" type="intf:ElencoAnaliticoEsitoRicette">
+		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="visualizzaElencoStatoRicette">
+			<wsdlsoap:operation soapAction="visualizzaElencoStatoRicette" />
+			<wsdl:input name="visualizzaElencoStatoRicetteRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="visualizzaElencoStatoRicetteResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ElencoAnaliticoEsitoRicetteService">
+		<wsdl:port binding="intf:ElencoAnaliticoEsitoRicetteSoapBinding" name="ElencoAnaliticoEsitoRicette">
+			<wsdlsoap:address location="https://mirsactest.sanita.finanze.it/MediciInReteAuxServicesWeb/services/ElencoAnaliticoEsitoRicette" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

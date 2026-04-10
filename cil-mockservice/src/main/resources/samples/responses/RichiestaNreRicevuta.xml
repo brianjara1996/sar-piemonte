@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ric:RichiestaNreRicevuta xmlns:ric="http://richiestanrericevuta.xsd.dem.sanita.finanze.it" xmlns:tip="http://tipodati.xsd.dem.sanita.finanze.it">
+	<ric:nre>CODNRERIC</ric:nre>
+	<ric:codEsitoRichiestaNre>0000</ric:codEsitoRichiestaNre>
+	<ric:ElencoComunicazioni>
+		<tip:Comunicazione>
+			<tip:codice>0001</tip:codice>
+			<tip:messaggio>Nessuna comunicazione!</tip:messaggio>
+		</tip:Comunicazione>
+	</ric:ElencoComunicazioni>
+</ric:RichiestaNreRicevuta>

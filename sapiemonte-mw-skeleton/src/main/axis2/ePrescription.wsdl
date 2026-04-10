@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:cct="http://cct.eng.it/piemonte/ePrescription/types" xmlns:tns="http://cct.eng.it/piemonte/ePrescription/schemas" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" name="SarMiddleware" targetNamespace="http://cct.eng.it/piemonte/ePrescription/schemas">
+	<types>
+		<xsd:schema>
+			<xsd:import namespace="http://cct.eng.it/piemonte/ePrescription/types" schemaLocation="ePrescription_types.xsd" />
+		</xsd:schema>
+	</types>
+	<message name="ServizioTrasmissione_request">
+		<part name="trasmissione" element="cct:trasmissione" />
+	</message>
+	<message name="ServizioTrasmissione_response">
+		<part name="trasmissione" element="cct:trasmissione" />
+	</message>
+	<message name="ServizioAnnullamento_request">
+		<part name="annullamento" element="cct:annullamento" />
+	</message>
+	<message name="ServizioAnnullamento_response">
+		<part name="annullamento" element="cct:annullamento" />
+	</message>
+	<message name="ServizioRecupero_request">
+		<part name="recupero" element="cct:recupero" />
+	</message>
+	<message name="ServizioRecupero_response">
+		<part name="recupero" element="cct:recupero" />
+	</message>
+	<message name="ServizioInterroga_request">
+		<part name="interroga" element="cct:interroga" />
+	</message>
+	<message name="ServizioInterroga_response">
+		<part name="interroga" element="cct:interroga" />
+	</message>
+	<message name="ServizioVisualizzaPrescritto_request">
+		<part name="visualizzaPrescritto" element="cct:visualizzaPrescritto" />
+	</message>
+	<message name="ServizioVisualizzaPrescritto_response">
+		<part name="visualizzaPrescrittoResponse" element="cct:visualizzaPrescrittoResponse" />
+	</message>
+	<message name="ServizioEsiti_request">
+		<part name="esiti" element="cct:esiti" />
+	</message>
+	<message name="ServizioEsiti_response">
+		<part name="esiti" element="cct:esiti" />
+	</message>
+	<message name="ServiceFault">
+		<part name="Fault" element="cct:Fault" />
+	</message>
+	<portType name="ePrescription_port">
+		<operation name="trasmissione">
+			<input message="tns:ServizioTrasmissione_request" />
+			<output message="tns:ServizioTrasmissione_response" />
+			<fault name="ServiceFault" message="tns:ServiceFault" />
+		</operation>
+		<operation name="recupero">
+			<input message="tns:ServizioRecupero_request" />
+			<output message="tns:ServizioRecupero_response" />
+			<fault name="ServiceFault" message="tns:ServiceFault" />
+		</operation>
+		<operation name="annullamento">
+			<input message="tns:ServizioAnnullamento_request" />
+			<output message="tns:ServizioAnnullamento_response" />
+			<fault name="ServiceFault" message="tns:ServiceFault" />
+		</operation>
+		<operation name="interroga">
+			<input message="tns:ServizioInterroga_request" />
+			<output message="tns:ServizioInterroga_response" />
+			<fault name="ServiceFault" message="tns:ServiceFault" />
+		</operation>
+		<operation name="visualizzaPrescritto">
+			<input message="tns:ServizioVisualizzaPrescritto_request" />
+			<output message="tns:ServizioVisualizzaPrescritto_response" />
+			<fault name="ServiceFault" message="tns:ServiceFault" />
+		</operation>
+		<operation name="esiti">
+			<input message="tns:ServizioEsiti_request" />
+			<output message="tns:ServizioEsiti_response" />
+			<fault name="ServiceFault" message="tns:ServiceFault" />
+		</operation>
+	</portType>
+	<binding name="ePrescription_binding" type="tns:ePrescription_port">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="trasmissione">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ServiceFault">
+				<soap:fault name="ServiceFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="recupero">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ServiceFault">
+				<soap:fault name="ServiceFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="annullamento">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ServiceFault">
+				<soap:fault name="ServiceFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="interroga">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ServiceFault">
+				<soap:fault name="ServiceFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="esiti">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ServiceFault">
+				<soap:fault name="ServiceFault" use="literal" />
+			</fault>
+		</operation>
+		<operation name="visualizzaPrescritto">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ServiceFault">
+				<soap:fault use="literal" name="ServiceFault" />
+			</fault>
+		</operation>
+	</binding>
+	<service name="ePrescriptionService">
+		<port name="ePrescriptionPort" binding="tns:ePrescription_binding">
+			<soap:address location="http://servername:port/axis2/ePrescriptionService" />
+		</port>
+	</service>
+</definitions>

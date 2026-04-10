@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualizzaPrescrittoRicevuta xsi:schemaLocation="http://visualizzaprescrittoricevuta.xsd.dem.sanita.finanze.it VisualizzaPrescrittoRicevuta.xsd" xmlns="http://visualizzaprescrittoricevuta.xsd.dem.sanita.finanze.it" xmlns:td="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<nre>NUMELERIC</nre>
+	<cfMedico1>CMPVCNMEDICO509G</cfMedico1>
+	<cfMedico2 />
+	<codRegione>010</codRegione>
+	<codASLAo>010101</codASLAo>
+	<codStruttura>CODSTRUTT</codStruttura>
+	<codSpecializzazione>CODSPECMED</codSpecializzazione>
+	<tipoRic>NE</tipoRic>
+	<codiceAss>CMPVCNPAZIENTE9G</codiceAss>
+	<cognNome>CAMPANILE VINCENZO</cognNome>
+	<indirizzo>fraz. S. Lucia 22</indirizzo>
+	<tipoPrescrizione>P</tipoPrescrizione>
+	<ricettaInterna>1</ricettaInterna>
+	<codEsenzione>CODESE</codEsenzione>
+	<reddito>1</reddito>
+	<codDiagnosi>ICD9-CM</codDiagnosi>
+	<descrizioneDiagnosi>DESCRIZIONE_DIAGNOSI</descrizioneDiagnosi>
+	<dataCompilazione>2014-11-12 08:30:00</dataCompilazione>
+	<tipoVisita>A</tipoVisita>
+	<provAssistito>AV</provAssistito>
+	<aslAssistito>010101</aslAssistito>
+	<indicazionePrescr>S</indicazionePrescr>
+	<classePriorita>P</classePriorita>
+	<statoEstero>SAIE_STATO</statoEstero>
+	<istituzCompetente>SAIE_ISTITUZ_COMP</istituzCompetente>
+	<numIdentPers>SAIE_NUM_IDENT_PERS</numIdentPers>
+	<numIdentTess>SAIE_NUM_TESS</numIdentTess>
+	<dataNascitaEstero>2015-12-31</dataNascitaEstero>
+	<dataScadTessera>2015-12-31</dataScadTessera>
+	<ElencoDettagliPrescrizioni>
+		<td:DettaglioPrescrizione>
+			<td:codProdPrest>CODPREST</td:codProdPrest>
+			<td:descrProdPrest>DESCRPREST</td:descrProdPrest>
+			<td:testoLibero>1</td:testoLibero>
+			<td:descrTestoLiberoNote>DESC_ALTERNATIVA_TARIFARRIO_REG</td:descrTestoLiberoNote>
+			<td:quantita>1</td:quantita>
+			<td:tipoAccesso>1</td:tipoAccesso>
+		</td:DettaglioPrescrizione>
+	</ElencoDettagliPrescrizioni>
+	<statoProcesso>3</statoProcesso>
+	<codAutenticazione>CODAUTSAC</codAutenticazione>
+	<dataInserimento>2014-04-03 08:00:30</dataInserimento>
+	<codEsitoVisualizzazione>0000</codEsitoVisualizzazione>
+	<ElencoComunicazioni>
+		<td:Comunicazione>
+			<td:codice>0100</td:codice>
+			<td:messaggio>Nessuna comunicazione</td:messaggio>
+		</td:Comunicazione>
+	</ElencoComunicazioni>
+</VisualizzaPrescrittoRicevuta>

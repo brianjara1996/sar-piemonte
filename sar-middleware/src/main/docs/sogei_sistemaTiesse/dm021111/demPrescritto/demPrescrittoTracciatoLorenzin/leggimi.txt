@@ -1,0 +1,5 @@
+SanitelCF.rar -> contiene il certificato per cifrare il codice fiscale dell'assistito
+
+/CertificatoSSLTest/demservicetest.pem -> da rinominare .cer -> certificato SSL di test
+
+/CertificatoSSLProduzione/demservice_sanita_finanze_it.pem -> da rinominare .cer -> certificato SSL di produzione

@@ -1,0 +1,379 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>it.eng.cct.dem.sar.piemonte</groupId>
+	<artifactId>cil-wsstubs</artifactId>
+	<version>1.0.1</version>
+	<packaging>jar</packaging>
+
+	<name>cil-wsstubs</name>
+	<url>http://maven.apache.org</url>
+	<parent>
+		<groupId>it.eng.cct.dem.sar</groupId>
+		<artifactId>sar-mw-base</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../sar-mw-base</relativePath>
+	</parent>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.axis2</groupId>
+			<artifactId>axis2-kernel</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.axis2</groupId>
+			<artifactId>axis2-xmlbeans</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<resources>
+			<resource>
+				<directory>${project.build.directory}/generated-sources/axis2/wsdl2code/resources</directory>
+				<includes>
+					<include>**/**</include>
+				</includes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>xmlbeans-maven-plugin</artifactId>
+				<version>2.3.3</version>
+				<executions>
+					<execution>
+						<id>xsd2java</id>
+						<goals>
+							<goal>xmlbeans</goal>
+						</goals>
+						<phase>generate-sources</phase>
+					</execution>
+				</executions>
+				<inherited>true</inherited>
+				<configuration>
+					<schemaDirectory>${basedir}/src/main/axis2/sistemaTiesse/dpcm260308/xsd</schemaDirectory>
+					<memoryInitialSize>128m</memoryInitialSize>
+					<memoryMaximumSize>512m</memoryMaximumSize>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.axis2</groupId>
+				<artifactId>axis2-wsdl2code-maven-plugin</artifactId>
+				<version>1.6.2</version>
+				<executions>
+					<execution>
+						<id>RichiestaNreService</id>
+						<goals>
+							<goal>wsdl2code</goal>
+						</goals>
+						<configuration>
+							<!-- wsdlFile>https://pddasl-coll.rmmg.rsr.rupar.piemonte.it:8181/aslba/AAAService?wsdl</wsdlFile -->
+							<wsdlFile>src/main/axis2/cil/RichiestaNre.wsdl</wsdlFile>
+							<serviceName>RichiestaNreImplService</serviceName>
+							<portName>RichiestaNreImplPort</portName>
+							<databindingName>xmlbeans</databindingName>
+							<generateAllClasses>true</generateAllClasses>
+							<generateServerSide>true</generateServerSide>
+							<generateServerSideInterface>true</generateServerSideInterface>
+							<generateServicesXml>false</generateServicesXml>
+							<generateTestcase>true</generateTestcase>
+							<language>java</language>
+
+							<!-- <namespaceToPackages></namespaceToPackages> -->
+							<namespaceURIs>
+								<namespaceURI>
+									<uri>http://nre.other.frontend.interfacews.relbl.rel.csi.it/</uri>
+									<packageName>it.csi.rel.relbl.interfacews.frontend.other.nre</packageName>
+								</namespaceURI>
+								<namespaceURI>
+									<uri>http://richiestanre.wsdl.dem.sanita.finanze.it</uri>
+									<packageName>it.finanze.sanita.dem.dm.wsdl.richiestanre</packageName>
+								</namespaceURI>
+
+
+							</namespaceURIs>
+							<!-- <outputDirectory></outputDirectory> -->
+							<packageName>it.csi.rel.relbl.interfacews.frontend.other.nre</packageName>
+							<!-- <allPorts></allPorts> -->
+							<!-- <syncMode>both</syncMode> -->
+							<!-- <unpackClasses></unpackClasses> -->
+						</configuration>
+					</execution>
+					<execution>
+						<id>demInvioPrescritto</id>
+						<goals>
+							<goal>wsdl2code</goal>
+						</goals>
+						<configuration>
+							<!-- wsdlFile>https://pddasl-coll.rmmg.rsr.rupar.piemonte.it:8181/aslba/AAAService?wsdl</wsdlFile -->
+							<wsdlFile>src/main/axis2/sistemaTiesse/dm021111/demInvioPrescritto.wsdl</wsdlFile>
+							<serviceName>demInvioPrescritto</serviceName>
+							<portName>demInvioPrescritto</portName>
+							<databindingName>xmlbeans</databindingName>
+							<generateAllClasses>true</generateAllClasses>
+							<generateServerSide>true</generateServerSide>
+							<generateServerSideInterface>true</generateServerSideInterface>
+							<generateServicesXml>false</generateServicesXml>
+							<generateTestcase>true</generateTestcase>
+							<language>java</language>
+
+							<!-- <namespaceToPackages></namespaceToPackages> -->
+							<namespaceURIs>
+								<namespaceURI>
+									<uri>http://invioprescritto.wsdl.dem.sanita.finanze.it</uri>
+									<packageName>it.finanze.sanita.dem.dm.wsdl.invioprescritto.service</packageName>
+								</namespaceURI>
+							</namespaceURIs>
+							<!-- <outputDirectory></outputDirectory> -->
+							<packageName>it.finanze.sanita.dem.dm.wsdl.invioprescritto.service</packageName>
+							<!-- <allPorts></allPorts> -->
+							<!-- <syncMode>both</syncMode> -->
+							<!-- <unpackClasses></unpackClasses> -->
+						</configuration>
+					</execution>
+					<execution>
+						<id>demAnnullaPrescritto</id>
+						<goals>
+							<goal>wsdl2code</goal>
+						</goals>
+						<configuration>
+							<!-- wsdlFile>https://pddasl-coll.rmmg.rsr.rupar.piemonte.it:8181/aslba/AAAService?wsdl</wsdlFile -->
+							<wsdlFile>src/main/axis2/sistemaTiesse/dm021111/demAnnullaPrescritto.wsdl</wsdlFile>
+							<serviceName>demAnnullaPrescritto</serviceName>
+							<portName>demAnnullaPrescritto</portName>
+							<databindingName>xmlbeans</databindingName>
+							<generateAllClasses>true</generateAllClasses>
+							<generateServerSide>true</generateServerSide>
+							<generateServerSideInterface>true</generateServerSideInterface>
+							<generateServicesXml>false</generateServicesXml>
+							<generateTestcase>true</generateTestcase>
+							<language>java</language>
+
+							<!-- <namespaceToPackages></namespaceToPackages> -->
+							<namespaceURIs>
+								<namespaceURI>
+									<uri>http://annullaprescritto.wsdl.dem.sanita.finanze.it</uri>
+									<packageName>it.finanze.sanita.dem.dm.wsdl.annullaprescritto.service</packageName>
+								</namespaceURI>
+							</namespaceURIs>
+							<!-- <outputDirectory></outputDirectory> -->
+							<packageName>it.finanze.sanita.dem.dm.wsdl.annullaprescritto.service</packageName>
+							<!-- <allPorts></allPorts> -->
+							<!-- <syncMode>both</syncMode> -->
+							<!-- <unpackClasses></unpackClasses> -->
+						</configuration>
+					</execution>
+					<execution>
+						<id>demVisualizzaPrescritto</id>
+						<goals>
+							<goal>wsdl2code</goal>
+						</goals>
+						<configuration>
+							<!-- wsdlFile>https://pddasl-coll.rmmg.rsr.rupar.piemonte.it:8181/aslba/AAAService?wsdl</wsdlFile -->
+							<wsdlFile>src/main/axis2/sistemaTiesse/dm021111/demVisualizzaPrescritto.wsdl</wsdlFile>
+							<serviceName>demVisualizzaPrescritto</serviceName>
+							<portName>demVisualizzaPrescritto</portName>
+							<databindingName>xmlbeans</databindingName>
+							<generateAllClasses>true</generateAllClasses>
+							<generateServerSide>true</generateServerSide>
+							<generateServerSideInterface>true</generateServerSideInterface>
+							<generateServicesXml>false</generateServicesXml>
+							<generateTestcase>true</generateTestcase>
+							<language>java</language>
+							<!-- <namespaceToPackages></namespaceToPackages> -->
+							<namespaceURIs>
+								<namespaceURI>
+									<uri>http://visualizzaprescritto.wsdl.dem.sanita.finanze.it</uri>
+									<packageName>it.finanze.sanita.dem.dm.wsdl.visualizzaprescritto.service</packageName>
+								</namespaceURI>
+							</namespaceURIs>
+							<!-- <outputDirectory></outputDirectory> -->
+							<packageName>it.finanze.sanita.dem.dm.wsdl.visualizzaprescritto.service</packageName>
+							<!-- <allPorts></allPorts> -->
+							<!-- <syncMode>both</syncMode> -->
+							<!-- <unpackClasses></unpackClasses> -->
+						</configuration>
+					</execution>
+					<execution>
+						<id>demInterrogaNreUtilizzati</id>
+						<goals>
+							<goal>wsdl2code</goal>
+						</goals>
+						<configuration>
+							<!-- wsdlFile>https://pddasl-coll.rmmg.rsr.rupar.piemonte.it:8181/aslba/AAAService?wsdl</wsdlFile -->
+							<wsdlFile>src/main/axis2/sistemaTiesse/dm021111/demInterrogaNreUtilizzati.wsdl</wsdlFile>
+							<serviceName>demInterrogaNreUtilizzati</serviceName>
+							<portName>demInterrogaNreUtilizzati</portName>
+							<databindingName>xmlbeans</databindingName>
+							<generateAllClasses>true</generateAllClasses>
+							<generateServerSide>true</generateServerSide>
+							<generateServerSideInterface>true</generateServerSideInterface>
+							<generateServicesXml>false</generateServicesXml>
+							<generateTestcase>true</generateTestcase>
+							<language>java</language>
+							<!-- <namespaceToPackages></namespaceToPackages> -->
+							<namespaceURIs>
+								<namespaceURI>
+									<uri>http://interroganreutilizzati.wsdl.dem.sanita.finanze.it</uri>
+									<packageName>it.finanze.sanita.dem.dm.wsdl.interroganreutilizzati.service</packageName>
+								</namespaceURI>
+							</namespaceURIs>
+							<!-- <outputDirectory></outputDirectory> -->
+							<packageName>it.finanze.sanita.dem.dm.wsdl.interroganreutilizzati.service</packageName>
+							<!-- <allPorts></allPorts> -->
+							<!-- <syncMode>both</syncMode> -->
+							<!-- <unpackClasses></unpackClasses> -->
+						</configuration>
+					</execution>
+					<execution>
+						<id>ElencoAnaliticoEsitoRicette</id>
+						<goals>
+							<goal>wsdl2code</goal>
+						</goals>
+						<configuration>
+							<!-- wsdlFile>https://pddasl-coll.rmmg.rsr.rupar.piemonte.it:8181/aslba/AAAService?wsdl</wsdlFile -->
+							<wsdlFile>src/main/axis2/sistemaTiesse/dpcm260308/ElencoAnaliticoEsitoRicette.wsdl</wsdlFile>
+							<serviceName>ElencoAnaliticoEsitoRicetteService</serviceName>
+							<portName>ElencoAnaliticoEsitoRicette</portName>
+							<databindingName>xmlbeans</databindingName>
+							<generateAllClasses>true</generateAllClasses>
+							<generateServerSide>true</generateServerSide>
+							<generateServerSideInterface>true</generateServerSideInterface>
+							<generateServicesXml>false</generateServicesXml>
+							<generateTestcase>true</generateTestcase>
+							<language>java</language>
+							<!-- <namespaceToPackages></namespaceToPackages> -->
+							<namespaceURIs>
+								<namespaceURI>
+									<uri>http://elencoanaliticoesitoricette.ejb.auxservices.mir.sanita.finanze.it</uri>
+									<packageName>it.finanze.sanita.dem.dpcm.wsdl.elencoAnaliticoEsitoRicette.service</packageName>
+								</namespaceURI>
+							</namespaceURIs>
+							<!-- <outputDirectory></outputDirectory> -->
+							<packageName>it.finanze.sanita.dem.dpcm.wsdl.elencoAnaliticoEsitoRicette.service</packageName>
+							<!-- <allPorts></allPorts> -->
+							<!-- <syncMode>both</syncMode> -->
+							<!-- <unpackClasses></unpackClasses> -->
+						</configuration>
+					</execution>
+					<execution>
+						<id>ElencoSinteticoStatoInvii</id>
+						<goals>
+							<goal>wsdl2code</goal>
+						</goals>
+						<configuration>
+							<!-- wsdlFile>https://pddasl-coll.rmmg.rsr.rupar.piemonte.it:8181/aslba/AAAService?wsdl</wsdlFile -->
+							<wsdlFile>src/main/axis2/sistemaTiesse/dpcm260308/ElencoSinteticoStatoInvii.wsdl</wsdlFile>
+							<serviceName>ElencoSinteticoStatoInviiService</serviceName>
+							<portName>ElencoSinteticoStatoInvii</portName>
+							<databindingName>xmlbeans</databindingName>
+							<generateAllClasses>true</generateAllClasses>
+							<generateServerSide>true</generateServerSide>
+							<generateServerSideInterface>true</generateServerSideInterface>
+							<generateServicesXml>false</generateServicesXml>
+							<generateTestcase>true</generateTestcase>
+							<language>java</language>
+							<!-- <namespaceToPackages></namespaceToPackages> -->
+							<namespaceURIs>
+								<namespaceURI>
+									<uri>http://elencosinteticostatoinvii.ejb.auxservices.mir.sanita.finanze.it</uri>
+									<packageName>it.finanze.sanita.dem.dpcm.wsdl.elencoSinteticoStatoInvii.service</packageName>
+								</namespaceURI>
+							</namespaceURIs>
+							<!-- <outputDirectory></outputDirectory> -->
+							<packageName>it.finanze.sanita.dem.dpcm.wsdl.elencoSinteticoStatoInvii.service</packageName>
+							<!-- <allPorts></allPorts> -->
+							<!-- <syncMode>both</syncMode> -->
+							<!-- <unpackClasses></unpackClasses> -->
+						</configuration>
+					</execution>
+					<execution>
+						<id>InvioTelematicoSanita</id>
+						<goals>
+							<goal>wsdl2code</goal>
+						</goals>
+						<configuration>
+							<!-- wsdlFile>https://pddasl-coll.rmmg.rsr.rupar.piemonte.it:8181/aslba/AAAService?wsdl</wsdlFile -->
+							<wsdlFile>src/main/axis2/sistemaTiesse/dpcm260308/InvioTelematicoSanita.wsdl</wsdlFile>
+							<serviceName>invioTelematicoSanitaService</serviceName>
+							<portName>invioTelematicoSanita</portName>
+							<databindingName>xmlbeans</databindingName>
+							<generateAllClasses>true</generateAllClasses>
+							<generateServerSide>true</generateServerSide>
+							<generateServerSideInterface>true</generateServerSideInterface>
+							<generateServicesXml>false</generateServicesXml>
+							<generateTestcase>true</generateTestcase>
+							<language>java</language>
+							<!-- <namespaceToPackages></namespaceToPackages> -->
+							<namespaceURIs>
+								<namespaceURI>
+									<uri>urn:attachment.ws.it</uri>
+									<packageName>it.finanze.sanita.dem.dpcm.wsdl.invioTelematicoSanita.service</packageName>
+								</namespaceURI>
+							</namespaceURIs>
+							<!-- <outputDirectory></outputDirectory> -->
+							<packageName>it.finanze.sanita.dem.dpcm.wsdl.invioTelematicoSanita.service</packageName>
+							<!-- <allPorts></allPorts> -->
+							<!-- <syncMode>both</syncMode> -->
+							<!-- <unpackClasses></unpackClasses> -->
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.axis2</groupId>
+										<artifactId>axis2-wsdl2code-maven-plugin</artifactId>
+										<versionRange>[1.6.2,)</versionRange>
+										<goals>
+											<goal>wsdl2code</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>xmlbeans-maven-plugin</artifactId>
+										<versionRange>[2.3.3,)</versionRange>
+										<goals>
+											<goal>xmlbeans</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+
+</project>

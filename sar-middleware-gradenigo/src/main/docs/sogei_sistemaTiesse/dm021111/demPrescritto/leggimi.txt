@@ -1,0 +1,9 @@
+SanitelCF.rar -> contiene il certificato per cifrare il pincode del medico e il codice fiscale dell'assistito
+
+CA Agenzia delle Entrate Test.pem -> certificato della CA di test
+
+CAEntrate.pem -> rinominare .cer -> certificato della CA di produzione
+
+demservicetest.pem -> da rinominare .cer -> certificato SSL di test
+
+demservice.pem -> da rinominare .cer -> certificato SSL di produzione

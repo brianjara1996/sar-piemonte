@@ -1,0 +1,10 @@
+<ePrescription>
+	<id/>
+	<esito/>
+	<errori>
+		<errore>
+			<codice/>
+			<descrizione/>
+		</errore>
+	</errori>
+</ePrescription>

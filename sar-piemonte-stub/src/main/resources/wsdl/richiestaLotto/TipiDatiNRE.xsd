@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://tipodati.xsd.nre.mirsac.sanita.finanze.it" xmlns="http://tipodati.xsd.nre.mirsac.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema"> 
+	<xs:annotation> 
+		<xs:documentation>Versione 1.2</xs:documentation> 
+	</xs:annotation> 
+	<xs:simpleType name="IdentificativoNREType"> 
+		<xs:restriction base="xs:string"> 
+			<xs:minLength value="6"/> 
+			<xs:maxLength value="6"/> 
+		</xs:restriction> 
+	</xs:simpleType> 
+	<xs:simpleType name="CFMedicoType"> 
+		<xs:restriction base="xs:string"> 
+			<xs:minLength value="0"/> 
+			<xs:maxLength value="16"/> 
+		</xs:restriction> 
+	</xs:simpleType> 
+	<xs:simpleType name="CodRegioneType"> 
+		<xs:restriction base="xs:string"> 
+			<xs:minLength value="3"/>
+			<xs:maxLength value="3"/> 
+		</xs:restriction> 
+	</xs:simpleType> 
+	<xs:simpleType name="CodRagLottoType"> 
+		<xs:restriction base="xs:string"> 
+			<xs:minLength value="2"/> 
+			<xs:maxLength value="2"/> 
+		</xs:restriction> 
+	</xs:simpleType> 
+	<xs:simpleType name="DataOraType"> 
+		<xs:restriction base="xs:string"> 
+			<xs:minLength value="19"/> 
+			<xs:maxLength value="19"/> 
+		</xs:restriction> 
+	</xs:simpleType> 
+	<xs:simpleType name="DataType"> 
+		<xs:restriction base="xs:string"> 
+			<xs:minLength value="10"/> 
+			<xs:maxLength value="10"/> 
+		</xs:restriction> 
+	</xs:simpleType> 
+	<xs:simpleType name="CodLottoType"> 
+		<xs:restriction base="xs:string"> 
+			<xs:pattern value="[0-9]{1,7}"/> 
+		</xs:restriction> 
+	</xs:simpleType> 
+	<xs:simpleType name="integer1"> 
+		<xs:restriction base="xs:string"> 
+			<xs:pattern value="[0-9]{1}"/> 
+		</xs:restriction> 
+	</xs:simpleType> 
+	<xs:simpleType name="integer2"> 
+		<xs:restriction base="xs:string"> 
+			<xs:pattern value="[0-9]{2}"/> 
+		</xs:restriction> 
+	</xs:simpleType> 
+	<xs:simpleType name="integer3"> 
+		<xs:restriction base="xs:string"> 
+			<xs:pattern value="[0-9]{3}"/> 
+		</xs:restriction> 
+	</xs:simpleType> 
+	<xs:simpleType name="integer9"> 
+		<xs:restriction base="xs:string"> 
+			<xs:pattern value="[0-9]{9}"/> 
+		</xs:restriction> 
+	</xs:simpleType> 
+	<xs:simpleType name="stringType"> 
+		<xs:restriction base="xs:string"/> 
+	</xs:simpleType> 
+</xs:schema>

@@ -1,0 +1,29 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xsi:schemaLocation="http://www.springframework.org/schema/beans spring-beans-2.5.xsd">
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${config.ws.target.db.driverClass}" />
+		<property name="url" value="${config.ws.target.db.url}" />
+		<property name="username" value="${config.ws.target.db.username}" />
+		<property name="password" value="${config.ws.target.db.password}" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="300" />
+		<property name="initialSize" value="10" />
+		<property name="maxActive" value="10" />
+		<property name="testOnBorrow" value="true" />
+		<property name="validationQuery" value="select 1 from dual" />
+	</bean>
+	
+	<bean id="dataSourceIride" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${config.ws.target.db.iride.driverClass}" />
+		<property name="url" value="${config.ws.target.db.iride.url}" />
+		<property name="username" value="${config.ws.target.db.iride.username}" />
+		<property name="password" value="${config.ws.target.db.iride.password}" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="300" />
+		<property name="initialSize" value="10" />
+		<property name="maxActive" value="10" />
+		<property name="testOnBorrow" value="true" />
+		<property name="validationQuery" value="select 1 from dual" />
+	</bean>
+
+</beans>

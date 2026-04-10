@@ -1,0 +1,10 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:vis="http://visualizzaprescrittorichiesta.xsd.dem.sanita.finanze.it">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <vis:VisualizzaPrescrittoRichiesta>
+         <vis:pinCode>LsQiYtf7FcpMYVKvf+51V6t1BSUk+E/dGOB2vmwNl0DhirZ8QzvTI2Ay04p6+t+eH+DjzkJpXrlEEZvKRz6wKVNOt7uYSQUYKBIFcbcEQJnqT7zTgtz7jV3BK+QaEphfKRsOP1Iejv+vKvJ/3te2xNMHPkNYZIAjxEQHftw9Swk=</vis:pinCode>
+         <vis:nre>1300A4003572666</vis:nre>
+         <vis:cfMedico>PROVAX00X00X000Y</vis:cfMedico>
+      </vis:VisualizzaPrescrittoRichiesta>
+   </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,1431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="DemPrescrizione" resourceRoot="${projectDir}" soapui-version="4.5.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="invioPrescrittoBinding" type="wsdl" bindingName="{http://invioprescritto.wsdl.dem.sanita.finanze.it}invioPrescrittoBinding" soapVersion="1_1" anonymous="optional" definition="file:/D:/ProgettiSoapUi/WSDLwebServices/DemRicettaPrescrittoServices_wsdl_xsd/demInvioPrescritto.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\D:\ProgettiSoapUi\WSDLwebServices\DemRicettaPrescrittoServices_wsdl_xsd\demInvioPrescritto.wsdl"><con:part><con:url>file:\D:\ProgettiSoapUi\WSDLwebServices\DemRicettaPrescrittoServices_wsdl_xsd\demInvioPrescritto.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://invioprescritto.wsdl.dem.sanita.finanze.it" xmlns:ricevutans="http://invioprescrittoricevuta.xsd.dem.sanita.finanze.it" xmlns:richiestans="http://invioprescrittorichiesta.xsd.dem.sanita.finanze.it" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://invioprescritto.wsdl.dem.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified">
+      <xsd:import namespace="http://invioprescrittorichiesta.xsd.dem.sanita.finanze.it" schemaLocation="InvioPrescrittoRichiesta.xsd"/>
+    </xsd:schema>
+    <xsd:schema elementFormDefault="qualified">
+      <xsd:import namespace="http://invioprescrittoricevuta.xsd.dem.sanita.finanze.it" schemaLocation="InvioPrescrittoRicevuta.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ricevuta">
+    <wsdl:part name="InvioPrescrittoRicevuta" element="ricevutans:InvioPrescrittoRicevuta"/>
+  </wsdl:message>
+  <wsdl:message name="richiesta">
+    <wsdl:part name="InvioPrescrittoRichiesta" element="richiestans:InvioPrescrittoRichiesta"/>
+  </wsdl:message>
+  <wsdl:portType name="invioPrescrittoPT">
+    <wsdl:operation name="invioPrescritto">
+      <wsdl:input message="tns:richiesta"/>
+      <wsdl:output message="tns:ricevuta"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="invioPrescrittoBinding" type="tns:invioPrescrittoPT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="invioPrescritto">
+      <soap:operation soapAction="http://invioprescritto.wsdl.dem.sanita.finanze.it/InvioPrescritto"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="demInvioPrescritto">
+    <wsdl:port name="demInvioPrescritto" binding="tns:invioPrescrittoBinding">
+      <soap:address location="http://localhost:9080/DemRicettaPrescrittoServicesWeb/services/demInvioPrescritto"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\D:\ProgettiSoapUi\WSDLwebServices\DemRicettaPrescrittoServices_wsdl_xsd\InvioPrescrittoRichiesta.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://invioprescrittorichiesta.xsd.dem.sanita.finanze.it" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://invioprescrittorichiesta.xsd.dem.sanita.finanze.it" xmlns:td="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://tipodati.xsd.dem.sanita.finanze.it" schemaLocation="TipiDati.xsd"/>
+  <xs:annotation>
+    <xs:documentation>Versione 1.2</xs:documentation>
+  </xs:annotation>
+  <xs:element name="InvioPrescrittoRichiesta">
+    <xs:annotation>
+      <xs:documentation>Elemento base per l'invio al SAC della ricetta prescritta dal medico</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="pinCode" type="td:stringType">
+          <xs:annotation>
+            <xs:documentation>PinCode inviante</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="cfMedico1" type="td:cfMedicoType">
+          <xs:annotation>
+            <xs:documentation>Codice fiscale del medico associato all'NRE inviato o attribuito in fase di registrazione</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="cfMedico2" type="td:cfMedicoType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Codice fiscale del medico che compila la ricetta elettronica</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codRegione" type="td:codRegioneType">
+          <xs:annotation>
+            <xs:documentation>Codice Regione / Provincia Autonoma del medico a cui si vuole attribuire un NRE</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codASLAo" type="td:stringType">
+          <xs:annotation>
+            <xs:documentation>Codice ASL del medico a cui si vuole attribuire un NRE</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codStruttura" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Codice struttura del medico a cui si vuole attribuire un NRE</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codSpecializzazione" type="td:codSpecializzazioneType">
+          <xs:annotation>
+            <xs:documentation>Specializzazione del medico a cui si vuole attribuire un NRE</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="testata1" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Campo destinato a informazioni aggiuntive</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="testata2" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Campo destinato a informazioni aggiuntive</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="nre" type="td:nreType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>L'elemento contiene il Numero di ricetta elettronica (NRE)</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="tipoRic" type="td:tipoRicettaType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Tipologia della ricetta compilata</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codiceAss" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Codice Fiscale/STP/ENI/altro che rappresenta l'assistito per cui viene compilata la ricetta</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="cognNome" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Cognome e nome dell'assistito</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="indirizzo" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Indirizzo dell'assistito</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="oscuramDati" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Dati sensibili oscurati</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="numTessSasn" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Numero tessera assistenza SASN</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="socNavigaz" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Societa di navigazione</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="tipoPrescrizione" type="td:tipoPrescType">
+          <xs:annotation>
+            <xs:documentation>F - Farmaceutica, P - Specialistica</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ricettaInterna" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>La ricetta per prestazioni specialistiche prescritta internamente ad una struttura pubblica deve essere erogata all'interno della stessa struttura</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codEsenzione" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Codice esenzione riportato in ricetta</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="nonEsente" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Campo che indica se l'assistito e' esente oppure no</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="reddito" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Campo che indica se l'assistito e' esente per reddito oppure no</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codDiagnosi" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Codice diagnosi o del sospetto diagnostico</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="descrizioneDiagnosi" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Descrizione della diagnosi o del sospetto diagnostico in testo libero</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="dataCompilazione" type="td:dataOraType">
+          <xs:annotation>
+            <xs:documentation>Data compilazione della ricetta, formato aaaa-mm-gg hh24:mm:ss</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="tipoVisita" type="td:tipoVisitaType">
+          <xs:annotation>
+            <xs:documentation>A - Ambulatoriale, D - Domiciliare</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="dispReg" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Disposizioni regionali specifiche</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="provAssistito" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Provincia di residenza dell'assistito</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="aslAssistito" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Asl di residenza dell'assistito</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="indicazionePrescr" type="td:indicPrescType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>S - Suggerita, H - Ricovero</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="altro" type="td:indicPrescType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Indicazione di trattamento di una patologia cronica o non cronica</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="classePriorita" type="td:prioritaType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Classe di priorita' della prescrizione</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="statoEstero" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Stato del soggetto assicurato da istituzioni estere</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="istituzCompetente" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Istituzione competente del soggetto assicurato da istituzioni estere</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="numIdentPers" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Numero di identificazione personale del soggetto assicurato da istituzioni estere</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="numIdentTess" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Numero di identificazione della tessera del soggetto assicurato da istituzioni estere</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="dataNascitaEstero" type="td:dataOraType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Data di nascita del soggetto assicurato da istituzioni estere nel formato aaaa-mm-gg</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="dataScadTessera" type="td:dataOraType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Data scadenza della tessera del soggetto assicurato da istituzioni estere nel formato aaaa-mm-gg</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ElencoDettagliPrescrizioni" type="td:elencoDettagliPrescrizioniType">
+          <xs:annotation>
+            <xs:documentation>Elenco singole prescrizioni</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\D:\ProgettiSoapUi\WSDLwebServices\DemRicettaPrescrittoServices_wsdl_xsd\TipiDati.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://tipodati.xsd.dem.sanita.finanze.it" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation>Versione 1.2</xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="nreType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="15"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="codRegioneType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="3"/>
+      <xs:maxLength value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="cfMedicoType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="16"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="codSpecializzazioneType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tipoInvioType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="3"/>
+      <xs:maxLength value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tipoRicettaType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tipoPrescType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tipoVisitaType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="indicPrescType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="prioritaType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dataOraType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="19"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="codEsitoType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{4}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="stringType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="integerType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="erroreRicettaType">
+    <xs:sequence>
+      <xs:element name="codEsito" type="codEsitoType"/>
+      <xs:element name="esito" type="stringType" minOccurs="0"/>
+      <xs:element name="progPresc" type="stringType" minOccurs="0"/>
+      <xs:element name="tipoErrore" type="stringType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="elencoErroriRicetteType">
+    <xs:sequence>
+      <xs:element name="ErroreRicetta" type="erroreRicettaType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dettaglioPrescrizioneType">
+    <xs:sequence>
+      <xs:element name="codProdPrest" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Codice prodotto farmaceutico (AIC) o codice prestazione specialistica</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="descrProdPrest" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Descrizione testuale del prodotto farmaceutico o della prestazione specialistica</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="codGruppoEquival" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Codice del gruppo equivalente</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="descrGruppoEquival" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Descrizione testuale del gruppo equivalente</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="testoLibero" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Campo che indica di tenere conto solamente della descrizione inserita in descrTestoLibero</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="descrTestoLiberoNote" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Descrizione testuale della prestazione specialistica</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nonSost" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Non sostituibilita' del farmaco</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="motivazNote" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Motivazione della non sostituibilita'</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="codMotivazione" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Codici di motivazione di non sostituibilita' di un farmaco</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="notaProd" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Nota AIFA</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="quantita" type="integerType">
+        <xs:annotation>
+          <xs:documentation>Quantita' di confezioni o di prestazioni specialistiche prescritte</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="prescrizione1" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Campo destinato a informazioni aggiuntive</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="prescrizione2" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Campo destinato a informazioni aggiuntive</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="elencoDettagliPrescrizioniType">
+    <xs:sequence>
+      <xs:element name="DettaglioPrescrizione" type="dettaglioPrescrizioneType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="comunicazioneType">
+    <xs:sequence>
+      <xs:element name="codice" type="stringType">
+        <xs:annotation>
+          <xs:documentation>Codice della comunicazione di servizio</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="messaggio" type="stringType">
+        <xs:annotation>
+          <xs:documentation>Messaggio di servizio</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="elencoComunicazioniType">
+    <xs:sequence>
+      <xs:element name="Comunicazione" type="comunicazioneType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\D:\ProgettiSoapUi\WSDLwebServices\DemRicettaPrescrittoServices_wsdl_xsd\InvioPrescrittoRicevuta.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://invioprescrittoricevuta.xsd.dem.sanita.finanze.it" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://invioprescrittoricevuta.xsd.dem.sanita.finanze.it" xmlns:td="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://tipodati.xsd.dem.sanita.finanze.it" schemaLocation="TipiDati.xsd"/>
+  <xs:annotation>
+    <xs:documentation>Versione 1.2</xs:documentation>
+  </xs:annotation>
+  <xs:element name="InvioPrescrittoRicevuta">
+    <xs:annotation>
+      <xs:documentation>Elemento base della ricevuta dell'invio al SAC della ricetta prescritta dal medico</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="nre" type="td:nreType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Numero Ricetta Elettronica</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codAutenticazione" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Codice autenticazione rilasciato dal SAC</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="dataInserimento" type="td:dataOraType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Data inserimento negli archivi del SAC</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codEsitoInserimento" type="td:codEsitoType">
+          <xs:annotation>
+            <xs:documentation>Codice dell'esito dell'inserimento</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ElencoErroriRicette" type="td:elencoErroriRicetteType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Ripetizione di ErroreRicetta</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ElencoComunicazioni" type="td:elencoComunicazioniType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Ripetizione di Comunicazioni di servizio</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://demservicetest.sanita.finanze.it/DemRicettaPrescrittoServicesWeb/services/demInvioPrescritto</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://invioprescritto.wsdl.dem.sanita.finanze.it/InvioPrescritto" name="invioPrescritto" bindingOperationName="invioPrescritto" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="InvioPrescrittoFarmaceutica"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://demservicetest.sanita.finanze.it/DemRicettaPrescrittoServicesWeb/services/demInvioPrescritto</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:inv="http://invioprescrittorichiesta.xsd.dem.sanita.finanze.it" xmlns:tip="http://tipodati.xsd.dem.sanita.finanze.it">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <inv:InvioPrescrittoRichiesta>
+         <inv:pinCode>LsQiYtf7FcpMYVKvf+51V6t1BSUk+E/dGOB2vmwNl0DhirZ8QzvTI2Ay04p6+t+eH+DjzkJpXrlEEZvKRz6wKVNOt7uYSQUYKBIFcbcEQJnqT7zTgtz7jV3BK+QaEphfKRsOP1Iejv+vKvJ/3te2xNMHPkNYZIAjxEQHftw9Swk=</inv:pinCode>
+         <inv:cfMedico1>PROVAX00X00X000Y</inv:cfMedico1>
+         <inv:cfMedico2></inv:cfMedico2>
+         <inv:codRegione>130</inv:codRegione>
+         <inv:codASLAo>204</inv:codASLAo>
+         <inv:codStruttura/>
+         <inv:codSpecializzazione>F</inv:codSpecializzazione>
+         <inv:testata1/>
+         <inv:testata2/>
+         <inv:nre/>
+         <inv:tipoRic/>
+         <inv:codiceAss>iKvd9JQntqxPBT2UA/OFfztSNLidocP8Op+NfODzfTdxFWzkcdZrJz5gvCuqv7Dh/r3Cin1ZQMmg/BofIqYCyq2PcC+PJzbvQCocDdl6FrXVXs3W5JhnX7VpWFGCLPYYY2WL+RWKxhfkGqeY8+NCVfQ1lEA15g3W5AabJ15Tthk=</inv:codiceAss>
+         <inv:cognNome>PINO MARIO</inv:cognNome>
+         <inv:indirizzo>VIA MARIO CARUCCI, 99|00143|ROMA|RM</inv:indirizzo>
+         <inv:oscuramDati>1</inv:oscuramDati>
+         <inv:numTessSasn/>
+         <inv:socNavigaz/>
+         <inv:tipoPrescrizione>F</inv:tipoPrescrizione>
+         <inv:ricettaInterna/>
+         <inv:codEsenzione></inv:codEsenzione>
+         <inv:nonEsente>1</inv:nonEsente>
+         <inv:reddito/>
+         <inv:codDiagnosi>008.1</inv:codDiagnosi>
+         <inv:descrizioneDiagnosi/>
+         <inv:dataCompilazione>2014-10-15 08:00:30</inv:dataCompilazione>
+         <inv:tipoVisita>A</inv:tipoVisita>
+         <inv:dispReg/>
+         <inv:provAssistito></inv:provAssistito>
+         <inv:aslAssistito></inv:aslAssistito>
+         <inv:indicazionePrescr/>
+         <inv:altro/>
+         <inv:classePriorita/>
+         <!--ASSISTITO ESTERO-->
+         <!--
+         <inv:statoEstero>LU</inv:statoEstero>
+         <inv:istituzCompetente>0018-CNS</inv:istituzCompetente>
+         <inv:numIdentPers>19530104330</inv:numIdentPers>
+         <inv:numIdentTess>80442000730002526733</inv:numIdentTess>
+         <inv:dataNascitaEstero>1983-06-12 00:00:00</inv:dataNascitaEstero>
+         <inv:dataScadTessera>2015-01-04 00:00:00</inv:dataScadTessera>
+		-->
+         <inv:ElencoDettagliPrescrizioni>
+            <tip:DettaglioPrescrizione>
+               <tip:codProdPrest>025940053</tip:codProdPrest>
+               <tip:descrProdPrest></tip:descrProdPrest>
+               <tip:codGruppoEquival>32A</tip:codGruppoEquival>
+               <tip:descrGruppoEquival></tip:descrGruppoEquival>
+               <tip:testoLibero></tip:testoLibero>
+               <tip:descrTestoLiberoNote></tip:descrTestoLiberoNote>
+               <tip:nonSost></tip:nonSost>
+               <tip:motivazNote></tip:motivazNote>
+               <tip:codMotivazione></tip:codMotivazione>
+               <tip:notaProd>066</tip:notaProd>
+               <tip:quantita>1</tip:quantita>
+               <tip:prescrizione1></tip:prescrizione1>
+               <tip:prescrizione2></tip:prescrizione2>
+            </tip:DettaglioPrescrizione>
+         </inv:ElencoDettagliPrescrizioni>
+      </inv:InvioPrescrittoRichiesta>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>PROVAX00X00X000Y</con:username><con:password>Salve123</con:password><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://invioprescritto.wsdl.dem.sanita.finanze.it/InvioPrescritto"/><con:wsrmConfig version="1.2"/></con:call><con:call name="InvioPrescrittoSpecialistica"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://demservicetest.sanita.finanze.it/DemRicettaPrescrittoServicesWeb/services/demInvioPrescritto</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:inv="http://invioprescrittorichiesta.xsd.dem.sanita.finanze.it" xmlns:tip="http://tipodati.xsd.dem.sanita.finanze.it">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <inv:InvioPrescrittoRichiesta>
+         <inv:pinCode>LsQiYtf7FcpMYVKvf+51V6t1BSUk+E/dGOB2vmwNl0DhirZ8QzvTI2Ay04p6+t+eH+DjzkJpXrlEEZvKRz6wKVNOt7uYSQUYKBIFcbcEQJnqT7zTgtz7jV3BK+QaEphfKRsOP1Iejv+vKvJ/3te2xNMHPkNYZIAjxEQHftw9Swk=</inv:pinCode>
+         <inv:cfMedico1>PROVAX00X00X000Y</inv:cfMedico1>
+         <inv:codRegione>130</inv:codRegione>
+         <inv:codASLAo>202</inv:codASLAo>
+         <inv:codStruttura></inv:codStruttura>
+         <inv:codSpecializzazione>F</inv:codSpecializzazione>
+         <inv:testata1></inv:testata1>
+         <inv:testata2></inv:testata2>
+         <inv:nre></inv:nre>
+         <inv:tipoRic></inv:tipoRic>
+         <inv:codiceAss>iKvd9JQntqxPBT2UA/OFfztSNLidocP8Op+NfODzfTdxFWzkcdZrJz5gvCuqv7Dh/r3Cin1ZQMmg/BofIqYCyq2PcC+PJzbvQCocDdl6FrXVXs3W5JhnX7VpWFGCLPYYY2WL+RWKxhfkGqeY8+NCVfQ1lEA15g3W5AabJ15Tthk=</inv:codiceAss>
+         <inv:cognNome></inv:cognNome>
+         <inv:indirizzo></inv:indirizzo>
+         <inv:oscuramDati></inv:oscuramDati>
+         <inv:numTessSasn></inv:numTessSasn>
+         <inv:socNavigaz></inv:socNavigaz>
+         <inv:tipoPrescrizione>P</inv:tipoPrescrizione>
+         <inv:ricettaInterna></inv:ricettaInterna>
+         <inv:codEsenzione></inv:codEsenzione>
+         <inv:nonEsente>1</inv:nonEsente>
+         <inv:reddito></inv:reddito>
+         <inv:codDiagnosi></inv:codDiagnosi>
+         <inv:descrizioneDiagnosi></inv:descrizioneDiagnosi>
+         <inv:dataCompilazione>2014-10-15 10:00:00</inv:dataCompilazione>
+         <inv:tipoVisita>A</inv:tipoVisita>
+         <inv:dispReg></inv:dispReg>
+         <inv:provAssistito></inv:provAssistito>
+         <inv:aslAssistito></inv:aslAssistito>
+         <inv:indicazionePrescr>H</inv:indicazionePrescr>
+         <inv:altro></inv:altro>
+         <inv:classePriorita></inv:classePriorita>
+         <!--
+         <inv:statoEstero>LU</inv:statoEstero>
+         <inv:istituzCompetente>0018-CNS</inv:istituzCompetente>
+         <inv:numIdentPers>19530104330</inv:numIdentPers>
+         <inv:numIdentTess>80442000730002526733</inv:numIdentTess>
+         <inv:dataNascitaEstero>1983-06-12 00:00:00</inv:dataNascitaEstero>
+         <inv:dataScadTessera>2015-01-04 00:00:00</inv:dataScadTessera>-->
+         <inv:ElencoDettagliPrescrizioni>
+           <tip:DettaglioPrescrizione> 
+               <tip:codProdPrest>89.7</tip:codProdPrest>
+               <tip:descrProdPrest></tip:descrProdPrest>
+               <tip:testoLibero></tip:testoLibero>
+               <tip:descrTestoLiberoNote></tip:descrTestoLiberoNote>
+               <tip:motivazNote></tip:motivazNote>
+               <tip:quantita>1</tip:quantita>
+               <tip:prescrizione1></tip:prescrizione1>
+               <tip:prescrizione2></tip:prescrizione2>
+            </tip:DettaglioPrescrizione>
+            <tip:DettaglioPrescrizione> 
+               <tip:codProdPrest>89.7</tip:codProdPrest>
+               <tip:descrProdPrest></tip:descrProdPrest>
+               <tip:testoLibero></tip:testoLibero>
+               <tip:descrTestoLiberoNote></tip:descrTestoLiberoNote>
+               <tip:motivazNote></tip:motivazNote>
+               <tip:quantita>1</tip:quantita>
+               <tip:prescrizione1></tip:prescrizione1>
+               <tip:prescrizione2></tip:prescrizione2>
+            </tip:DettaglioPrescrizione>
+           <tip:DettaglioPrescrizione> 
+               <tip:codProdPrest>036</tip:codProdPrest>
+               <tip:descrProdPrest></tip:descrProdPrest>
+               <tip:testoLibero></tip:testoLibero>
+               <tip:descrTestoLiberoNote></tip:descrTestoLiberoNote>
+               <tip:motivazNote></tip:motivazNote>
+               <tip:quantita>1</tip:quantita>
+               <tip:prescrizione1></tip:prescrizione1>
+               <tip:prescrizione2></tip:prescrizione2>
+            </tip:DettaglioPrescrizione>
+            <tip:DettaglioPrescrizione> 
+               <tip:codProdPrest></tip:codProdPrest>
+               <tip:descrProdPrest></tip:descrProdPrest>
+               <tip:testoLibero>1</tip:testoLibero>
+               <tip:descrTestoLiberoNote>VISITA DI CONTROLLO</tip:descrTestoLiberoNote>
+               <tip:motivazNote></tip:motivazNote>
+               <tip:quantita>1</tip:quantita>
+               <tip:prescrizione1></tip:prescrizione1>
+               <tip:prescrizione2></tip:prescrizione2>
+            </tip:DettaglioPrescrizione>
+         </inv:ElencoDettagliPrescrizioni>
+      </inv:InvioPrescrittoRichiesta>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>PROVAX00X00X000Y</con:username><con:password>Salve123</con:password><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://invioprescritto.wsdl.dem.sanita.finanze.it/InvioPrescritto"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="annullaPrescrittoBinding" type="wsdl" bindingName="{http://annullaprescritto.wsdl.dem.sanita.finanze.it}annullaPrescrittoBinding" soapVersion="1_1" anonymous="optional" definition="file:/D:/ProgettiSoapUi/WSDLwebServices/DemRicettaPrescrittoServices_wsdl_xsd/demAnnullaPrescritto.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/ProgettiSoapUi/WSDLwebServices/DemRicettaPrescrittoServices_wsdl_xsd/demAnnullaPrescritto.wsdl"><con:part><con:url>file:/D:/ProgettiSoapUi/WSDLwebServices/DemRicettaPrescrittoServices_wsdl_xsd/demAnnullaPrescritto.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://annullaprescritto.wsdl.dem.sanita.finanze.it" xmlns:ricevutans="http://annullaprescrittoricevuta.xsd.dem.sanita.finanze.it" xmlns:richiestans="http://annullaprescrittorichiesta.xsd.dem.sanita.finanze.it" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://annullaprescritto.wsdl.dem.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified">
+      <xsd:import namespace="http://annullaprescrittorichiesta.xsd.dem.sanita.finanze.it" schemaLocation="AnnullaPrescrittoRichiesta.xsd"/>
+    </xsd:schema>
+    <xsd:schema elementFormDefault="qualified">
+      <xsd:import namespace="http://annullaprescrittoricevuta.xsd.dem.sanita.finanze.it" schemaLocation="AnnullaPrescrittoRicevuta.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ricevuta">
+    <wsdl:part name="AnnullaPrescrittoRicevuta" element="ricevutans:AnnullaPrescrittoRicevuta"/>
+  </wsdl:message>
+  <wsdl:message name="richiesta">
+    <wsdl:part name="AnnullaPrescrittoRichiesta" element="richiestans:AnnullaPrescrittoRichiesta"/>
+  </wsdl:message>
+  <wsdl:portType name="annullaPrescrittoPT">
+    <wsdl:operation name="annullaPrescritto">
+      <wsdl:input message="tns:richiesta"/>
+      <wsdl:output message="tns:ricevuta"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="annullaPrescrittoBinding" type="tns:annullaPrescrittoPT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="annullaPrescritto">
+      <soap:operation soapAction="http://annullaprescritto.wsdl.dem.sanita.finanze.it/AnnullaPrescritto"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="demAnnullaPrescritto">
+    <wsdl:port name="demAnnullaPrescritto" binding="tns:annullaPrescrittoBinding">
+      <soap:address location="http://localhost:9080/DemRicettaPrescrittoServicesWeb/services/demAnnullaPrescritto"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\D:\ProgettiSoapUi\WSDLwebServices\DemRicettaPrescrittoServices_wsdl_xsd\AnnullaPrescrittoRichiesta.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://annullaprescrittorichiesta.xsd.dem.sanita.finanze.it" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://annullaprescrittorichiesta.xsd.dem.sanita.finanze.it" xmlns:td="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://tipodati.xsd.dem.sanita.finanze.it" schemaLocation="TipiDati.xsd"/>
+  <xs:annotation>
+    <xs:documentation>Versione 1.2</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AnnullaPrescrittoRichiesta">
+    <xs:annotation>
+      <xs:documentation>Elemento base per la richiesta di annullamento della ricetta prescritta dal medico</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="pinCode" type="td:stringType">
+          <xs:annotation>
+            <xs:documentation>PinCode inviante</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="nre" type="td:nreType">
+          <xs:annotation>
+            <xs:documentation>Numero Ricetta Elettronica</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="cfMedico" type="td:cfMedicoType">
+          <xs:annotation>
+            <xs:documentation>CF del medico a cui e' associato l'NRE</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\D:\ProgettiSoapUi\WSDLwebServices\DemRicettaPrescrittoServices_wsdl_xsd\TipiDati.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://tipodati.xsd.dem.sanita.finanze.it" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation>Versione 1.2</xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="nreType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="15"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="codRegioneType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="3"/>
+      <xs:maxLength value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="cfMedicoType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="16"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="codSpecializzazioneType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tipoInvioType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="3"/>
+      <xs:maxLength value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tipoRicettaType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tipoPrescType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tipoVisitaType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="indicPrescType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="prioritaType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dataOraType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="19"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="codEsitoType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{4}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="stringType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="integerType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="erroreRicettaType">
+    <xs:sequence>
+      <xs:element name="codEsito" type="codEsitoType"/>
+      <xs:element name="esito" type="stringType" minOccurs="0"/>
+      <xs:element name="progPresc" type="stringType" minOccurs="0"/>
+      <xs:element name="tipoErrore" type="stringType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="elencoErroriRicetteType">
+    <xs:sequence>
+      <xs:element name="ErroreRicetta" type="erroreRicettaType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dettaglioPrescrizioneType">
+    <xs:sequence>
+      <xs:element name="codProdPrest" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Codice prodotto farmaceutico (AIC) o codice prestazione specialistica</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="descrProdPrest" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Descrizione testuale del prodotto farmaceutico o della prestazione specialistica</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="codGruppoEquival" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Codice del gruppo equivalente</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="descrGruppoEquival" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Descrizione testuale del gruppo equivalente</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="testoLibero" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Campo che indica di tenere conto solamente della descrizione inserita in descrTestoLibero</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="descrTestoLiberoNote" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Descrizione testuale della prestazione specialistica</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nonSost" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Non sostituibilita' del farmaco</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="motivazNote" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Motivazione della non sostituibilita'</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="codMotivazione" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Codici di motivazione di non sostituibilita' di un farmaco</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="notaProd" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Nota AIFA</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="quantita" type="integerType">
+        <xs:annotation>
+          <xs:documentation>Quantita' di confezioni o di prestazioni specialistiche prescritte</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="prescrizione1" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Campo destinato a informazioni aggiuntive</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="prescrizione2" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Campo destinato a informazioni aggiuntive</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="elencoDettagliPrescrizioniType">
+    <xs:sequence>
+      <xs:element name="DettaglioPrescrizione" type="dettaglioPrescrizioneType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="comunicazioneType">
+    <xs:sequence>
+      <xs:element name="codice" type="stringType">
+        <xs:annotation>
+          <xs:documentation>Codice della comunicazione di servizio</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="messaggio" type="stringType">
+        <xs:annotation>
+          <xs:documentation>Messaggio di servizio</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="elencoComunicazioniType">
+    <xs:sequence>
+      <xs:element name="Comunicazione" type="comunicazioneType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\D:\ProgettiSoapUi\WSDLwebServices\DemRicettaPrescrittoServices_wsdl_xsd\AnnullaPrescrittoRicevuta.xsd</con:url><con:content><![CDATA[<!--edited with XMLSpy v2006 U (http://www.altova.com) by xxx (pippo)-->
+<xs:schema targetNamespace="http://annullaprescrittoricevuta.xsd.dem.sanita.finanze.it" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://annullaprescrittoricevuta.xsd.dem.sanita.finanze.it" xmlns:td="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://tipodati.xsd.dem.sanita.finanze.it" schemaLocation="TipiDati.xsd"/>
+  <xs:annotation>
+    <xs:documentation>Versione 1.2</xs:documentation>
+  </xs:annotation>
+  <xs:element name="AnnullaPrescrittoRicevuta">
+    <xs:annotation>
+      <xs:documentation>Elemento base della ricevuta dell'invio al SAC della ricetta prescritta dal medico</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="nre" type="td:nreType">
+          <xs:annotation>
+            <xs:documentation>Numero Ricetta Elettronica</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codEsitoAnnullamento" type="td:codEsitoType">
+          <xs:annotation>
+            <xs:documentation>Codice dell'esito dell'annullamento</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ElencoErroriRicette" type="td:elencoErroriRicetteType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Ripetizione di ErroreRicetta</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ElencoComunicazioni" type="td:elencoComunicazioniType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Ripetizione di Comunicazioni di servizio</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://demservicetest.sanita.finanze.it/DemRicettaPrescrittoServicesWeb/services/demAnnullaPrescritto</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://annullaprescritto.wsdl.dem.sanita.finanze.it/AnnullaPrescritto" name="annullaPrescritto" bindingOperationName="annullaPrescritto" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="AnnullamentoPrescritto"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://demservicetest.sanita.finanze.it/DemRicettaPrescrittoServicesWeb/services/demAnnullaPrescritto</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ann="http://annullaprescrittorichiesta.xsd.dem.sanita.finanze.it">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ann:AnnullaPrescrittoRichiesta>
+         <ann:pinCode>LsQiYtf7FcpMYVKvf+51V6t1BSUk+E/dGOB2vmwNl0DhirZ8QzvTI2Ay04p6+t+eH+DjzkJpXrlEEZvKRz6wKVNOt7uYSQUYKBIFcbcEQJnqT7zTgtz7jV3BK+QaEphfKRsOP1Iejv+vKvJ/3te2xNMHPkNYZIAjxEQHftw9Swk=</ann:pinCode>
+         <ann:nre>1300A4003570317</ann:nre>
+         <ann:cfMedico>PROVAX00X00X000Y</ann:cfMedico>
+      </ann:AnnullaPrescrittoRichiesta>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>PROVAX00X00X000Y</con:username><con:password>Salve123</con:password><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://annullaprescritto.wsdl.dem.sanita.finanze.it/AnnullaPrescritto"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="visualizzaPrescrittoBinding" type="wsdl" bindingName="{http://visualizzaprescritto.wsdl.dem.sanita.finanze.it}visualizzaPrescrittoBinding" soapVersion="1_1" anonymous="optional" definition="file:/D:/ProgettiSoapUi/WSDLwebServices/DemRicettaPrescrittoServices_wsdl_xsd/demVisualizzaPrescritto.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/D:/ProgettiSoapUi/WSDLwebServices/DemRicettaPrescrittoServices_wsdl_xsd/demVisualizzaPrescritto.wsdl"><con:part><con:url>file:/D:/ProgettiSoapUi/WSDLwebServices/DemRicettaPrescrittoServices_wsdl_xsd/demVisualizzaPrescritto.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://visualizzaprescritto.wsdl.dem.sanita.finanze.it" xmlns:ricevutans="http://visualizzaprescrittoricevuta.xsd.dem.sanita.finanze.it" xmlns:richiestans="http://visualizzaprescrittorichiesta.xsd.dem.sanita.finanze.it" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://visualizzaprescritto.wsdl.dem.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified">
+      <xsd:import namespace="http://visualizzaprescrittorichiesta.xsd.dem.sanita.finanze.it" schemaLocation="VisualizzaPrescrittoRichiesta.xsd"/>
+    </xsd:schema>
+    <xsd:schema elementFormDefault="qualified">
+      <xsd:import namespace="http://visualizzaprescrittoricevuta.xsd.dem.sanita.finanze.it" schemaLocation="VisualizzaPrescrittoRicevuta.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ricevuta">
+    <wsdl:part name="VisualizzaPrescrittoRicevuta" element="ricevutans:VisualizzaPrescrittoRicevuta"/>
+  </wsdl:message>
+  <wsdl:message name="richiesta">
+    <wsdl:part name="VisualizzaPrescrittoRichiesta" element="richiestans:VisualizzaPrescrittoRichiesta"/>
+  </wsdl:message>
+  <wsdl:portType name="visualizzaPrescrittoPT">
+    <wsdl:operation name="visualizzaPrescritto">
+      <wsdl:input message="tns:richiesta"/>
+      <wsdl:output message="tns:ricevuta"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="visualizzaPrescrittoBinding" type="tns:visualizzaPrescrittoPT">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="visualizzaPrescritto">
+      <soap:operation soapAction="http://visualizzaprescritto.wsdl.dem.sanita.finanze.it/VisualizzaPrescritto"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="demVisualizzaPrescritto">
+    <wsdl:port name="demVisualizzaPrescritto" binding="tns:visualizzaPrescrittoBinding">
+      <soap:address location="http://localhost:9080/DemRicettaPrescrittoServicesWeb/services/demVisualizzaPrescritto"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\D:\ProgettiSoapUi\WSDLwebServices\DemRicettaPrescrittoServices_wsdl_xsd\VisualizzaPrescrittoRichiesta.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://visualizzaprescrittorichiesta.xsd.dem.sanita.finanze.it" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://visualizzaprescrittorichiesta.xsd.dem.sanita.finanze.it" xmlns:td="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://tipodati.xsd.dem.sanita.finanze.it" schemaLocation="TipiDati.xsd"/>
+  <xs:annotation>
+    <xs:documentation>Versione 1.2</xs:documentation>
+  </xs:annotation>
+  <xs:element name="VisualizzaPrescrittoRichiesta">
+    <xs:annotation>
+      <xs:documentation>Elemento base per la richiesta di visualizzazione della ricetta prescritta dal medico</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="pinCode" type="td:stringType">
+          <xs:annotation>
+            <xs:documentation>PinCode inviante</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="nre" type="td:nreType">
+          <xs:annotation>
+            <xs:documentation>Numero Ricetta Elettronica</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="cfMedico" type="td:cfMedicoType">
+          <xs:annotation>
+            <xs:documentation>CF del medico a cui e' associato l'NRE</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\D:\ProgettiSoapUi\WSDLwebServices\DemRicettaPrescrittoServices_wsdl_xsd\TipiDati.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://tipodati.xsd.dem.sanita.finanze.it" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation>Versione 1.2</xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="nreType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="15"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="codRegioneType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="3"/>
+      <xs:maxLength value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="cfMedicoType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="16"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="codSpecializzazioneType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tipoInvioType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="3"/>
+      <xs:maxLength value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tipoRicettaType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tipoPrescType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tipoVisitaType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="indicPrescType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="prioritaType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="dataOraType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="19"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="codEsitoType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{4}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="stringType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="integerType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="erroreRicettaType">
+    <xs:sequence>
+      <xs:element name="codEsito" type="codEsitoType"/>
+      <xs:element name="esito" type="stringType" minOccurs="0"/>
+      <xs:element name="progPresc" type="stringType" minOccurs="0"/>
+      <xs:element name="tipoErrore" type="stringType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="elencoErroriRicetteType">
+    <xs:sequence>
+      <xs:element name="ErroreRicetta" type="erroreRicettaType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dettaglioPrescrizioneType">
+    <xs:sequence>
+      <xs:element name="codProdPrest" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Codice prodotto farmaceutico (AIC) o codice prestazione specialistica</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="descrProdPrest" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Descrizione testuale del prodotto farmaceutico o della prestazione specialistica</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="codGruppoEquival" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Codice del gruppo equivalente</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="descrGruppoEquival" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Descrizione testuale del gruppo equivalente</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="testoLibero" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Campo che indica di tenere conto solamente della descrizione inserita in descrTestoLibero</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="descrTestoLiberoNote" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Descrizione testuale della prestazione specialistica</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nonSost" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Non sostituibilita' del farmaco</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="motivazNote" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Motivazione della non sostituibilita'</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="codMotivazione" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Codici di motivazione di non sostituibilita' di un farmaco</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="notaProd" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Nota AIFA</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="quantita" type="integerType">
+        <xs:annotation>
+          <xs:documentation>Quantita' di confezioni o di prestazioni specialistiche prescritte</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="prescrizione1" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Campo destinato a informazioni aggiuntive</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="prescrizione2" type="stringType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Campo destinato a informazioni aggiuntive</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="elencoDettagliPrescrizioniType">
+    <xs:sequence>
+      <xs:element name="DettaglioPrescrizione" type="dettaglioPrescrizioneType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="comunicazioneType">
+    <xs:sequence>
+      <xs:element name="codice" type="stringType">
+        <xs:annotation>
+          <xs:documentation>Codice della comunicazione di servizio</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="messaggio" type="stringType">
+        <xs:annotation>
+          <xs:documentation>Messaggio di servizio</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="elencoComunicazioniType">
+    <xs:sequence>
+      <xs:element name="Comunicazione" type="comunicazioneType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\D:\ProgettiSoapUi\WSDLwebServices\DemRicettaPrescrittoServices_wsdl_xsd\VisualizzaPrescrittoRicevuta.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://visualizzaprescrittoricevuta.xsd.dem.sanita.finanze.it" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://visualizzaprescrittoricevuta.xsd.dem.sanita.finanze.it" xmlns:td="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://tipodati.xsd.dem.sanita.finanze.it" schemaLocation="TipiDati.xsd"/>
+  <xs:annotation>
+    <xs:documentation>Versione 1.2</xs:documentation>
+  </xs:annotation>
+  <xs:element name="VisualizzaPrescrittoRicevuta">
+    <xs:annotation>
+      <xs:documentation>Elemento base della ricevuta per la richiesta di visualizzazione della ricetta prescritta dal medico</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="nre" type="td:nreType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Numero Ricetta Elettronica</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="cfMedico1" type="td:cfMedicoType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Codice fiscale del medico associato all'NRE inviato o attribuito in fase di registrazione</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="cfMedico2" type="td:cfMedicoType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Codice fiscale del medico che compila la ricetta elettronica</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codRegione" type="td:codRegioneType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Codice Regione / Provincia Autonoma del medico a cui si vuole attribuire un NRE</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codASLAo" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Codice ASL del medico a cui si vuole attribuire un NRE</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codStruttura" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Codice struttura del medico a cui si vuole attribuire un NRE</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codSpecializzazione" type="td:codSpecializzazioneType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Specializzazione del medico a cui si vuole attribuire un NRE</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="testata1" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Campo destinato a informazioni aggiuntive</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="testata2" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Campo destinato a informazioni aggiuntive</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="tipoRic" type="td:tipoRicettaType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Tipologia della ricetta compilata</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codiceAss" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Codice Fiscale/STP/ENI/altro che rappresenta l'assistito per cui viene compilata la ricetta</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="cognNome" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Cognome e nome dell'assistito</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="indirizzo" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Indirizzo dell'assistito</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="oscuramDati" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Dati sensibili oscurati</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="numTessSasn" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Numero tessera assistenza SASN</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="socNavigaz" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Societa di navigazione</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="tipoPrescrizione" type="td:tipoPrescType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>F - Farmaceutica, P - Specialistica</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ricettaInterna" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>La ricetta per prestazioni specialistiche prescritta internamente ad una struttura pubblica deve essere erogata all'interno della stessa struttura</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codEsenzione" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Codice esenzione riportato in ricetta</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="nonEsente" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Campo che indica se l'assistito e' esente oppure no</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="reddito" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Campo che indica se l'assistito e' esente per reddito oppure no</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codDiagnosi" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Codice diagnosi o del sospetto diagnostico</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="descrizioneDiagnosi" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Descrizione della diagnosi o del sospetto diagnostico in testo libero</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="dataCompilazione" type="td:dataOraType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Data compilazione della ricetta, formato aaaa-mm-gg hh24:mm:ss</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="tipoVisita" type="td:tipoVisitaType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>A - Ambulatoriale, D - Domiciliare</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="dispReg" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Disposizioni regionali specifiche</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="provAssistito" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Provincia di residenza dell'assistito</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="aslAssistito" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Asl di residenza dell'assistito</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="indicazionePrescr" type="td:indicPrescType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>S - Suggerita, H - Ricovero</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="altro" type="td:indicPrescType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Indicazione di trattamento di una patologia cronica o non cronica</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="classePriorita" type="td:prioritaType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Classe di priorita' della prescrizione</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="statoEstero" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Stato del soggetto assicurato da istituzioni estere</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="istituzCompetente" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Istituzione competente del soggetto assicurato da istituzioni estere</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="numIdentPers" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Numero di identificazione personale del soggetto assicurato da istituzioni estere</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="numIdentTess" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Numero di identificazione della tessera del soggetto assicurato da istituzioni estere</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="dataNascitaEstero" type="td:dataOraType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Data di nascita del soggetto assicurato da istituzioni estere nel formato aaaa-mm-gg</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="dataScadTessera" type="td:dataOraType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Data scadenza della tessera del soggetto assicurato da istituzioni estere nel formato aaaa-mm-gg</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ElencoDettagliPrescrizioni" type="td:elencoDettagliPrescrizioniType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Elenco singole prescrizioni</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="statoProcesso" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Stato della ricetta</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codAutenticazione" type="td:stringType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Codice autenticazione rilasciato dal SAC</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="dataInserimento" type="td:dataOraType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Data inserimento negli archivi del SAC</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codEsitoVisualizzazione" type="td:codEsitoType">
+          <xs:annotation>
+            <xs:documentation>Codice dell'esito della visualizzazione</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ElencoErroriRicette" type="td:elencoErroriRicetteType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Ripetizione di ErroreRicetta</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ElencoComunicazioni" type="td:elencoComunicazioniType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Ripetizione di Comunicazioni di servizio</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://demservicetest.sanita.finanze.it/DemRicettaPrescrittoServicesWeb/services/demVisualizzaPrescritto</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://visualizzaprescritto.wsdl.dem.sanita.finanze.it/VisualizzaPrescritto" name="visualizzaPrescritto" bindingOperationName="visualizzaPrescritto" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="VisualizzaPrescritto"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://demservicetest.sanita.finanze.it/DemRicettaPrescrittoServicesWeb/services/demVisualizzaPrescritto</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:vis="http://visualizzaprescrittorichiesta.xsd.dem.sanita.finanze.it">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <vis:VisualizzaPrescrittoRichiesta>
+         <vis:pinCode>LsQiYtf7FcpMYVKvf+51V6t1BSUk+E/dGOB2vmwNl0DhirZ8QzvTI2Ay04p6+t+eH+DjzkJpXrlEEZvKRz6wKVNOt7uYSQUYKBIFcbcEQJnqT7zTgtz7jV3BK+QaEphfKRsOP1Iejv+vKvJ/3te2xNMHPkNYZIAjxEQHftw9Swk=</vis:pinCode>
+         <vis:nre>1300A4003572666</vis:nre>
+         <vis:cfMedico>PROVAX00X00X000Y</vis:cfMedico>
+      </vis:VisualizzaPrescrittoRichiesta>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>PROVAX00X00X000Y</con:username><con:password>Salve123</con:password><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://visualizzaprescritto.wsdl.dem.sanita.finanze.it/VisualizzaPrescritto"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>

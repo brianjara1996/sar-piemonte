@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml><![CDATA[<ePrescriptions>
+	<ePrescription>
+		<id>123456789_1</id>
+		<medico>
+			<rapporto>H</rapporto>
+			<codiceFiscale>PTRLSN51R21L219Y</codiceFiscale>
+			<regione>010</regione>
+			<asl>202</asl>
+			<struttura>202</struttura>
+			<cognome>COGNMED</cognome>
+			<nome>NOMEMED</nome>
+			<codiceRegionale>CODREGMEDICO</codiceRegionale>
+			<codiceSpecializzazione>H</codiceSpecializzazione>
+			<indirizzo>fraz. Santa Lucia 22, 83010 Tufo(AV)</indirizzo>
+		</medico>
+		<paziente>
+			<id>PZ_ID</id>
+			<!-- dataScadenzaTS>20151231235959</dataScadenzaTS -->
+			<codiceEsenzione>E01</codiceEsenzione>
+			<!-- fasciaReddito>FASCIA_REDDITO</fasciaReddito -->
+			<!-- reddito>10000</reddito -->
+			<codiceFiscale>SHNKSH84A27Z100H</codiceFiscale>
+			<regioneResidenza>010</regioneResidenza>
+			<aslResidenza>010201</aslResidenza>
+			<provinciaResidenza>TO</provinciaResidenza>
+			<regioneAssistenza>010</regioneAssistenza>
+			<aslAssistenza>201</aslAssistenza>
+			<indirizzoDomicilio>Corso Svizzera 164, 10149 TORINO (TO)</indirizzoDomicilio>
+			<indirizzoResidenza>Corso Svizzera 164, 10149 TORINO (TO)</indirizzoResidenza>
+			<cognome>COGNPAZ</cognome>
+			<nome>NOMEPAZ</nome>
+			<sesso>M</sesso>
+			<dataNascita>19800909</dataNascita>
+			<comuneNascita>TORINO</comuneNascita>
+			<cittadinanza>100</cittadinanza>
+			<!-- numeroSASN>NUMTESSSASN</numeroSASN -->
+			<!-- societaSASN>SOCASSSASN</societaSASN -->
+			<telefono>3938823341</telefono>
+			<email>vincenzo.campanile@eng.it</email>
+			<!-- istituzioneEstero>ISTITUZEST</istituzioneEstero -->
+			<!-- statoEstero>STATOESTERO</statoEstero -->
+			<!-- identificazioneEstero>NUMIDTESSTEAM</identificazioneEstero -->
+			<!-- tesseraEstero>TESSTEAM</tesseraEstero -->
+			<consenso>SI</consenso>
+		</paziente>
+		<ricetta>
+			<dataCompilazione>26/04/2016</dataCompilazione>
+			<tipoPrescrizione>P</tipoPrescrizione>
+			<interna>N</interna>
+			<!-- tipoRicetta>UE</tipoRicetta-->
+			<tipoVisita>A</tipoVisita>
+			<indicazione>S</indicazione>
+			<priorita>P</priorita>
+			<codiceDiagnosi>346.90</codiceDiagnosi>
+			<quesito>DESCDIAGNOSI</quesito>
+			<propostaTerapeutica>PROPOSTATERAPEUTICA</propostaTerapeutica>
+			<quantita>1</quantita>
+			<dettagli>
+				<dettaglio>
+					<progressivo>1</progressivo>
+					<codice>89.7</codice>
+					<codiceCatalogoRegionale>897.01</codiceCatalogoRegionale>
+					<codiceCatalogoAziendale>897.01</codiceCatalogoAziendale>
+					<branca>001</branca>
+					<descrizione>prima visita cardiologica</descrizione>
+					<!-- testoLibero>1</testoLibero -->
+					<!-- descrizioneTestoLibero>TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1</descrizioneTestoLibero -->
+					<quantita>1</quantita>
+				</dettaglio>
+			</dettagli>
+		</ricetta>
+	</ePrescription>
+</ePrescriptions>]]></typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>

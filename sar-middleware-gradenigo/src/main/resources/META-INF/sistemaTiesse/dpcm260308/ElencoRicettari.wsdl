@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://elencoricettari.ejb.auxservices.mir.sanita.finanze.it" xmlns:impl="http://elencoricettari.ejb.auxservices.mir.sanita.finanze.it" xmlns:intf="http://elencoricettari.ejb.auxservices.mir.sanita.finanze.it" xmlns:tns2="http://elencoricettari.dto.auxservices.mir.sanita.finanze.it" xmlns:tns3="http://DTO.simossSsa.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsi="http://ws-
+i.org/profiles/basic/1.1/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<schema targetNamespace="http://elencoricettari.dto.auxservices.mir.sanita.finanze.it" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns3="http://DTO.simossSsa.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://DTO.simossSsa.sanita.finanze.it" />
+			<complexType name="ElencoRicettariDTO">
+				<complexContent>
+					<extension base="tns3:BustaTS">
+						<sequence>
+							<element name="arrayRecordRicettariOut" nillable="true" type="tns2:ArrayOfElencoRicettariRecord" />
+							<element name="codRegioneIn" nillable="true" type="xsd:string" />
+							<element name="isOperazioneValida" nillable="true" type="xsd:boolean" />
+							<element name="listaMessaggi" nillable="true" type="tns2:ArrayOf_tns3_nillable_MessageObj" />
+							<element name="operazione" nillable="true" type="xsd:string" />
+							<element name="pinCodeIn" nillable="true" type="xsd:string" />
+							<element name="codFiscMed" nillable="true" type="xsd:string" />
+							<element name="dataConsegna" nillable="true" type="xsd:string" />
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="ElencoRicettariRecord">
+				<sequence>
+					<element name="annRicettario" nillable="true" type="xsd:string" />
+					<element name="prgRicettario" nillable="true" type="xsd:string" />
+					<element name="codAsl" nillable="true" type="xsd:string" />
+					<element name="codReg" nillable="true" type="xsd:string" />
+					<element name="codSpec" nillable="true" type="xsd:string" />
+					<element name="codStrutt" nillable="true" type="xsd:string" />
+				</sequence>
+			</complexType>
+			<complexType name="ArrayOfElencoRicettariRecord">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0" name="ElencoRicettariRecord" nillable="true" type="tns2:ElencoRicettariRecord" />
+				</sequence>
+			</complexType>
+			<complexType name="ArrayOf_tns3_nillable_MessageObj">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0" name="MessageObj" nillable="true" type="tns3:MessageObj" />
+				</sequence>
+			</complexType>
+		</schema>
+		<schema targetNamespace="http://DTO.simossSsa.sanita.finanze.it" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<complexType name="BustaTS">
+				<sequence>
+					<element name="pwd" nillable="true" type="xsd:string" />
+					<element name="username" nillable="true" type="xsd:string" />
+					<element name="codiceAslUtente" nillable="true" type="xsd:string" />
+					<element name="codiceRegioneUtente" nillable="true" type="xsd:string" />
+					<element name="idUtenteRichiedente" nillable="true" type="xsd:string" />
+				</sequence>
+			</complexType>
+			<complexType name="MessageObj">
+				<sequence>
+					<element name="riferimento" nillable="true" type="xsd:string" />
+					<element name="codiceMessaggio" nillable="true" type="xsd:string" />
+					<element name="descrizioneMessaggio" nillable="true" type="xsd:string" />
+				</sequence>
+			</complexType>
+		</schema>
+		<schema targetNamespace="http://elencoricettari.ejb.auxservices.mir.sanita.finanze.it" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns2="http://elencoricettari.dto.auxservices.mir.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://elencoricettari.dto.auxservices.mir.sanita.finanze.it" />
+			<element name="visualizzaElencoRicettariResponse">
+				<complexType>
+					<sequence>
+						<element name="visualizzaElencoRicettariReturn" nillable="true" type="tns2:ElencoRicettariDTO" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="visualizzaElencoRicettari">
+				<complexType>
+					<sequence>
+						<element name="elencoRicettariDTO" nillable="true" type="tns2:ElencoRicettariDTO" />
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="visualizzaElencoRicettariRequest">
+		<wsdl:part element="intf:visualizzaElencoRicettari" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="visualizzaElencoRicettariResponse">
+		<wsdl:part element="intf:visualizzaElencoRicettariResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:portType name="ElencoRicettari">
+		<wsdl:operation name="visualizzaElencoRicettari">
+			<wsdl:input message="intf:visualizzaElencoRicettariRequest" name="visualizzaElencoRicettariRequest" />
+			<wsdl:output message="intf:visualizzaElencoRicettariResponse" name="visualizzaElencoRicettariResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ElencoRicettariSoapBinding" type="intf:ElencoRicettari">
+		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="visualizzaElencoRicettari">
+			<wsdlsoap:operation soapAction="visualizzaElencoRicettari" />
+			<wsdl:input name="visualizzaElencoRicettariRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="visualizzaElencoRicettariResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ElencoRicettariService">
+		<wsdl:port binding="intf:ElencoRicettariSoapBinding" name="ElencoRicettari">
+			<wsdlsoap:address location=" https://mirsactest.sanita.finanze.it/MediciInReteAuxServicesWeb/services/ElencoRicettari" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

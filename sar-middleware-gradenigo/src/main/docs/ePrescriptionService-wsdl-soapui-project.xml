@@ -1,0 +1,3204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="ePrescriptionService?wsdl" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" id="69ff8345-9d46-4bc1-b503-152302277c45" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ePrescription_binding" type="wsdl" bindingName="{http://cct.eng.it/piemonte/ePrescription/schemas}ePrescription_binding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/axis2/services/ePrescriptionService?wsdl" id="a32ea7e7-19e1-4a01-8fbd-0236f5593112" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/axis2/services/ePrescriptionService?wsdl"><con:part><con:url>http://localhost:8080/axis2/services/ePrescriptionService?wsdl</con:url><con:content><![CDATA[<definitions name="SarMiddleware" targetNamespace="http://cct.eng.it/piemonte/ePrescription/schemas" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://cct.eng.it/piemonte/ePrescription/schemas" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:cct="http://cct.eng.it/piemonte/ePrescription/types">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://cct.eng.it/piemonte/ePrescription/types" schemaLocation="ePrescriptionService?xsd=ePrescription_types.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="ServizioAnnullamento_request">
+    <part name="annullamento" element="cct:annullamento"></part>
+  </message>
+  <message name="ServizioTrasmissione_response">
+    <part name="trasmissione" element="cct:trasmissione"></part>
+  </message>
+  <message name="ServizioTrasmissione_request">
+    <part name="trasmissione" element="cct:trasmissione"></part>
+  </message>
+  <message name="ServizioRecupero_request">
+    <part name="recupero" element="cct:recupero"></part>
+  </message>
+  <message name="ServiceFault">
+    <part name="Fault" element="cct:Fault"></part>
+  </message>
+  <message name="ServizioRecupero_response">
+    <part name="recupero" element="cct:recupero"></part>
+  </message>
+  <message name="ServizioAnnullamento_response">
+    <part name="annullamento" element="cct:annullamento"></part>
+  </message>
+  <portType name="ePrescription_port">
+    <operation name="trasmissione">
+      <input message="tns:ServizioTrasmissione_request"></input>
+      <output message="tns:ServizioTrasmissione_response"></output>
+      <fault name="ServiceFault" message="tns:ServiceFault"></fault>
+    </operation>
+    <operation name="recupero">
+      <input message="tns:ServizioRecupero_request"></input>
+      <output message="tns:ServizioRecupero_response"></output>
+      <fault name="ServiceFault" message="tns:ServiceFault"></fault>
+    </operation>
+    <operation name="annullamento">
+      <input message="tns:ServizioAnnullamento_request"></input>
+      <output message="tns:ServizioAnnullamento_response"></output>
+      <fault name="ServiceFault" message="tns:ServiceFault"></fault>
+    </operation>
+  </portType>
+  <binding name="ePrescription_binding" type="tns:ePrescription_port">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="trasmissione">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="ServiceFault">
+        <soap:fault name="ServiceFault" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="recupero">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="ServiceFault">
+        <soap:fault name="ServiceFault" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="annullamento">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="ServiceFault">
+        <soap:fault name="ServiceFault" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="ePrescriptionService">
+    <port name="ePrescriptionPort" binding="tns:ePrescription_binding">
+      <soap:address location="http://localhost:8080/axis2/services/ePrescriptionService/"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/axis2/services/ePrescriptionService?xsd=ePrescription_types.xsd</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cct="http://cct.eng.it/piemonte/ePrescription/types">
+  <xs:element name="tipoVisita" type="xs:string"/>
+  <xs:element name="tipoRicetta" type="xs:string"/>
+  <xs:element name="tipoPrescrizione" type="xs:string"/>
+  <xs:element name="testoLibero" type="xs:string"/>
+  <xs:element name="tesseraEstero" type="xs:string"/>
+  <xs:element name="telefono" type="xs:string"/>
+  <xs:element name="strutturaPercorso" type="xs:string"/>
+  <xs:element name="struttura" type="xs:string"/>
+  <xs:element name="statoEstero" type="xs:string"/>
+  <xs:element name="societaSASN" type="xs:string"/>
+  <xs:element name="sesso" type="xs:string"/>
+  <xs:element name="ricetta" type="cct:T_ricetta"/>
+  <xs:element name="regioneResidenza" type="xs:string"/>
+  <xs:element name="regioneAssistenza" type="xs:string"/>
+  <xs:element name="regione" type="xs:string"/>
+  <xs:element name="reddito" type="xs:string"/>
+  <xs:element name="rapporto" type="xs:string"/>
+  <xs:element name="quesito" type="xs:string"/>
+  <xs:element name="quantita" type="xs:string"/>
+  <xs:element name="provinciaResidenza" type="xs:string"/>
+  <xs:element name="protocolloSAC" type="xs:string"/>
+  <xs:element name="codiceAutenticazione" type="xs:string"/>
+  <xs:element name="propostaTerapeutica" type="xs:string"/>
+  <xs:element name="progressivo" type="xs:string"/>
+  <xs:element name="priorita" type="xs:string"/>
+  <xs:element name="posologia" type="xs:string"/>
+  <xs:element name="paziente" type="cct:T_paziente"/>
+  <xs:element name="oscuramento" type="xs:string"/>
+  <xs:element name="numeroSASN" type="xs:string"/>
+  <xs:element name="note" type="xs:string"/>
+  <xs:element name="notaAIFA" type="xs:string"/>
+  <xs:element name="nonSostituibile" type="xs:string"/>
+  <xs:element name="nomeCompilante" type="xs:string"/>
+  <xs:element name="nome" type="xs:string"/>
+  <xs:element name="motivazione" type="xs:string"/>
+  <xs:element name="medico" type="cct:T_medico"/>
+  <xs:element name="istituzioneEstero" type="xs:string"/>
+  <xs:element name="interna" type="xs:string"/>
+  <xs:element name="indirizzoResidenza" type="xs:string"/>
+  <xs:element name="indirizzoDomicilio" type="xs:string"/>
+  <xs:element name="indirizzo" type="xs:string"/>
+  <xs:element name="indicazione" type="xs:string"/>
+  <xs:element name="identificazioneEstero" type="xs:string"/>
+  <xs:element name="id" type="xs:string"/>
+  <xs:element name="fasciaReddito" type="xs:string"/>
+  <xs:element name="esito" type="xs:string"/>
+  <xs:element name="errori" type="cct:T_errori"/>
+  <xs:element name="errore" type="cct:T_errore"/>
+  <xs:element name="email" type="xs:string"/>
+  <xs:element name="disposizioniRegionali" type="xs:string"/>
+  <xs:element name="dettaglio" type="cct:T_dettaglio"/>
+  <xs:element name="dettagli" type="cct:T_dettagli"/>
+  <xs:element name="descrizioneTestoLibero" type="xs:string"/>
+  <xs:element name="descrizionePercorso" type="xs:string"/>
+  <xs:element name="descrizioneGruppo" type="xs:string"/>
+  <xs:element name="descrizione" type="xs:string"/>
+  <xs:element name="dataScadenzaTS" type="xs:string"/>
+  <xs:element name="dataNascita" type="xs:string"/>
+  <xs:element name="consenso" type="xs:string"/>
+  <xs:element name="comuneNascita" type="xs:string"/>
+  <xs:element name="cognomeCompilante" type="xs:string"/>
+  <xs:element name="cognome" type="xs:string"/>
+  <xs:element name="codiceRegionale" type="xs:string"/>
+  <xs:element name="codicePercorso" type="xs:string"/>
+  <xs:element name="codicePacchetto" type="xs:string"/>
+  <xs:element name="codiceGruppo" type="xs:string"/>
+  <xs:element name="codiceFiscaleCompilante" type="xs:string"/>
+  <xs:element name="codiceFiscale" type="xs:string"/>
+  <xs:element name="codiceEsenzione" type="xs:string"/>
+  <xs:element name="codiceDiagnosi" type="xs:string"/>
+  <xs:element name="codiceCatalogoRegionale" type="xs:string"/>
+  <xs:element name="codiceCatalogoAziendale" type="xs:string"/>
+  <xs:element name="codice" type="xs:string"/>
+  <xs:element name="cittadinanza" type="xs:string"/>
+  <xs:element name="branca" type="xs:string"/>
+  <xs:element name="aziendaPercorso" type="xs:string"/>
+  <xs:element name="atc" type="xs:string"/>
+  <xs:element name="aslResidenza" type="xs:string"/>
+  <xs:element name="aslAssistenza" type="xs:string"/>
+  <xs:element name="asl" type="xs:string"/>
+  <xs:element name="altro" type="xs:string"/>
+  <xs:element name="NRE" type="xs:string"/>
+  <xs:complexType name="T_ricetta">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="cct:NRE"/>
+      <xs:element minOccurs="0" ref="cct:codiceAutenticazione"/>
+      <xs:element minOccurs="0" ref="cct:protocolloSAC"/>
+      <xs:element minOccurs="0" ref="cct:tipoPrescrizione"/>
+      <xs:element minOccurs="0" ref="cct:interna"/>
+      <xs:element minOccurs="0" ref="cct:aziendaPercorso"/>
+      <xs:element minOccurs="0" ref="cct:strutturaPercorso"/>
+      <xs:element minOccurs="0" ref="cct:codicePercorso"/>
+      <xs:element minOccurs="0" ref="cct:descrizionePercorso"/>
+      <xs:element minOccurs="0" ref="cct:codiceRegionale"/>
+      <xs:element minOccurs="0" ref="cct:oscuramento"/>
+      <xs:element minOccurs="0" ref="cct:tipoRicetta"/>
+      <xs:element minOccurs="0" ref="cct:tipoVisita"/>
+      <xs:element minOccurs="0" ref="cct:disposizioniRegionali"/>
+      <xs:element minOccurs="0" ref="cct:indicazione"/>
+      <xs:element minOccurs="0" ref="cct:altro"/>
+      <xs:element minOccurs="0" ref="cct:priorita"/>
+      <xs:element minOccurs="0" ref="cct:codiceDiagnosi"/>
+      <xs:element minOccurs="0" ref="cct:quesito"/>
+      <xs:element minOccurs="0" ref="cct:propostaTerapeutica"/>
+      <xs:element minOccurs="0" ref="cct:quantita"/>
+      <xs:element minOccurs="0" ref="cct:dettagli"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_paziente">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="cct:id"/>
+      <xs:element minOccurs="0" ref="cct:dataScadenzaTS"/>
+      <xs:element minOccurs="0" ref="cct:codiceEsenzione"/>
+      <xs:element minOccurs="0" ref="cct:fasciaReddito"/>
+      <xs:element minOccurs="0" ref="cct:reddito"/>
+      <xs:element ref="cct:codiceFiscale"/>
+      <xs:element minOccurs="0" ref="cct:regioneResidenza"/>
+      <xs:element minOccurs="0" ref="cct:aslResidenza"/>
+      <xs:element minOccurs="0" ref="cct:provinciaResidenza"/>
+      <xs:element minOccurs="0" ref="cct:regioneAssistenza"/>
+      <xs:element minOccurs="0" ref="cct:aslAssistenza"/>
+      <xs:element minOccurs="0" ref="cct:indirizzoDomicilio"/>
+      <xs:element minOccurs="0" ref="cct:indirizzoResidenza"/>
+      <xs:element minOccurs="0" ref="cct:cognome"/>
+      <xs:element minOccurs="0" ref="cct:nome"/>
+      <xs:element minOccurs="0" ref="cct:sesso"/>
+      <xs:element minOccurs="0" ref="cct:dataNascita"/>
+      <xs:element minOccurs="0" ref="cct:comuneNascita"/>
+      <xs:element minOccurs="0" ref="cct:cittadinanza"/>
+      <xs:element minOccurs="0" ref="cct:numeroSASN"/>
+      <xs:element minOccurs="0" ref="cct:societaSASN"/>
+      <xs:element minOccurs="0" ref="cct:telefono"/>
+      <xs:element minOccurs="0" ref="cct:email"/>
+      <xs:element minOccurs="0" ref="cct:istituzioneEstero"/>
+      <xs:element minOccurs="0" ref="cct:statoEstero"/>
+      <xs:element minOccurs="0" ref="cct:identificazioneEstero"/>
+      <xs:element minOccurs="0" ref="cct:tesseraEstero"/>
+      <xs:element minOccurs="0" ref="cct:consenso"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_medico">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="cct:rapporto"/>
+      <xs:element ref="cct:codiceFiscale"/>
+      <xs:element minOccurs="0" ref="cct:regione"/>
+      <xs:element minOccurs="0" ref="cct:asl"/>
+      <xs:element minOccurs="0" ref="cct:struttura"/>
+      <xs:element minOccurs="0" ref="cct:cognome"/>
+      <xs:element minOccurs="0" ref="cct:nome"/>
+      <xs:element minOccurs="0" ref="cct:codiceRegionale"/>
+      <xs:element minOccurs="0" ref="cct:indirizzo"/>
+      <xs:element minOccurs="0" ref="cct:codiceFiscaleCompilante"/>
+      <xs:element minOccurs="0" ref="cct:cognomeCompilante"/>
+      <xs:element minOccurs="0" ref="cct:nomeCompilante"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_errori">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" ref="cct:errore"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_errore">
+    <xs:sequence>
+      <xs:element ref="cct:codice"/>
+      <xs:element ref="cct:descrizione"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_dettaglio">
+    <xs:sequence>
+      <xs:element ref="cct:progressivo"/>
+      <xs:element ref="cct:codice"/>
+      <xs:element ref="cct:atc"/>
+      <xs:element ref="cct:codiceCatalogoRegionale"/>
+      <xs:element ref="cct:codiceCatalogoAziendale"/>
+      <xs:element ref="cct:branca"/>
+      <xs:element ref="cct:descrizione"/>
+      <xs:element ref="cct:codicePacchetto"/>
+      <xs:element ref="cct:nonSostituibile"/>
+      <xs:element ref="cct:motivazione"/>
+      <xs:element ref="cct:note"/>
+      <xs:element ref="cct:testoLibero"/>
+      <xs:element ref="cct:descrizioneTestoLibero"/>
+      <xs:element ref="cct:codiceGruppo"/>
+      <xs:element ref="cct:descrizioneGruppo"/>
+      <xs:element ref="cct:quantita"/>
+      <xs:element ref="cct:notaAIFA"/>
+      <xs:element ref="cct:posologia"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_dettagli">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" ref="cct:dettaglio"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ePrescription" type="cct:T_ePrescription"/>
+  <xs:element name="ServizioRecupero_request" type="cct:T_ServizioRecupero_request"/>
+  <xs:element name="ServizioRecupero_response" type="cct:T_ServizioRecupero_response"/>
+  <xs:element name="ServizioTrasmissione_request" type="cct:T_ServizioTrasmissione_request"/>
+  <xs:element name="ServizioTrasmissione_response" type="cct:T_ServizioTrasmissione_response"/>
+  <xs:element name="ServizioAnnullamento_request" type="cct:T_ServizioAnnullamento_request"/>
+  <xs:element name="ServizioAnnullamento_response" type="cct:T_ServizioAnnullamento_response"/>
+  <xs:element name="Fault" type="cct:T_fault_ePrescription"/>
+  <xs:element name="trasmissione" type="cct:T_trasmissione_ePrescription"/>
+  <xs:element name="recupero" type="cct:T_recupero_ePrescription"/>
+  <xs:element name="annullamento" type="cct:T_annullamento_ePrescription"/>
+  <xs:element name="xml" type="xs:string"/>
+  <xs:complexType name="T_trasmissione_ePrescription">
+    <xs:sequence>
+      <xs:element ref="cct:xml"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_recupero_ePrescription">
+    <xs:sequence>
+      <xs:element ref="cct:xml"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_annullamento_ePrescription">
+    <xs:sequence>
+      <xs:element ref="cct:xml"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_fault_ePrescription">
+    <xs:sequence>
+      <xs:element ref="cct:xml"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_ePrescription">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="cct:id"/>
+      <xs:element minOccurs="0" ref="cct:esito"/>
+      <xs:element minOccurs="0" ref="cct:errori"/>
+      <xs:element minOccurs="0" ref="cct:medico"/>
+      <xs:element minOccurs="0" ref="cct:paziente"/>
+      <xs:element minOccurs="0" ref="cct:ricetta"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_ServizioRecupero_request">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="cct:id"/>
+      <xs:element minOccurs="0" ref="cct:medico"/>
+      <xs:element minOccurs="0" ref="cct:paziente"/>
+      <xs:element ref="cct:ricetta"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_ServizioRecupero_response">
+    <xs:sequence>
+      <xs:element ref="cct:id"/>
+      <xs:element ref="cct:esito"/>
+      <xs:element minOccurs="0" ref="cct:errori"/>
+      <xs:element ref="cct:medico"/>
+      <xs:element ref="cct:paziente"/>
+      <xs:element ref="cct:ricetta"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_ServizioTrasmissione_request">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="cct:id"/>
+      <xs:element ref="cct:medico"/>
+      <xs:element ref="cct:paziente"/>
+      <xs:element ref="cct:ricetta"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_ServizioTrasmissione_response">
+    <xs:sequence>
+      <xs:element ref="cct:id"/>
+      <xs:element ref="cct:esito"/>
+      <xs:element minOccurs="0" ref="cct:errori"/>
+      <xs:element minOccurs="0" ref="cct:ricetta"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_ServizioAnnullamento_request">
+    <xs:sequence>
+      <xs:element ref="cct:id"/>
+      <xs:element ref="cct:medico"/>
+      <xs:element minOccurs="0" ref="cct:paziente"/>
+      <xs:element minOccurs="0" ref="cct:ricetta"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_ServizioAnnullamento_response">
+    <xs:sequence>
+      <xs:element ref="cct:id"/>
+      <xs:element ref="cct:esito"/>
+      <xs:element minOccurs="0" ref="cct:errori"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_fault">
+    <xs:sequence>
+      <xs:element ref="cct:id"/>
+      <xs:element ref="cct:esito"/>
+      <xs:element ref="cct:errori"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://10.75.64.92:8087/axis2/services/ePrescriptionService/</con:endpoint><con:endpoint>http://10.9.11.51:9080/axis2/services/ePrescriptionService/</con:endpoint><con:endpoint>http://localhost:1449/axis2/services/ePrescriptionService/</con:endpoint><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:endpoint>http://localhost:8080/axis2/services/ePrescriptionService/</con:endpoint><con:endpoint>http://localhost:8087/axis2/services/ePrescriptionService/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="annullamento" bindingOperationName="annullamento" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional" id="1cb39bf2-a2cc-4602-9ac7-acb12b20fcdc"><con:settings/><con:call name="Request 1" id="7163e2b6-f31f-4319-abfd-858477c519d4"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:annullamento>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;codiceFiscale&gt;CMPVCNMEDICO509G&lt;/codiceFiscale&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;codiceFiscale&gt;CMPVCNPAZIENTE9G&lt;/codiceFiscale&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;NRE&gt;NUMELETTRRICETTA&lt;/NRE&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_2&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;codiceFiscale&gt;CMPVCNMEDICO509G&lt;/codiceFiscale&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;codiceFiscale&gt;CMPVCNPAZIENTE9G&lt;/codiceFiscale&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;NRE&gt;NUMELETTRRICETTA&lt;/NRE&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_3&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;codiceFiscale&gt;CMPVCNMEDICO509G&lt;/codiceFiscale&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;codiceFiscale&gt;CMPVCNPAZIENTE9G&lt;/codiceFiscale&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;NRE&gt;NUMELETTRRICETTA&lt;/NRE&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:annullamento>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/annullamentoRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="DPCM_CIL1_SHNKSH84A27Z100H_10" id="55ce8386-285c-4abf-85e5-4a19eaced6fa"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:annullamento>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;trasmissioneDPCM2008&gt;S&lt;/trasmissioneDPCM2008&gt;
+		&lt;medico&gt;
+			&lt;codiceFiscale&gt;PTRLSN51R21L219Y&lt;/codiceFiscale&gt;
+		&lt;/medico&gt;
+		&lt;ricetta&gt;
+			&lt;NRE&gt;010D04001301423&lt;/NRE&gt;
+			&lt;numeroDPCM2008&gt;010D04001301423&lt;/numeroDPCM2008&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;trasmissioneDPCM2008&gt;S&lt;/trasmissioneDPCM2008&gt;
+		&lt;medico&gt;
+			&lt;codiceFiscale&gt;PTRLSN51R21L219Y&lt;/codiceFiscale&gt;
+		&lt;/medico&gt;
+		&lt;ricetta&gt;
+			&lt;NRE&gt;010D04001301424&lt;/NRE&gt;
+			&lt;numeroDPCM2008&gt;010D04001301423&lt;/numeroDPCM2008&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:annullamento>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/annullamentoRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="recupero" bindingOperationName="recupero" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional" id="1b2a3703-532c-4f00-8b81-eb10bfc4296a"><con:settings/><con:call name="Request 1" id="f77b6619-f06a-4e47-af23-f7e2abdb467b"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:recupero>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;codiceFiscale&gt;CMPVCNMEDICO509G&lt;/codiceFiscale&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;codiceFiscale&gt;CMPVCNPAZIENTE9G&lt;/codiceFiscale&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;NRE&gt;NUMELETTRRICETTA_1&lt;/NRE&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_2&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;codiceFiscale&gt;CMPVCNMEDICO509G&lt;/codiceFiscale&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;codiceFiscale&gt;CMPVCNPAZIENTE9G&lt;/codiceFiscale&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;NRE&gt;NUMELETTRRICETTA_2&lt;/NRE&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_3&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;codiceFiscale&gt;CMPVCNMEDICO509G&lt;/codiceFiscale&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;codiceFiscale&gt;CMPVCNPAZIENTE9G&lt;/codiceFiscale&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;NRE&gt;NUMELETTRRICETTA_3&lt;/NRE&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:recupero>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/recuperoRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Interroga" id="1d526191-da2f-4f17-b17b-9ab0b41da2fc"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:interroga>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;cfMedico&gt;PTRLSN51R21L219Y&lt;/cfMedico&gt;
+	&lt;tipoPrescr&gt;P&lt;/tipoPrescr&gt;
+	&lt;dataCompilazioneRicettaDal&gt;01/01/2015&lt;/dataCompilazioneRicettaDal&gt;
+	&lt;dataCompilazioneRicettaAl&gt;31/01/2015&lt;/dataCompilazioneRicettaAl&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:interroga>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/recuperoRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="EsitoAnalitico_protocolloSAC" id="e16741d5-841c-4011-b900-e5e2375c25c3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.75.64.92:8087/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:esiti>
+         <typ:xml xsi:type="xsd:string">
+         	<![CDATA[
+<ePrescriptions>
+	<tipoEsito>A</tipoEsito>
+	<protocolloSAC>10000000000000008000019</protocolloSAC>
+</ePrescriptions>
+		]]]]>><![CDATA[
+         </typ:xml>
+      </typ:esiti>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/recuperoRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="EsitoSintetico_protocolloSAC" id="fa732e10-2326-4d42-adff-95f8f65f00fe"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:esiti>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;tipoEsito&gt;S&lt;/tipoEsito&gt;
+	&lt;protocolloSAC&gt;10000000000000008000019&lt;/protocolloSAC&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:esiti>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/recuperoRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="EsitoAnalitico_dateRange" id="2d58fe17-d89b-45d8-9b9f-4c625a812915"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.9.11.51:9080/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:esiti>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;tipoEsito&gt;A&lt;/tipoEsito&gt;
+	&lt;dataIniRange&gt;20150101&lt;/dataIniRange&gt;
+	&lt;dataFineRange&gt;20150226&lt;/dataFineRange&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:esiti>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/recuperoRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="EsitoSintetico_dateRange" id="e34fa8c5-b093-4212-a944-e04073df3385"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.9.11.51:9080/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:esiti>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;tipoEsito&gt;S&lt;/tipoEsito&gt;
+	&lt;dataIniRange&gt;20150101&lt;/dataIniRange&gt;
+	&lt;dataFineRange&gt;20150131&lt;/dataFineRange&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:esiti>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/recuperoRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Lazio_EsitoAnalitico_dateRange" id="ff57b0e6-4475-401a-898e-be9c7286cc35"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.9.11.51:9080/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:esiti>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+     &lt;credentials&gt;
+       &lt;password&gt;WsSAR001&lt;/password&gt;
+       &lt;login&gt;mario.rossi.14&lt;/login&gt;
+     &lt;/credentials&gt;
+	&lt;tipoEsito&gt;A&lt;/tipoEsito&gt;
+	&lt;dataIniRange&gt;20150101&lt;/dataIniRange&gt;
+	&lt;dataFineRange&gt;20150226&lt;/dataFineRange&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:esiti>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/recuperoRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="trasmissione" bindingOperationName="trasmissione" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional" id="2cb9fcbb-5140-4e25-807c-38268fabfa5c"><con:settings/><con:call name="Request 1" id="40bb18bd-1eb5-49ca-9bee-12e4c17daa21"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://spagic.aslto2.it:8087/axis2/services/ePrescriptionService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;rapporto&gt;RAPPORTO&lt;/rapporto&gt;
+			&lt;codiceFiscale&gt;CMPVCNMEDICO509G&lt;/codiceFiscale&gt;
+			&lt;regione&gt;010&lt;/regione&gt;
+			&lt;asl&gt;010101&lt;/asl&gt;
+			&lt;struttura&gt;CODSTRUTTURA&lt;/struttura&gt;
+			&lt;cognome&gt;COGNMED&lt;/cognome&gt;
+			&lt;nome&gt;NOMEMED&lt;/nome&gt;
+			&lt;codiceRegionale&gt;CODREGMEDICO&lt;/codiceRegionale&gt;
+			&lt;indirizzo&gt;fraz. Santa Lucia 22, 83010 Tufo(AV)&lt;/indirizzo&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;id&gt;PZ_ID&lt;/id&gt;
+			&lt;dataScadenzaTS&gt;20151231235959&lt;/dataScadenzaTS&gt;
+			&lt;codiceEsenzione&gt;CODESE&lt;/codiceEsenzione&gt;
+			&lt;fasciaReddito&gt;FASCIA_REDDITO&lt;/fasciaReddito&gt;
+			&lt;reddito&gt;10000&lt;/reddito&gt;
+			&lt;codiceFiscale&gt;CMPVCNPAZIENTE9G&lt;/codiceFiscale&gt;
+			&lt;regioneResidenza&gt;010&lt;/regioneResidenza&gt;
+			&lt;aslResidenza&gt;010101&lt;/aslResidenza&gt;
+			&lt;provinciaResidenza&gt;TO&lt;/provinciaResidenza&gt;
+			&lt;regioneAssistenza&gt;010&lt;/regioneAssistenza&gt;
+			&lt;aslAssistenza&gt;010101&lt;/aslAssistenza&gt;
+			&lt;indirizzoDomicilio&gt;fraz. Santa Lucia 22, 83010 Tufo (AV)&lt;/indirizzoDomicilio&gt;
+			&lt;indirizzoResidenza&gt;fraz. Santa Lucia 22, 83010 Tufo (AV)&lt;/indirizzoResidenza&gt;
+			&lt;cognome&gt;COGNPAZ&lt;/cognome&gt;
+			&lt;nome&gt;NOMEPAZ&lt;/nome&gt;
+			&lt;sesso&gt;M&lt;/sesso&gt;
+			&lt;dataNascita&gt;19800909&lt;/dataNascita&gt;
+			&lt;comuneNascita&gt;AVELLINO&lt;/comuneNascita&gt;
+			&lt;cittadinanza&gt;100&lt;/cittadinanza&gt;
+			&lt;numeroSASN&gt;NUMTESSSASN&lt;/numeroSASN&gt;
+			&lt;societaSASN&gt;SOCASSSASN&lt;/societaSASN&gt;
+			&lt;telefono&gt;3938823341&lt;/telefono&gt;
+			&lt;email&gt;vincenzo.campanile@eng.it&lt;/email&gt;
+			&lt;istituzioneEstero&gt;ISTITUZEST&lt;/istituzioneEstero&gt;
+			&lt;statoEstero&gt;STATOESTERO&lt;/statoEstero&gt;
+			&lt;identificazioneEstero&gt;NUMIDTESSTEAM&lt;/identificazioneEstero&gt;
+			&lt;tesseraEstero&gt;TESSTEAM&lt;/tesseraEstero&gt;
+			&lt;consenso&gt;SI&lt;/consenso&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+			&lt;interna&gt;1&lt;/interna&gt;
+			&lt;tipoRicetta&gt;NE&lt;/tipoRicetta&gt;
+			&lt;tipoVisita&gt;A&lt;/tipoVisita&gt;
+			&lt;indicazione&gt;S&lt;/indicazione&gt;
+			&lt;priorita&gt;P&lt;/priorita&gt;
+			&lt;codiceDiagnosi&gt;ICD9-CM&lt;/codiceDiagnosi&gt;
+			&lt;quesito&gt;DESCDIAGNOSI&lt;/quesito&gt;
+			&lt;propostaTerapeutica&gt;PROPOSTATERAPEUTICA&lt;/propostaTerapeutica&gt;
+			&lt;quantita&gt;1&lt;/quantita&gt;
+			&lt;dettagli&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;CODPREST1&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;CODREGPREST1&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;CODAZPREST1&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;CODBRANCA1&lt;/branca&gt;
+					&lt;descrizione&gt;DESCRIZIONE_PRESTAZIONE2&lt;/descrizione&gt;
+					&lt;testoLibero&gt;1&lt;/testoLibero&gt;
+					&lt;descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;2&lt;/progressivo&gt;
+					&lt;codice&gt;CODPREST2&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;CODREGPREST2&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;CODREGAZ2&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;CODBRANCA2&lt;/branca&gt;
+					&lt;descrizione&gt;DESCRIZIONE_PRESTAZIONE2&lt;/descrizione&gt;
+					&lt;testoLibero&gt;1&lt;/testoLibero&gt;
+					&lt;descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE2&lt;/descrizioneTestoLibero&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+			&lt;/dettagli&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_2&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;rapporto&gt;RAPPORTO&lt;/rapporto&gt;
+			&lt;codiceFiscale&gt;CMPVCNMEDICO509G&lt;/codiceFiscale&gt;
+			&lt;regione&gt;010&lt;/regione&gt;
+			&lt;asl&gt;010101&lt;/asl&gt;
+			&lt;struttura&gt;CODSTRUTTURA&lt;/struttura&gt;
+			&lt;cognome&gt;COGNMED&lt;/cognome&gt;
+			&lt;nome&gt;NOMEMED&lt;/nome&gt;
+			&lt;codiceRegionale&gt;CODREGMEDICO&lt;/codiceRegionale&gt;
+			&lt;indirizzo&gt;fraz. Santa Lucia 22, 83010 Tufo(AV)&lt;/indirizzo&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;id&gt;PZ_ID&lt;/id&gt;
+			&lt;dataScadenzaTS&gt;20151231235959&lt;/dataScadenzaTS&gt;
+			&lt;codiceEsenzione&gt;CODESE&lt;/codiceEsenzione&gt;
+			&lt;fasciaReddito&gt;FASCIA_REDDITO&lt;/fasciaReddito&gt;
+			&lt;reddito&gt;10000&lt;/reddito&gt;
+			&lt;codiceFiscale&gt;CMPVCNPAZIENTE9G&lt;/codiceFiscale&gt;
+			&lt;regioneResidenza&gt;010&lt;/regioneResidenza&gt;
+			&lt;aslResidenza&gt;010101&lt;/aslResidenza&gt;
+			&lt;provinciaResidenza&gt;TO&lt;/provinciaResidenza&gt;
+			&lt;regioneAssistenza&gt;010&lt;/regioneAssistenza&gt;
+			&lt;aslAssistenza&gt;010101&lt;/aslAssistenza&gt;
+			&lt;indirizzoDomicilio&gt;fraz. Santa Lucia 22, 83010 Tufo (AV)&lt;/indirizzoDomicilio&gt;
+			&lt;indirizzoResidenza&gt;fraz. Santa Lucia 22, 83010 Tufo (AV)&lt;/indirizzoResidenza&gt;
+			&lt;cognome&gt;COGNPAZ&lt;/cognome&gt;
+			&lt;nome&gt;NOMEPAZ&lt;/nome&gt;
+			&lt;sesso&gt;M&lt;/sesso&gt;
+			&lt;dataNascita&gt;19800909&lt;/dataNascita&gt;
+			&lt;comuneNascita&gt;AVELLINO&lt;/comuneNascita&gt;
+			&lt;cittadinanza&gt;100&lt;/cittadinanza&gt;
+			&lt;numeroSASN&gt;NUMTESSSASN&lt;/numeroSASN&gt;
+			&lt;societaSASN&gt;SOCASSSASN&lt;/societaSASN&gt;
+			&lt;telefono&gt;3938823341&lt;/telefono&gt;
+			&lt;email&gt;vincenzo.campanile@eng.it&lt;/email&gt;
+			&lt;istituzioneEstero&gt;ISTITUZEST&lt;/istituzioneEstero&gt;
+			&lt;statoEstero&gt;STATOESTERO&lt;/statoEstero&gt;
+			&lt;identificazioneEstero&gt;NUMIDTESSTEAM&lt;/identificazioneEstero&gt;
+			&lt;tesseraEstero&gt;TESSTEAM&lt;/tesseraEstero&gt;
+			&lt;consenso&gt;SI&lt;/consenso&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+			&lt;interna&gt;1&lt;/interna&gt;
+			&lt;tipoRicetta&gt;NE&lt;/tipoRicetta&gt;
+			&lt;tipoVisita&gt;A&lt;/tipoVisita&gt;
+			&lt;indicazione&gt;S&lt;/indicazione&gt;
+			&lt;priorita&gt;P&lt;/priorita&gt;
+			&lt;codiceDiagnosi&gt;ICD9-CM&lt;/codiceDiagnosi&gt;
+			&lt;quesito&gt;DESCDIAGNOSI&lt;/quesito&gt;
+			&lt;propostaTerapeutica&gt;PROPOSTATERAPEUTICA&lt;/propostaTerapeutica&gt;
+			&lt;quantita&gt;1&lt;/quantita&gt;
+			&lt;dettagli&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;CODPREST1&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;CODREGPREST1&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;CODAZPREST1&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;CODBRANCA1&lt;/branca&gt;
+					&lt;descrizione&gt;DESCRIZIONE_PRESTAZIONE2&lt;/descrizione&gt;
+					&lt;testoLibero&gt;1&lt;/testoLibero&gt;
+					&lt;descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;2&lt;/progressivo&gt;
+					&lt;codice&gt;CODPREST2&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;CODREGPREST2&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;CODREGAZ2&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;CODBRANCA2&lt;/branca&gt;
+					&lt;descrizione&gt;DESCRIZIONE_PRESTAZIONE2&lt;/descrizione&gt;
+					&lt;testoLibero&gt;1&lt;/testoLibero&gt;
+					&lt;descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE2&lt;/descrizioneTestoLibero&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+			&lt;/dettagli&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_3&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;rapporto&gt;RAPPORTO&lt;/rapporto&gt;
+			&lt;codiceFiscale&gt;CMPVCNMEDICO509G&lt;/codiceFiscale&gt;
+			&lt;regione&gt;010&lt;/regione&gt;
+			&lt;asl&gt;010101&lt;/asl&gt;
+			&lt;struttura&gt;CODSTRUTTURA&lt;/struttura&gt;
+			&lt;cognome&gt;COGNMED&lt;/cognome&gt;
+			&lt;nome&gt;NOMEMED&lt;/nome&gt;
+			&lt;codiceRegionale&gt;CODREGMEDICO&lt;/codiceRegionale&gt;
+			&lt;indirizzo&gt;fraz. Santa Lucia 22, 83010 Tufo(AV)&lt;/indirizzo&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;id&gt;PZ_ID&lt;/id&gt;
+			&lt;dataScadenzaTS&gt;20151231235959&lt;/dataScadenzaTS&gt;
+			&lt;codiceEsenzione&gt;CODESE&lt;/codiceEsenzione&gt;
+			&lt;fasciaReddito&gt;FASCIA_REDDITO&lt;/fasciaReddito&gt;
+			&lt;reddito&gt;10000&lt;/reddito&gt;
+			&lt;codiceFiscale&gt;CMPVCNPAZIENTE9G&lt;/codiceFiscale&gt;
+			&lt;regioneResidenza&gt;010&lt;/regioneResidenza&gt;
+			&lt;aslResidenza&gt;010101&lt;/aslResidenza&gt;
+			&lt;provinciaResidenza&gt;TO&lt;/provinciaResidenza&gt;
+			&lt;regioneAssistenza&gt;010&lt;/regioneAssistenza&gt;
+			&lt;aslAssistenza&gt;010101&lt;/aslAssistenza&gt;
+			&lt;indirizzoDomicilio&gt;fraz. Santa Lucia 22, 83010 Tufo (AV)&lt;/indirizzoDomicilio&gt;
+			&lt;indirizzoResidenza&gt;fraz. Santa Lucia 22, 83010 Tufo (AV)&lt;/indirizzoResidenza&gt;
+			&lt;cognome&gt;COGNPAZ&lt;/cognome&gt;
+			&lt;nome&gt;NOMEPAZ&lt;/nome&gt;
+			&lt;sesso&gt;M&lt;/sesso&gt;
+			&lt;dataNascita&gt;19800909&lt;/dataNascita&gt;
+			&lt;comuneNascita&gt;AVELLINO&lt;/comuneNascita&gt;
+			&lt;cittadinanza&gt;100&lt;/cittadinanza&gt;
+			&lt;numeroSASN&gt;NUMTESSSASN&lt;/numeroSASN&gt;
+			&lt;societaSASN&gt;SOCASSSASN&lt;/societaSASN&gt;
+			&lt;telefono&gt;3938823341&lt;/telefono&gt;
+			&lt;email&gt;vincenzo.campanile@eng.it&lt;/email&gt;
+			&lt;istituzioneEstero&gt;ISTITUZEST&lt;/istituzioneEstero&gt;
+			&lt;statoEstero&gt;STATOESTERO&lt;/statoEstero&gt;
+			&lt;identificazioneEstero&gt;NUMIDTESSTEAM&lt;/identificazioneEstero&gt;
+			&lt;tesseraEstero&gt;TESSTEAM&lt;/tesseraEstero&gt;
+			&lt;consenso&gt;SI&lt;/consenso&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+			&lt;interna&gt;1&lt;/interna&gt;
+			&lt;tipoRicetta&gt;NE&lt;/tipoRicetta&gt;
+			&lt;tipoVisita&gt;A&lt;/tipoVisita&gt;
+			&lt;indicazione&gt;S&lt;/indicazione&gt;
+			&lt;priorita&gt;P&lt;/priorita&gt;
+			&lt;codiceDiagnosi&gt;ICD9-CM&lt;/codiceDiagnosi&gt;
+			&lt;quesito&gt;DESCDIAGNOSI&lt;/quesito&gt;
+			&lt;propostaTerapeutica&gt;PROPOSTATERAPEUTICA&lt;/propostaTerapeutica&gt;
+			&lt;quantita&gt;1&lt;/quantita&gt;
+			&lt;dettagli&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;CODPREST1&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;CODREGPREST1&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;CODAZPREST1&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;CODBRANCA1&lt;/branca&gt;
+					&lt;descrizione&gt;DESCRIZIONE_PRESTAZIONE2&lt;/descrizione&gt;
+					&lt;testoLibero&gt;1&lt;/testoLibero&gt;
+					&lt;descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;2&lt;/progressivo&gt;
+					&lt;codice&gt;CODPREST2&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;CODREGPREST2&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;CODREGAZ2&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;CODBRANCA2&lt;/branca&gt;
+					&lt;descrizione&gt;DESCRIZIONE_PRESTAZIONE2&lt;/descrizione&gt;
+					&lt;testoLibero&gt;1&lt;/testoLibero&gt;
+					&lt;descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE2&lt;/descrizioneTestoLibero&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+			&lt;/dettagli&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="CIL1_SHNKSH84A27Z100H_1" id="714257e0-8b8c-44a5-9c6f-b3e7122197e7"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;rapporto&gt;RAPPORTO&lt;/rapporto&gt;
+			&lt;codiceFiscale&gt;PTRLSN51R21L219Y&lt;/codiceFiscale&gt;
+			&lt;regione&gt;010&lt;/regione&gt;
+			&lt;asl&gt;202&lt;/asl&gt;
+			&lt;struttura&gt;001065&lt;/struttura&gt;
+			&lt;cognome&gt;COGNMED&lt;/cognome&gt;
+			&lt;nome&gt;NOMEMED&lt;/nome&gt;
+			&lt;codiceRegionale&gt;CODREGMEDICO&lt;/codiceRegionale&gt;
+			&lt;codiceSpecializzazione&gt;H&lt;/codiceSpecializzazione&gt;
+			&lt;indirizzo&gt;fraz. Santa Lucia 22, 83010 Tufo(AV)&lt;/indirizzo&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;id&gt;PZ_ID&lt;/id&gt;
+			&lt;!-- dataScadenzaTS&gt;20151231235959&lt;/dataScadenzaTS --&gt;
+			&lt;codiceEsenzione&gt;E01&lt;/codiceEsenzione&gt;
+			&lt;!-- fasciaReddito&gt;FASCIA_REDDITO&lt;/fasciaReddito --&gt;
+			&lt;!-- reddito&gt;10000&lt;/reddito --&gt;
+			&lt;codiceFiscale&gt;SHNKSH84A27Z100H&lt;/codiceFiscale&gt;
+			&lt;regioneResidenza&gt;010&lt;/regioneResidenza&gt;
+			&lt;aslResidenza&gt;010201&lt;/aslResidenza&gt;
+			&lt;provinciaResidenza&gt;TO&lt;/provinciaResidenza&gt;
+			&lt;regioneAssistenza&gt;010&lt;/regioneAssistenza&gt;
+			&lt;aslAssistenza&gt;201&lt;/aslAssistenza&gt;
+			&lt;indirizzoDomicilio&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoDomicilio&gt;
+			&lt;indirizzoResidenza&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoResidenza&gt;
+			&lt;cognome&gt;COGNPAZ&lt;/cognome&gt;
+			&lt;nome&gt;NOMEPAZ&lt;/nome&gt;
+			&lt;sesso&gt;M&lt;/sesso&gt;
+			&lt;dataNascita&gt;19800909&lt;/dataNascita&gt;
+			&lt;comuneNascita&gt;TORINO&lt;/comuneNascita&gt;
+			&lt;cittadinanza&gt;100&lt;/cittadinanza&gt;
+			&lt;!-- numeroSASN&gt;NUMTESSSASN&lt;/numeroSASN --&gt;
+			&lt;!-- societaSASN&gt;SOCASSSASN&lt;/societaSASN --&gt;
+			&lt;telefono&gt;3938823341&lt;/telefono&gt;
+			&lt;email&gt;vincenzo.campanile@eng.it&lt;/email&gt;
+			&lt;!-- istituzioneEstero&gt;ISTITUZEST&lt;/istituzioneEstero --&gt;
+			&lt;!-- statoEstero&gt;STATOESTERO&lt;/statoEstero --&gt;
+			&lt;!-- identificazioneEstero&gt;NUMIDTESSTEAM&lt;/identificazioneEstero --&gt;
+			&lt;!-- tesseraEstero&gt;TESSTEAM&lt;/tesseraEstero --&gt;
+			&lt;consenso&gt;SI&lt;/consenso&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;dataCompilazione&gt;23/01/2015&lt;/dataCompilazione&gt;
+			&lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+			&lt;interna&gt;S&lt;/interna&gt;
+			&lt;tipoRicetta&gt;UE&lt;/tipoRicetta&gt;
+			&lt;tipoVisita&gt;A&lt;/tipoVisita&gt;
+			&lt;indicazione&gt;S&lt;/indicazione&gt;
+			&lt;priorita&gt;P&lt;/priorita&gt;
+			&lt;codiceDiagnosi&gt;346.90&lt;/codiceDiagnosi&gt;
+			&lt;quesito&gt;DESCDIAGNOSI&lt;/quesito&gt;
+			&lt;propostaTerapeutica&gt;PROPOSTATERAPEUTICA&lt;/propostaTerapeutica&gt;
+			&lt;quantita&gt;1&lt;/quantita&gt;
+			&lt;dettagli&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;93.11.1&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;93.11.1&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;93.11.1&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;001&lt;/branca&gt;
+					&lt;descrizione&gt;AEROSOLTERAPIA - PER SEDUTA  (CICLO DI DIECI SEDUTE)&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+			&lt;/dettagli&gt;
+			&lt;ricettaOrigine&gt;
+				&lt;codicePoligrafico&gt;010D04001301423&lt;/codicePoligrafico&gt;
+			&lt;/ricettaOrigine&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="pardon_25112014" id="e6f5d2dd-8857-449b-b2c2-fd39f972678c"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://spagic.aslto2.it:8087/axis2/services/ePrescriptionService</con:endpoint><con:request><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Body>
+      <ns1:trasmissione xmlns:ns1="http://cct.eng.it/piemonte/ePrescription/types"
+                        soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <ns1:xml xsi:type="xsd:string">&lt;ePrescriptions&gt;
+  &lt;ePrescription&gt;
+    &lt;id&gt;E_201400000370&lt;/id&gt;
+    &lt;medico&gt;
+      &lt;rapporto&gt;MED_OSP&lt;/rapporto&gt;
+      &lt;codiceFiscale&gt;PTRLSN51R21L219Y&lt;/codiceFiscale&gt;
+      &lt;regione&gt;010&lt;/regione&gt;
+      &lt;asl&gt;202&lt;/asl&gt;
+      &lt;struttura&gt;001065&lt;/struttura&gt;
+      &lt;cognome&gt;BERSANO&lt;/cognome&gt;
+      &lt;nome&gt;GIOVANNI&lt;/nome&gt;
+      &lt;codiceRegionale&gt;&lt;/codiceRegionale&gt;
+      &lt;indirizzo&gt;&lt;/indirizzo&gt;
+      &lt;codiceFiscaleCompilante&gt;PTRLSN51R21L219Y&lt;/codiceFiscaleCompilante&gt;
+      &lt;cognomeCompilante&gt;BERSANO&lt;/cognomeCompilante&gt;
+      &lt;nomeCompilante&gt;GIOVANNI&lt;/nomeCompilante&gt;
+    &lt;/medico&gt;
+    &lt;paziente&gt;
+      &lt;id&gt;145&lt;/id&gt;
+      &lt;dataScadenzaTS&gt;&lt;/dataScadenzaTS&gt;
+      &lt;codiceEsenzione&gt;&lt;/codiceEsenzione&gt;
+      &lt;fasciaReddito&gt;&lt;/fasciaReddito&gt;
+      &lt;reddito&gt;&lt;/reddito&gt;
+      &lt;codiceFiscale&gt;BBBNTL01T25I452T&lt;/codiceFiscale&gt;
+      &lt;regioneResidenza&gt;&lt;/regioneResidenza&gt;
+      &lt;aslResidenza&gt;&lt;/aslResidenza&gt;
+      &lt;provinciaResidenza&gt;&lt;/provinciaResidenza&gt;
+      &lt;regioneAssistenza&gt;&lt;/regioneAssistenza&gt;
+      &lt;aslAssistenza&gt;&lt;/aslAssistenza&gt;
+      &lt;indirizzoDomicilio&gt;&lt;/indirizzoDomicilio&gt;
+      &lt;indirizzoResidenza&gt;&lt;/indirizzoResidenza&gt;
+      &lt;cognome&gt;BABBO&lt;/cognome&gt;
+      &lt;nome&gt;NATALE&lt;/nome&gt;
+      &lt;sesso&gt;1&lt;/sesso&gt;
+      &lt;dataNascita&gt;25/12/1001&lt;/dataNascita&gt;
+      &lt;comuneNascita&gt;&lt;/comuneNascita&gt;
+      &lt;cittadinanza&gt;&lt;/cittadinanza&gt;
+      &lt;numeroSASN&gt;&lt;/numeroSASN&gt;
+      &lt;societaSASN&gt;&lt;/societaSASN&gt;
+      &lt;telefono&gt;&lt;/telefono&gt;
+      &lt;email&gt;&lt;/email&gt;
+      &lt;istituzioneEstero&gt;&lt;/istituzioneEstero&gt;
+      &lt;statoEstero&gt;&lt;/statoEstero&gt;
+      &lt;identificazioneEstero&gt;&lt;/identificazioneEstero&gt;
+      &lt;tesseraEstero&gt;&lt;/tesseraEstero&gt;
+      &lt;consenso&gt;NON NOTO&lt;/consenso&gt;
+    &lt;/paziente&gt;
+    &lt;ricetta&gt;
+      &lt;dataCompilazione&gt;25/11/2014&lt;/dataCompilazione&gt;
+      &lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+      &lt;interna&gt;S&lt;/interna&gt;
+      &lt;aziendaPercorso&gt;&lt;/aziendaPercorso&gt;
+      &lt;strutturaPercorso&gt;&lt;/strutturaPercorso&gt;
+      &lt;codicePercorso&gt;&lt;/codicePercorso&gt;
+      &lt;descrizionePercorso&gt;&lt;/descrizionePercorso&gt;
+      &lt;oscuramento&gt;&lt;/oscuramento&gt;
+      &lt;tipoRicetta&gt;&lt;/tipoRicetta&gt;
+      &lt;tipoVisita&gt;A&lt;/tipoVisita&gt;
+      &lt;disposizioniRegionali&gt;&lt;/disposizioniRegionali&gt;
+      &lt;indicazione&gt;&lt;/indicazione&gt;
+      &lt;altro&gt;&lt;/altro&gt;
+      &lt;priorita&gt;&lt;/priorita&gt;
+      &lt;codiceDiagnosi&gt;&lt;/codiceDiagnosi&gt;
+      &lt;quesito&gt;qq&lt;/quesito&gt;
+      &lt;propostaTerapeutica&gt;&lt;/propostaTerapeutica&gt;
+      &lt;quantita&gt;001&lt;/quantita&gt;
+      &lt;dettagli&gt;
+        &lt;dettaglio&gt;
+          &lt;progressivo&gt;0&lt;/progressivo&gt;
+          &lt;codice&gt;89.7&lt;/codice&gt;
+          &lt;atc&gt;&lt;/atc&gt;
+          &lt;codiceCatalogoRegionale&gt;VCAR&lt;/codiceCatalogoRegionale&gt;
+          &lt;codiceCatalogoAziendale&gt;&lt;/codiceCatalogoAziendale&gt;
+          &lt;idInterno&gt;21220&lt;/idInterno&gt;
+          &lt;branca&gt;&lt;/branca&gt;
+          &lt;descrizione&gt;VISITA CARDIOLOGICA&lt;/descrizione&gt;
+          &lt;codicePacchetto&gt;&lt;/codicePacchetto&gt;
+          &lt;codiceMotivazione&gt;&lt;/codiceMotivazione&gt;
+          &lt;nonSostituibile&gt;&lt;/nonSostituibile&gt;
+          &lt;motivazione&gt;&lt;/motivazione&gt;
+          &lt;note&gt;&lt;/note&gt;
+          &lt;testoLibero&gt;&lt;/testoLibero&gt;
+          &lt;descrizioneTestoLibero&gt;&lt;/descrizioneTestoLibero&gt;
+          &lt;codiceGruppo&gt;&lt;/codiceGruppo&gt;
+          &lt;descrizioneGruppo&gt;&lt;/descrizioneGruppo&gt;
+          &lt;quantita&gt;1&lt;/quantita&gt;
+          &lt;notaAIFA&gt;&lt;/notaAIFA&gt;
+          &lt;posologia&gt;&lt;/posologia&gt;
+        &lt;/dettaglio&gt;
+      &lt;/dettagli&gt;
+      &lt;codiceRegionale&gt;1234567890&lt;/codiceRegionale&gt;
+      &lt;NRE&gt;&lt;/NRE&gt;
+      &lt;codiceAutenticazione&gt;&lt;/codiceAutenticazione&gt;
+    &lt;/ricetta&gt;
+    &lt;trasmissioneDPCM2008&gt;&lt;/trasmissioneDPCM2008&gt;
+  &lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;</ns1:xml>
+      </ns1:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="CIL1_SHNKSH84A27Z100H_2" id="5e1a1678-a619-4fc2-827e-0773d6049c92"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8087/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;rapporto&gt;RAPPORTO&lt;/rapporto&gt;
+			&lt;codiceFiscale&gt;PTRLSN51R21L219Y&lt;/codiceFiscale&gt;
+			&lt;regione&gt;010&lt;/regione&gt;
+			&lt;asl&gt;202&lt;/asl&gt;
+			&lt;!-- struttura&gt;001065&lt;/struttura --&gt;
+			&lt;cognome&gt;COGNMED&lt;/cognome&gt;
+			&lt;nome&gt;NOMEMED&lt;/nome&gt;
+			&lt;codiceRegionale&gt;CODREGMEDICO&lt;/codiceRegionale&gt;
+			&lt;codiceSpecializzazione&gt;H&lt;/codiceSpecializzazione&gt;
+			&lt;indirizzo&gt;fraz. Santa Lucia 22, 83010 Tufo(AV)&lt;/indirizzo&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;id&gt;PZ_ID&lt;/id&gt;
+			&lt;!-- dataScadenzaTS&gt;20151231235959&lt;/dataScadenzaTS --&gt;
+			&lt;codiceEsenzione&gt;E01&lt;/codiceEsenzione&gt;
+			&lt;!-- fasciaReddito&gt;FASCIA_REDDITO&lt;/fasciaReddito --&gt;
+			&lt;!-- reddito&gt;10000&lt;/reddito --&gt;
+			&lt;codiceFiscale&gt;SHNKSH84A27Z100H&lt;/codiceFiscale&gt;
+			&lt;regioneResidenza&gt;010&lt;/regioneResidenza&gt;
+			&lt;aslResidenza&gt;010201&lt;/aslResidenza&gt;
+			&lt;provinciaResidenza&gt;TO&lt;/provinciaResidenza&gt;
+			&lt;regioneAssistenza&gt;010&lt;/regioneAssistenza&gt;
+			&lt;aslAssistenza&gt;201&lt;/aslAssistenza&gt;
+			&lt;indirizzoDomicilio&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoDomicilio&gt;
+			&lt;indirizzoResidenza&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoResidenza&gt;
+			&lt;cognome&gt;COGNPAZ&lt;/cognome&gt;
+			&lt;nome&gt;NOMEPAZ&lt;/nome&gt;
+			&lt;sesso&gt;M&lt;/sesso&gt;
+			&lt;dataNascita&gt;19800909&lt;/dataNascita&gt;
+			&lt;comuneNascita&gt;TORINO&lt;/comuneNascita&gt;
+			&lt;cittadinanza&gt;100&lt;/cittadinanza&gt;
+			&lt;!-- numeroSASN&gt;NUMTESSSASN&lt;/numeroSASN --&gt;
+			&lt;!-- societaSASN&gt;SOCASSSASN&lt;/societaSASN --&gt;
+			&lt;telefono&gt;3938823341&lt;/telefono&gt;
+			&lt;email&gt;vincenzo.campanile@eng.it&lt;/email&gt;
+			&lt;!-- istituzioneEstero&gt;ISTITUZEST&lt;/istituzioneEstero --&gt;
+			&lt;!-- statoEstero&gt;STATOESTERO&lt;/statoEstero --&gt;
+			&lt;!-- identificazioneEstero&gt;NUMIDTESSTEAM&lt;/identificazioneEstero --&gt;
+			&lt;!-- tesseraEstero&gt;TESSTEAM&lt;/tesseraEstero --&gt;
+			&lt;consenso&gt;SI&lt;/consenso&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;dataCompilazione&gt;03/12/2014&lt;/dataCompilazione&gt;
+			&lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+			&lt;interna&gt;1&lt;/interna&gt;
+			&lt;tipoRicetta&gt;UE&lt;/tipoRicetta&gt;
+			&lt;tipoVisita&gt;D&lt;/tipoVisita&gt;
+			&lt;indicazione&gt;S&lt;/indicazione&gt;
+			&lt;priorita&gt;P&lt;/priorita&gt;
+			&lt;codiceDiagnosi&gt;346.90&lt;/codiceDiagnosi&gt;
+			&lt;quesito&gt;DESCDIAGNOSI&lt;/quesito&gt;
+			&lt;propostaTerapeutica&gt;PROPOSTATERAPEUTICA&lt;/propostaTerapeutica&gt;
+			&lt;quantita&gt;1&lt;/quantita&gt;
+			&lt;dettagli&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;93.99.1&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;93.99.1&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;93.99.1&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;017&lt;/branca&gt;
+					&lt;descrizione&gt;BRONCOINSTILLAZIONI&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;33.24&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;33.24&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;33.24&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;017&lt;/branca&gt;
+					&lt;descrizione&gt;BIOPSIA BRONCHIALE (ENDOSCOPICA) BRONCOSCOPIA&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+			&lt;/dettagli&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="CIL1_SHNKSH84A27Z100H_3" id="a39bbb9a-383d-43cf-94f6-a7a89ebbb57a"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8087/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;rapporto&gt;RAPPORTO&lt;/rapporto&gt;
+			&lt;codiceFiscale&gt;PTRLSN51R21L219Y&lt;/codiceFiscale&gt;
+			&lt;regione&gt;010&lt;/regione&gt;
+			&lt;asl&gt;202&lt;/asl&gt;
+			&lt;!-- struttura&gt;001065&lt;/struttura --&gt;
+			&lt;cognome&gt;COGNMED&lt;/cognome&gt;
+			&lt;nome&gt;NOMEMED&lt;/nome&gt;
+			&lt;codiceRegionale&gt;CODREGMEDICO&lt;/codiceRegionale&gt;
+			&lt;codiceSpecializzazione&gt;H&lt;/codiceSpecializzazione&gt;
+			&lt;indirizzo&gt;fraz. Santa Lucia 22, 83010 Tufo(AV)&lt;/indirizzo&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;id&gt;PZ_ID&lt;/id&gt;
+			&lt;!-- dataScadenzaTS&gt;20151231235959&lt;/dataScadenzaTS --&gt;
+			&lt;codiceEsenzione&gt;E01&lt;/codiceEsenzione&gt;
+			&lt;!-- fasciaReddito&gt;FASCIA_REDDITO&lt;/fasciaReddito --&gt;
+			&lt;!-- reddito&gt;10000&lt;/reddito --&gt;
+			&lt;codiceFiscale&gt;SHNKSH84A27Z100H&lt;/codiceFiscale&gt;
+			&lt;regioneResidenza&gt;010&lt;/regioneResidenza&gt;
+			&lt;aslResidenza&gt;010201&lt;/aslResidenza&gt;
+			&lt;provinciaResidenza&gt;TO&lt;/provinciaResidenza&gt;
+			&lt;regioneAssistenza&gt;010&lt;/regioneAssistenza&gt;
+			&lt;aslAssistenza&gt;201&lt;/aslAssistenza&gt;
+			&lt;indirizzoDomicilio&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoDomicilio&gt;
+			&lt;indirizzoResidenza&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoResidenza&gt;
+			&lt;cognome&gt;COGNPAZ&lt;/cognome&gt;
+			&lt;nome&gt;NOMEPAZ&lt;/nome&gt;
+			&lt;sesso&gt;M&lt;/sesso&gt;
+			&lt;dataNascita&gt;19800909&lt;/dataNascita&gt;
+			&lt;comuneNascita&gt;TORINO&lt;/comuneNascita&gt;
+			&lt;cittadinanza&gt;100&lt;/cittadinanza&gt;
+			&lt;!-- numeroSASN&gt;NUMTESSSASN&lt;/numeroSASN --&gt;
+			&lt;!-- societaSASN&gt;SOCASSSASN&lt;/societaSASN --&gt;
+			&lt;telefono&gt;3938823341&lt;/telefono&gt;
+			&lt;email&gt;vincenzo.campanile@eng.it&lt;/email&gt;
+			&lt;!-- istituzioneEstero&gt;ISTITUZEST&lt;/istituzioneEstero --&gt;
+			&lt;!-- statoEstero&gt;STATOESTERO&lt;/statoEstero --&gt;
+			&lt;!-- identificazioneEstero&gt;NUMIDTESSTEAM&lt;/identificazioneEstero --&gt;
+			&lt;!-- tesseraEstero&gt;TESSTEAM&lt;/tesseraEstero --&gt;
+			&lt;consenso&gt;SI&lt;/consenso&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;dataCompilazione&gt;03/12/2014&lt;/dataCompilazione&gt;
+			&lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+			&lt;interna&gt;1&lt;/interna&gt;
+			&lt;tipoRicetta&gt;UE&lt;/tipoRicetta&gt;
+			&lt;tipoVisita&gt;A&lt;/tipoVisita&gt;
+			&lt;indicazione&gt;S&lt;/indicazione&gt;
+			&lt;priorita&gt;P&lt;/priorita&gt;
+			&lt;codiceDiagnosi&gt;346.90&lt;/codiceDiagnosi&gt;
+			&lt;quesito&gt;DESCDIAGNOSI&lt;/quesito&gt;
+			&lt;propostaTerapeutica&gt;PROPOSTATERAPEUTICA&lt;/propostaTerapeutica&gt;
+			&lt;quantita&gt;1&lt;/quantita&gt;
+			&lt;dettagli&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;89.7&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;89.7&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;89.7&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;004&lt;/branca&gt;
+					&lt;descrizione&gt;VISITA DERMATOLOGICA&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;96.59&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;96.59&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;96.59&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;004&lt;/branca&gt;
+					&lt;descrizione&gt;MEDICAZIONE DERMATOLOGICA&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+			&lt;/dettagli&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="CIL1_SHNKSH84A27Z100H_4" id="04240363-aedb-4eb6-8ab4-8373ff1de2b7"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.75.64.92:8087/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;rapporto&gt;RAPPORTO&lt;/rapporto&gt;
+			&lt;codiceFiscale&gt;PTRLSN51R21L219Y&lt;/codiceFiscale&gt;
+			&lt;regione&gt;010&lt;/regione&gt;
+			&lt;asl&gt;202&lt;/asl&gt;
+			&lt;!-- struttura&gt;001065&lt;/struttura --&gt;
+			&lt;cognome&gt;COGNMED&lt;/cognome&gt;
+			&lt;nome&gt;NOMEMED&lt;/nome&gt;
+			&lt;codiceRegionale&gt;CODREGMEDICO&lt;/codiceRegionale&gt;
+			&lt;codiceSpecializzazione&gt;H&lt;/codiceSpecializzazione&gt;
+			&lt;indirizzo&gt;fraz. Santa Lucia 22, 83010 Tufo(AV)&lt;/indirizzo&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;id&gt;PZ_ID&lt;/id&gt;
+			&lt;!-- dataScadenzaTS&gt;20151231235959&lt;/dataScadenzaTS --&gt;
+			&lt;codiceEsenzione&gt;E01&lt;/codiceEsenzione&gt;
+			&lt;!-- fasciaReddito&gt;FASCIA_REDDITO&lt;/fasciaReddito --&gt;
+			&lt;!-- reddito&gt;10000&lt;/reddito --&gt;
+			&lt;codiceFiscale&gt;SHNKSH84A27Z100H&lt;/codiceFiscale&gt;
+			&lt;regioneResidenza&gt;010&lt;/regioneResidenza&gt;
+			&lt;aslResidenza&gt;010201&lt;/aslResidenza&gt;
+			&lt;provinciaResidenza&gt;TO&lt;/provinciaResidenza&gt;
+			&lt;regioneAssistenza&gt;010&lt;/regioneAssistenza&gt;
+			&lt;aslAssistenza&gt;201&lt;/aslAssistenza&gt;
+			&lt;indirizzoDomicilio&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoDomicilio&gt;
+			&lt;indirizzoResidenza&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoResidenza&gt;
+			&lt;cognome&gt;COGNPAZ&lt;/cognome&gt;
+			&lt;nome&gt;NOMEPAZ&lt;/nome&gt;
+			&lt;sesso&gt;M&lt;/sesso&gt;
+			&lt;dataNascita&gt;19800909&lt;/dataNascita&gt;
+			&lt;comuneNascita&gt;TORINO&lt;/comuneNascita&gt;
+			&lt;cittadinanza&gt;100&lt;/cittadinanza&gt;
+			&lt;!-- numeroSASN&gt;NUMTESSSASN&lt;/numeroSASN --&gt;
+			&lt;!-- societaSASN&gt;SOCASSSASN&lt;/societaSASN --&gt;
+			&lt;telefono&gt;3938823341&lt;/telefono&gt;
+			&lt;email&gt;vincenzo.campanile@eng.it&lt;/email&gt;
+			&lt;!-- istituzioneEstero&gt;ISTITUZEST&lt;/istituzioneEstero --&gt;
+			&lt;!-- statoEstero&gt;STATOESTERO&lt;/statoEstero --&gt;
+			&lt;!-- identificazioneEstero&gt;NUMIDTESSTEAM&lt;/identificazioneEstero --&gt;
+			&lt;!-- tesseraEstero&gt;TESSTEAM&lt;/tesseraEstero --&gt;
+			&lt;consenso&gt;SI&lt;/consenso&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;dataCompilazione&gt;03/12/2014&lt;/dataCompilazione&gt;
+			&lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+			&lt;interna&gt;1&lt;/interna&gt;
+			&lt;tipoRicetta&gt;UE&lt;/tipoRicetta&gt;
+			&lt;tipoVisita&gt;A&lt;/tipoVisita&gt;
+			&lt;indicazione&gt;S&lt;/indicazione&gt;
+			&lt;priorita&gt;P&lt;/priorita&gt;
+			&lt;codiceDiagnosi&gt;346.90&lt;/codiceDiagnosi&gt;
+			&lt;quesito&gt;DESCDIAGNOSI&lt;/quesito&gt;
+			&lt;propostaTerapeutica&gt;PROPOSTATERAPEUTICA&lt;/propostaTerapeutica&gt;
+			&lt;quantita&gt;1&lt;/quantita&gt;
+			&lt;dettagli&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;93.82.2&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;93.82.2&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;93.82.2&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;001&lt;/branca&gt;
+					&lt;descrizione&gt;TERAPIA EDUCAZIONALE DEL DIABETICO COLLETTIVA&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+			&lt;/dettagli&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="CIL1_SHNKSH84A27Z100H_5" id="eb076ed4-974b-43da-b901-6e7d63cac362"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8087/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;rapporto&gt;RAPPORTO&lt;/rapporto&gt;
+			&lt;codiceFiscale&gt;PTRLSN51R21L219Y&lt;/codiceFiscale&gt;
+			&lt;regione&gt;010&lt;/regione&gt;
+			&lt;asl&gt;202&lt;/asl&gt;
+			&lt;!-- struttura&gt;001065&lt;/struttura --&gt;
+			&lt;cognome&gt;COGNMED&lt;/cognome&gt;
+			&lt;nome&gt;NOMEMED&lt;/nome&gt;
+			&lt;codiceRegionale&gt;CODREGMEDICO&lt;/codiceRegionale&gt;
+			&lt;codiceSpecializzazione&gt;H&lt;/codiceSpecializzazione&gt;
+			&lt;indirizzo&gt;fraz. Santa Lucia 22, 83010 Tufo(AV)&lt;/indirizzo&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;id&gt;PZ_ID&lt;/id&gt;
+			&lt;!-- dataScadenzaTS&gt;20151231235959&lt;/dataScadenzaTS --&gt;
+			&lt;codiceEsenzione&gt;E01&lt;/codiceEsenzione&gt;
+			&lt;!-- fasciaReddito&gt;FASCIA_REDDITO&lt;/fasciaReddito --&gt;
+			&lt;!-- reddito&gt;10000&lt;/reddito --&gt;
+			&lt;codiceFiscale&gt;SHNKSH84A27Z100H&lt;/codiceFiscale&gt;
+			&lt;regioneResidenza&gt;010&lt;/regioneResidenza&gt;
+			&lt;aslResidenza&gt;010201&lt;/aslResidenza&gt;
+			&lt;provinciaResidenza&gt;TO&lt;/provinciaResidenza&gt;
+			&lt;regioneAssistenza&gt;010&lt;/regioneAssistenza&gt;
+			&lt;aslAssistenza&gt;201&lt;/aslAssistenza&gt;
+			&lt;indirizzoDomicilio&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoDomicilio&gt;
+			&lt;indirizzoResidenza&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoResidenza&gt;
+			&lt;cognome&gt;COGNPAZ&lt;/cognome&gt;
+			&lt;nome&gt;NOMEPAZ&lt;/nome&gt;
+			&lt;sesso&gt;M&lt;/sesso&gt;
+			&lt;dataNascita&gt;19800909&lt;/dataNascita&gt;
+			&lt;comuneNascita&gt;TORINO&lt;/comuneNascita&gt;
+			&lt;cittadinanza&gt;100&lt;/cittadinanza&gt;
+			&lt;!-- numeroSASN&gt;NUMTESSSASN&lt;/numeroSASN --&gt;
+			&lt;!-- societaSASN&gt;SOCASSSASN&lt;/societaSASN --&gt;
+			&lt;telefono&gt;3938823341&lt;/telefono&gt;
+			&lt;email&gt;vincenzo.campanile@eng.it&lt;/email&gt;
+			&lt;!-- istituzioneEstero&gt;ISTITUZEST&lt;/istituzioneEstero --&gt;
+			&lt;!-- statoEstero&gt;STATOESTERO&lt;/statoEstero --&gt;
+			&lt;!-- identificazioneEstero&gt;NUMIDTESSTEAM&lt;/identificazioneEstero --&gt;
+			&lt;!-- tesseraEstero&gt;TESSTEAM&lt;/tesseraEstero --&gt;
+			&lt;consenso&gt;SI&lt;/consenso&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;dataCompilazione&gt;03/12/2014&lt;/dataCompilazione&gt;
+			&lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+			&lt;interna&gt;1&lt;/interna&gt;
+			&lt;tipoRicetta&gt;UE&lt;/tipoRicetta&gt;
+			&lt;tipoVisita&gt;A&lt;/tipoVisita&gt;
+			&lt;indicazione&gt;S&lt;/indicazione&gt;
+			&lt;priorita&gt;P&lt;/priorita&gt;
+			&lt;codiceDiagnosi&gt;346.90&lt;/codiceDiagnosi&gt;
+			&lt;quesito&gt;DESCDIAGNOSI&lt;/quesito&gt;
+			&lt;propostaTerapeutica&gt;PROPOSTATERAPEUTICA&lt;/propostaTerapeutica&gt;
+			&lt;quantita&gt;1&lt;/quantita&gt;
+			&lt;dettagli&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;90.14.2&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;90.14.2&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;90.14.2&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;073&lt;/branca&gt;
+					&lt;descrizione&gt;COLESTEROLO LDL&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;90.02.5&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;90.02.5&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;90.02.5&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;073&lt;/branca&gt;
+					&lt;descrizione&gt;ACIDO LATTICO&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+			&lt;/dettagli&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="CIL1_SHNKSH84A27Z100H_6" id="54dcec3d-cbfb-439a-be2e-1aa4fc587660"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8087/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;rapporto&gt;RAPPORTO&lt;/rapporto&gt;
+			&lt;codiceFiscale&gt;PTRLSN51R21L219Y&lt;/codiceFiscale&gt;
+			&lt;regione&gt;010&lt;/regione&gt;
+			&lt;asl&gt;202&lt;/asl&gt;
+			&lt;!-- struttura&gt;001065&lt;/struttura --&gt;
+			&lt;cognome&gt;COGNMED&lt;/cognome&gt;
+			&lt;nome&gt;NOMEMED&lt;/nome&gt;
+			&lt;codiceRegionale&gt;CODREGMEDICO&lt;/codiceRegionale&gt;
+			&lt;codiceSpecializzazione&gt;H&lt;/codiceSpecializzazione&gt;
+			&lt;indirizzo&gt;fraz. Santa Lucia 22, 83010 Tufo(AV)&lt;/indirizzo&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;id&gt;PZ_ID&lt;/id&gt;
+			&lt;!-- dataScadenzaTS&gt;20151231235959&lt;/dataScadenzaTS --&gt;
+			&lt;codiceEsenzione&gt;E01&lt;/codiceEsenzione&gt;
+			&lt;!-- fasciaReddito&gt;FASCIA_REDDITO&lt;/fasciaReddito --&gt;
+			&lt;!-- reddito&gt;10000&lt;/reddito --&gt;
+			&lt;codiceFiscale&gt;SHNKSH84A27Z100H&lt;/codiceFiscale&gt;
+			&lt;regioneResidenza&gt;010&lt;/regioneResidenza&gt;
+			&lt;aslResidenza&gt;010201&lt;/aslResidenza&gt;
+			&lt;provinciaResidenza&gt;TO&lt;/provinciaResidenza&gt;
+			&lt;regioneAssistenza&gt;010&lt;/regioneAssistenza&gt;
+			&lt;aslAssistenza&gt;201&lt;/aslAssistenza&gt;
+			&lt;indirizzoDomicilio&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoDomicilio&gt;
+			&lt;indirizzoResidenza&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoResidenza&gt;
+			&lt;cognome&gt;COGNPAZ&lt;/cognome&gt;
+			&lt;nome&gt;NOMEPAZ&lt;/nome&gt;
+			&lt;sesso&gt;M&lt;/sesso&gt;
+			&lt;dataNascita&gt;19800909&lt;/dataNascita&gt;
+			&lt;comuneNascita&gt;TORINO&lt;/comuneNascita&gt;
+			&lt;cittadinanza&gt;100&lt;/cittadinanza&gt;
+			&lt;!-- numeroSASN&gt;NUMTESSSASN&lt;/numeroSASN --&gt;
+			&lt;!-- societaSASN&gt;SOCASSSASN&lt;/societaSASN --&gt;
+			&lt;telefono&gt;3938823341&lt;/telefono&gt;
+			&lt;email&gt;vincenzo.campanile@eng.it&lt;/email&gt;
+			&lt;!-- istituzioneEstero&gt;ISTITUZEST&lt;/istituzioneEstero --&gt;
+			&lt;!-- statoEstero&gt;STATOESTERO&lt;/statoEstero --&gt;
+			&lt;!-- identificazioneEstero&gt;NUMIDTESSTEAM&lt;/identificazioneEstero --&gt;
+			&lt;!-- tesseraEstero&gt;TESSTEAM&lt;/tesseraEstero --&gt;
+			&lt;consenso&gt;SI&lt;/consenso&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;dataCompilazione&gt;03/12/2014&lt;/dataCompilazione&gt;
+			&lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+			&lt;interna&gt;1&lt;/interna&gt;
+			&lt;tipoRicetta&gt;UE&lt;/tipoRicetta&gt;
+			&lt;tipoVisita&gt;A&lt;/tipoVisita&gt;
+			&lt;indicazione&gt;S&lt;/indicazione&gt;
+			&lt;priorita&gt;P&lt;/priorita&gt;
+			&lt;codiceDiagnosi&gt;346.90&lt;/codiceDiagnosi&gt;
+			&lt;quesito&gt;DESCDIAGNOSI&lt;/quesito&gt;
+			&lt;propostaTerapeutica&gt;PROPOSTATERAPEUTICA&lt;/propostaTerapeutica&gt;
+			&lt;quantita&gt;1&lt;/quantita&gt;
+			&lt;dettagli&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;89.07&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;89.07&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;89.07&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;016&lt;/branca&gt;
+					&lt;descrizione&gt;CONSULTO DEFINITO COMPLESSO&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+			&lt;/dettagli&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="CIL1_SHNKSH84A27Z100H_7" id="1302e0e0-7201-40e1-a02d-9f78d6e7e349"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8087/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;rapporto&gt;RAPPORTO&lt;/rapporto&gt;
+			&lt;codiceFiscale&gt;PTRLSN51R21L219Y&lt;/codiceFiscale&gt;
+			&lt;regione&gt;010&lt;/regione&gt;
+			&lt;asl&gt;202&lt;/asl&gt;
+			&lt;!-- struttura&gt;001065&lt;/struttura --&gt;
+			&lt;cognome&gt;COGNMED&lt;/cognome&gt;
+			&lt;nome&gt;NOMEMED&lt;/nome&gt;
+			&lt;codiceRegionale&gt;CODREGMEDICO&lt;/codiceRegionale&gt;
+			&lt;codiceSpecializzazione&gt;H&lt;/codiceSpecializzazione&gt;
+			&lt;indirizzo&gt;fraz. Santa Lucia 22, 83010 Tufo(AV)&lt;/indirizzo&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;id&gt;PZ_ID&lt;/id&gt;
+			&lt;!-- dataScadenzaTS&gt;20151231235959&lt;/dataScadenzaTS --&gt;
+			&lt;codiceEsenzione&gt;E01&lt;/codiceEsenzione&gt;
+			&lt;!-- fasciaReddito&gt;FASCIA_REDDITO&lt;/fasciaReddito --&gt;
+			&lt;!-- reddito&gt;10000&lt;/reddito --&gt;
+			&lt;codiceFiscale&gt;SHNKSH84A27Z100H&lt;/codiceFiscale&gt;
+			&lt;regioneResidenza&gt;010&lt;/regioneResidenza&gt;
+			&lt;aslResidenza&gt;010201&lt;/aslResidenza&gt;
+			&lt;provinciaResidenza&gt;TO&lt;/provinciaResidenza&gt;
+			&lt;regioneAssistenza&gt;010&lt;/regioneAssistenza&gt;
+			&lt;aslAssistenza&gt;201&lt;/aslAssistenza&gt;
+			&lt;indirizzoDomicilio&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoDomicilio&gt;
+			&lt;indirizzoResidenza&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoResidenza&gt;
+			&lt;cognome&gt;COGNPAZ&lt;/cognome&gt;
+			&lt;nome&gt;NOMEPAZ&lt;/nome&gt;
+			&lt;sesso&gt;M&lt;/sesso&gt;
+			&lt;dataNascita&gt;19800909&lt;/dataNascita&gt;
+			&lt;comuneNascita&gt;TORINO&lt;/comuneNascita&gt;
+			&lt;cittadinanza&gt;100&lt;/cittadinanza&gt;
+			&lt;!-- numeroSASN&gt;NUMTESSSASN&lt;/numeroSASN --&gt;
+			&lt;!-- societaSASN&gt;SOCASSSASN&lt;/societaSASN --&gt;
+			&lt;telefono&gt;3938823341&lt;/telefono&gt;
+			&lt;email&gt;vincenzo.campanile@eng.it&lt;/email&gt;
+			&lt;!-- istituzioneEstero&gt;ISTITUZEST&lt;/istituzioneEstero --&gt;
+			&lt;!-- statoEstero&gt;STATOESTERO&lt;/statoEstero --&gt;
+			&lt;!-- identificazioneEstero&gt;NUMIDTESSTEAM&lt;/identificazioneEstero --&gt;
+			&lt;!-- tesseraEstero&gt;TESSTEAM&lt;/tesseraEstero --&gt;
+			&lt;consenso&gt;SI&lt;/consenso&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;dataCompilazione&gt;03/12/2014&lt;/dataCompilazione&gt;
+			&lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+			&lt;interna&gt;1&lt;/interna&gt;
+			&lt;tipoRicetta&gt;UE&lt;/tipoRicetta&gt;
+			&lt;tipoVisita&gt;A&lt;/tipoVisita&gt;
+			&lt;indicazione&gt;S&lt;/indicazione&gt;
+			&lt;priorita&gt;P&lt;/priorita&gt;
+			&lt;codiceDiagnosi&gt;346.90&lt;/codiceDiagnosi&gt;
+			&lt;quesito&gt;DESCDIAGNOSI&lt;/quesito&gt;
+			&lt;propostaTerapeutica&gt;PROPOSTATERAPEUTICA&lt;/propostaTerapeutica&gt;
+			&lt;quantita&gt;1&lt;/quantita&gt;
+			&lt;dettagli&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;90.44.3&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;90.44.3&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;90.44.3&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;073&lt;/branca&gt;
+					&lt;descrizione&gt;ESAME URINE&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+			&lt;/dettagli&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="CIL1_SHNKSH84A27Z100H_8" id="e2c356c2-efbf-4b41-94e7-d1477c45caf6"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8087/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;rapporto&gt;RAPPORTO&lt;/rapporto&gt;
+			&lt;codiceFiscale&gt;PTRLSN51R21L219Y&lt;/codiceFiscale&gt;
+			&lt;regione&gt;010&lt;/regione&gt;
+			&lt;asl&gt;202&lt;/asl&gt;
+			&lt;!-- struttura&gt;001065&lt;/struttura --&gt;
+			&lt;cognome&gt;COGNMED&lt;/cognome&gt;
+			&lt;nome&gt;NOMEMED&lt;/nome&gt;
+			&lt;codiceRegionale&gt;CODREGMEDICO&lt;/codiceRegionale&gt;
+			&lt;codiceSpecializzazione&gt;H&lt;/codiceSpecializzazione&gt;
+			&lt;indirizzo&gt;fraz. Santa Lucia 22, 83010 Tufo(AV)&lt;/indirizzo&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;id&gt;PZ_ID&lt;/id&gt;
+			&lt;!-- dataScadenzaTS&gt;20151231235959&lt;/dataScadenzaTS --&gt;
+			&lt;codiceEsenzione&gt;E01&lt;/codiceEsenzione&gt;
+			&lt;!-- fasciaReddito&gt;FASCIA_REDDITO&lt;/fasciaReddito --&gt;
+			&lt;!-- reddito&gt;10000&lt;/reddito --&gt;
+			&lt;codiceFiscale&gt;SHNKSH84A27Z100H&lt;/codiceFiscale&gt;
+			&lt;regioneResidenza&gt;010&lt;/regioneResidenza&gt;
+			&lt;aslResidenza&gt;010201&lt;/aslResidenza&gt;
+			&lt;provinciaResidenza&gt;TO&lt;/provinciaResidenza&gt;
+			&lt;regioneAssistenza&gt;010&lt;/regioneAssistenza&gt;
+			&lt;aslAssistenza&gt;201&lt;/aslAssistenza&gt;
+			&lt;indirizzoDomicilio&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoDomicilio&gt;
+			&lt;indirizzoResidenza&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoResidenza&gt;
+			&lt;cognome&gt;COGNPAZ&lt;/cognome&gt;
+			&lt;nome&gt;NOMEPAZ&lt;/nome&gt;
+			&lt;sesso&gt;M&lt;/sesso&gt;
+			&lt;dataNascita&gt;19800909&lt;/dataNascita&gt;
+			&lt;comuneNascita&gt;TORINO&lt;/comuneNascita&gt;
+			&lt;cittadinanza&gt;100&lt;/cittadinanza&gt;
+			&lt;!-- numeroSASN&gt;NUMTESSSASN&lt;/numeroSASN --&gt;
+			&lt;!-- societaSASN&gt;SOCASSSASN&lt;/societaSASN --&gt;
+			&lt;telefono&gt;3938823341&lt;/telefono&gt;
+			&lt;email&gt;vincenzo.campanile@eng.it&lt;/email&gt;
+			&lt;!-- istituzioneEstero&gt;ISTITUZEST&lt;/istituzioneEstero --&gt;
+			&lt;!-- statoEstero&gt;STATOESTERO&lt;/statoEstero --&gt;
+			&lt;!-- identificazioneEstero&gt;NUMIDTESSTEAM&lt;/identificazioneEstero --&gt;
+			&lt;!-- tesseraEstero&gt;TESSTEAM&lt;/tesseraEstero --&gt;
+			&lt;consenso&gt;SI&lt;/consenso&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;dataCompilazione&gt;03/12/2014&lt;/dataCompilazione&gt;
+			&lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+			&lt;interna&gt;1&lt;/interna&gt;
+			&lt;tipoRicetta&gt;UE&lt;/tipoRicetta&gt;
+			&lt;tipoVisita&gt;A&lt;/tipoVisita&gt;
+			&lt;indicazione&gt;S&lt;/indicazione&gt;
+			&lt;priorita&gt;P&lt;/priorita&gt;
+			&lt;codiceDiagnosi&gt;346.90&lt;/codiceDiagnosi&gt;
+			&lt;quesito&gt;DESCDIAGNOSI&lt;/quesito&gt;
+			&lt;propostaTerapeutica&gt;PROPOSTATERAPEUTICA&lt;/propostaTerapeutica&gt;
+			&lt;quantita&gt;1&lt;/quantita&gt;
+			&lt;dettagli&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;89.7&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;89.7&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;89.7&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;002&lt;/branca&gt;
+					&lt;descrizione&gt;VISITA CARDIOLOGICA&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;89.52&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;89.52&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;89.52&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;002&lt;/branca&gt;
+					&lt;descrizione&gt;ECG&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+			&lt;/dettagli&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="CIL1_SHNKSH84A27Z100H_9" id="559cc535-28a9-4f37-861a-207a9bb7a37a"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8087/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;rapporto&gt;RAPPORTO&lt;/rapporto&gt;
+			&lt;codiceFiscale&gt;PTRLSN51R21L219Y&lt;/codiceFiscale&gt;
+			&lt;regione&gt;010&lt;/regione&gt;
+			&lt;asl&gt;202&lt;/asl&gt;
+			&lt;!-- struttura&gt;001065&lt;/struttura --&gt;
+			&lt;cognome&gt;COGNMED&lt;/cognome&gt;
+			&lt;nome&gt;NOMEMED&lt;/nome&gt;
+			&lt;codiceRegionale&gt;CODREGMEDICO&lt;/codiceRegionale&gt;
+			&lt;codiceSpecializzazione&gt;H&lt;/codiceSpecializzazione&gt;
+			&lt;indirizzo&gt;fraz. Santa Lucia 22, 83010 Tufo(AV)&lt;/indirizzo&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;id&gt;PZ_ID&lt;/id&gt;
+			&lt;!-- dataScadenzaTS&gt;20151231235959&lt;/dataScadenzaTS --&gt;
+			&lt;codiceEsenzione&gt;E01&lt;/codiceEsenzione&gt;
+			&lt;!-- fasciaReddito&gt;FASCIA_REDDITO&lt;/fasciaReddito --&gt;
+			&lt;!-- reddito&gt;10000&lt;/reddito --&gt;
+			&lt;codiceFiscale&gt;SHNKSH84A27Z100H&lt;/codiceFiscale&gt;
+			&lt;regioneResidenza&gt;010&lt;/regioneResidenza&gt;
+			&lt;aslResidenza&gt;010201&lt;/aslResidenza&gt;
+			&lt;provinciaResidenza&gt;TO&lt;/provinciaResidenza&gt;
+			&lt;regioneAssistenza&gt;010&lt;/regioneAssistenza&gt;
+			&lt;aslAssistenza&gt;201&lt;/aslAssistenza&gt;
+			&lt;indirizzoDomicilio&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoDomicilio&gt;
+			&lt;indirizzoResidenza&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoResidenza&gt;
+			&lt;cognome&gt;COGNPAZ&lt;/cognome&gt;
+			&lt;nome&gt;NOMEPAZ&lt;/nome&gt;
+			&lt;sesso&gt;M&lt;/sesso&gt;
+			&lt;dataNascita&gt;19800909&lt;/dataNascita&gt;
+			&lt;comuneNascita&gt;TORINO&lt;/comuneNascita&gt;
+			&lt;cittadinanza&gt;100&lt;/cittadinanza&gt;
+			&lt;!-- numeroSASN&gt;NUMTESSSASN&lt;/numeroSASN --&gt;
+			&lt;!-- societaSASN&gt;SOCASSSASN&lt;/societaSASN --&gt;
+			&lt;telefono&gt;3938823341&lt;/telefono&gt;
+			&lt;email&gt;vincenzo.campanile@eng.it&lt;/email&gt;
+			&lt;!-- istituzioneEstero&gt;ISTITUZEST&lt;/istituzioneEstero --&gt;
+			&lt;!-- statoEstero&gt;STATOESTERO&lt;/statoEstero --&gt;
+			&lt;!-- identificazioneEstero&gt;NUMIDTESSTEAM&lt;/identificazioneEstero --&gt;
+			&lt;!-- tesseraEstero&gt;TESSTEAM&lt;/tesseraEstero --&gt;
+			&lt;consenso&gt;SI&lt;/consenso&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;dataCompilazione&gt;03/12/2014&lt;/dataCompilazione&gt;
+			&lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+			&lt;interna&gt;1&lt;/interna&gt;
+			&lt;tipoRicetta&gt;UE&lt;/tipoRicetta&gt;
+			&lt;tipoVisita&gt;A&lt;/tipoVisita&gt;
+			&lt;indicazione&gt;S&lt;/indicazione&gt;
+			&lt;priorita&gt;P&lt;/priorita&gt;
+			&lt;codiceDiagnosi&gt;346.90&lt;/codiceDiagnosi&gt;
+			&lt;quesito&gt;DESCDIAGNOSI&lt;/quesito&gt;
+			&lt;propostaTerapeutica&gt;PROPOSTATERAPEUTICA&lt;/propostaTerapeutica&gt;
+			&lt;quantita&gt;1&lt;/quantita&gt;
+			&lt;dettagli&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;89.52&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;89.52&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;89.52&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;002&lt;/branca&gt;
+					&lt;descrizione&gt;ECG&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+			&lt;/dettagli&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="CIL1_SHNKSH84A27Z100H_10" id="8caf665d-0356-4218-b0ab-c254fa1db282"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+     &lt;credentials&gt;
+       &lt;password&gt;GS&lt;/password&gt;
+       &lt;login&gt;GSACCO&lt;/login&gt;
+     &lt;/credentials&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;rapporto&gt;RAPPORTO&lt;/rapporto&gt;
+			&lt;codiceFiscale&gt;PTRLSN51R21L219Y&lt;/codiceFiscale&gt;
+			&lt;regione&gt;010&lt;/regione&gt;
+			&lt;asl&gt;202&lt;/asl&gt;
+			&lt;!-- struttura&gt;001065&lt;/struttura --&gt;
+			&lt;cognome&gt;COGNMED&lt;/cognome&gt;
+			&lt;nome&gt;NOMEMED&lt;/nome&gt;
+			&lt;codiceRegionale&gt;CODREGMEDICO&lt;/codiceRegionale&gt;
+			&lt;codiceSpecializzazione&gt;H&lt;/codiceSpecializzazione&gt;
+			&lt;indirizzo&gt;fraz. Santa Lucia 22, 83010 Tufo(AV)&lt;/indirizzo&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;id&gt;PZ_ID&lt;/id&gt;
+			&lt;!-- dataScadenzaTS&gt;20151231235959&lt;/dataScadenzaTS --&gt;
+			&lt;codiceEsenzione&gt;E01&lt;/codiceEsenzione&gt;
+			&lt;!-- fasciaReddito&gt;FASCIA_REDDITO&lt;/fasciaReddito --&gt;
+			&lt;!-- reddito&gt;10000&lt;/reddito --&gt;
+			&lt;codiceFiscale&gt;SHNKSH84A27Z100H&lt;/codiceFiscale&gt;
+			&lt;regioneResidenza&gt;010&lt;/regioneResidenza&gt;
+			&lt;aslResidenza&gt;010201&lt;/aslResidenza&gt;
+			&lt;provinciaResidenza&gt;TO&lt;/provinciaResidenza&gt;
+			&lt;regioneAssistenza&gt;010&lt;/regioneAssistenza&gt;
+			&lt;aslAssistenza&gt;201&lt;/aslAssistenza&gt;
+			&lt;indirizzoDomicilio&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoDomicilio&gt;
+			&lt;indirizzoResidenza&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoResidenza&gt;
+			&lt;cognome&gt;COGNPAZ&lt;/cognome&gt;
+			&lt;nome&gt;NOMEPAZ&lt;/nome&gt;
+			&lt;sesso&gt;M&lt;/sesso&gt;
+			&lt;dataNascita&gt;19800909&lt;/dataNascita&gt;
+			&lt;comuneNascita&gt;TORINO&lt;/comuneNascita&gt;
+			&lt;cittadinanza&gt;100&lt;/cittadinanza&gt;
+			&lt;!-- numeroSASN&gt;NUMTESSSASN&lt;/numeroSASN --&gt;
+			&lt;!-- societaSASN&gt;SOCASSSASN&lt;/societaSASN --&gt;
+			&lt;telefono&gt;3938823341&lt;/telefono&gt;
+			&lt;email&gt;vincenzo.campanile@eng.it&lt;/email&gt;
+			&lt;!-- istituzioneEstero&gt;ISTITUZEST&lt;/istituzioneEstero --&gt;
+			&lt;!-- statoEstero&gt;STATOESTERO&lt;/statoEstero --&gt;
+			&lt;!-- identificazioneEstero&gt;NUMIDTESSTEAM&lt;/identificazioneEstero --&gt;
+			&lt;!-- tesseraEstero&gt;TESSTEAM&lt;/tesseraEstero --&gt;
+			&lt;consenso&gt;SI&lt;/consenso&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;dataCompilazione&gt;03/12/2014&lt;/dataCompilazione&gt;
+			&lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+			&lt;interna&gt;1&lt;/interna&gt;
+			&lt;tipoRicetta&gt;UE&lt;/tipoRicetta&gt;
+			&lt;tipoVisita&gt;A&lt;/tipoVisita&gt;
+			&lt;indicazione&gt;S&lt;/indicazione&gt;
+			&lt;priorita&gt;P&lt;/priorita&gt;
+			&lt;codiceDiagnosi&gt;346.90&lt;/codiceDiagnosi&gt;
+			&lt;quesito&gt;DESCDIAGNOSI&lt;/quesito&gt;
+			&lt;propostaTerapeutica&gt;PROPOSTATERAPEUTICA&lt;/propostaTerapeutica&gt;
+			&lt;quantita&gt;1&lt;/quantita&gt;
+			&lt;dettagli&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;93.11.1&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;93.11.1&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;93.11.1&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;001&lt;/branca&gt;
+					&lt;descrizione&gt;AEROSOLTERAPIA - PER SEDUTA  (CICLO DI DIECI SEDUTE)&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+			&lt;/dettagli&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="DPCM_CIL1_SHNKSH84A27Z100H_10" id="d9b8ae38-aec5-41bb-a8cc-28663509cfdb"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string">
+&lt;ePrescriptions&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;trasmissioneDPCM2008&gt;S&lt;/trasmissioneDPCM2008&gt;
+		&lt;medico&gt;
+			&lt;rapporto&gt;RAPPORTO&lt;/rapporto&gt;
+			&lt;codiceFiscale&gt;PTRLSN51R21L219Y&lt;/codiceFiscale&gt;
+			&lt;regione&gt;010&lt;/regione&gt;
+			&lt;asl&gt;202&lt;/asl&gt;
+			&lt;!-- struttura&gt;001065&lt;/struttura --&gt;
+			&lt;cognome&gt;COGNMED&lt;/cognome&gt;
+			&lt;nome&gt;NOMEMED&lt;/nome&gt;
+			&lt;codiceRegionale&gt;CODREGMEDICO&lt;/codiceRegionale&gt;
+			&lt;codiceSpecializzazione&gt;H&lt;/codiceSpecializzazione&gt;
+			&lt;indirizzo&gt;fraz. Santa Lucia 22, 83010 Tufo(AV)&lt;/indirizzo&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;id&gt;PZ_ID&lt;/id&gt;
+			&lt;!-- dataScadenzaTS&gt;20151231235959&lt;/dataScadenzaTS --&gt;
+			&lt;codiceEsenzione&gt;E01&lt;/codiceEsenzione&gt;
+			&lt;!-- fasciaReddito&gt;FASCIA_REDDITO&lt;/fasciaReddito --&gt;
+			&lt;!-- reddito&gt;10000&lt;/reddito --&gt;
+			&lt;codiceFiscale&gt;SHNKSH84A27Z100H&lt;/codiceFiscale&gt;
+			&lt;regioneResidenza&gt;010&lt;/regioneResidenza&gt;
+			&lt;aslResidenza&gt;010201&lt;/aslResidenza&gt;
+			&lt;provinciaResidenza&gt;TO&lt;/provinciaResidenza&gt;
+			&lt;regioneAssistenza&gt;010&lt;/regioneAssistenza&gt;
+			&lt;aslAssistenza&gt;201&lt;/aslAssistenza&gt;
+			&lt;indirizzoDomicilio&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoDomicilio&gt;
+			&lt;indirizzoResidenza&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoResidenza&gt;
+			&lt;cognome&gt;COGNPAZ&lt;/cognome&gt;
+			&lt;nome&gt;NOMEPAZ&lt;/nome&gt;
+			&lt;sesso&gt;M&lt;/sesso&gt;
+			&lt;dataNascita&gt;19800909&lt;/dataNascita&gt;
+			&lt;comuneNascita&gt;TORINO&lt;/comuneNascita&gt;
+			&lt;cittadinanza&gt;100&lt;/cittadinanza&gt;
+			&lt;!-- numeroSASN&gt;NUMTESSSASN&lt;/numeroSASN --&gt;
+			&lt;!-- societaSASN&gt;SOCASSSASN&lt;/societaSASN --&gt;
+			&lt;telefono&gt;3938823341&lt;/telefono&gt;
+			&lt;email&gt;vincenzo.campanile@eng.it&lt;/email&gt;
+			&lt;!-- istituzioneEstero&gt;ISTITUZEST&lt;/istituzioneEstero --&gt;
+			&lt;!-- statoEstero&gt;STATOESTERO&lt;/statoEstero --&gt;
+			&lt;!-- identificazioneEstero&gt;NUMIDTESSTEAM&lt;/identificazioneEstero --&gt;
+			&lt;!-- tesseraEstero&gt;TESSTEAM&lt;/tesseraEstero --&gt;
+			&lt;consenso&gt;SI&lt;/consenso&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;dataCompilazione&gt;15/01/2015&lt;/dataCompilazione&gt;
+			&lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+			&lt;interna&gt;S&lt;/interna&gt;
+			&lt;tipoRicetta&gt;UE&lt;/tipoRicetta&gt;
+			&lt;tipoVisita&gt;A&lt;/tipoVisita&gt;
+			&lt;indicazione&gt;S&lt;/indicazione&gt;
+			&lt;!--codicePoligrafico&gt;01234013456789&lt;/codicePoligrafico--&gt;
+			&lt;priorita&gt;P&lt;/priorita&gt;
+			&lt;codiceDiagnosi&gt;346.90&lt;/codiceDiagnosi&gt;
+			&lt;quesito&gt;DESCDIAGNOSI&lt;/quesito&gt;
+			&lt;propostaTerapeutica&gt;PROPOSTATERAPEUTICA&lt;/propostaTerapeutica&gt;
+			&lt;quantita&gt;1&lt;/quantita&gt;
+			&lt;dettagli&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;93.11.1&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;93.11.1&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;93.11.1&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;001&lt;/branca&gt;
+					&lt;descrizione&gt;AEROSOLTERAPIA - PER SEDUTA  (CICLO DI DIECI SEDUTE)&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+			&lt;/dettagli&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;
+         </typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="DPCM-INV-P-01" id="cdbaee6d-e4c8-47d7-bc15-b36bc658a6de"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string"><![CDATA[
+<ePrescriptions>
+  <credentials>
+    <login>mario.rossi.14</login>
+    <password>WsSAR001</password>
+  </credentials>
+  <ePrescription>
+    <id>E_201500000153</id>
+    <medico>
+      <rapporto>PSANAOPE</rapporto>
+      <codiceFiscale>PTRLSN51R21L219Y</codiceFiscale>
+      <regione>010</regione>
+      <asl>010202</asl>
+      <struttura>010202</struttura>
+      <cognome>MEDICO NRE</cognome>
+      <nome>NRE</nome>
+      <codiceRegionale/>
+      <indirizzo/>
+      <codiceFiscaleCompilante/>
+      <cognomeCompilante/>
+      <nomeCompilante/>
+    </medico>
+    <paziente>
+      <id>SCE2750694</id>
+      <dataScadenzaTS/>
+      <codiceEsenzione/>
+      <fasciaReddito/>
+      <reddito/>
+      <codiceFiscale>SHNKSH84A27Z100H</codiceFiscale>
+      <regioneResidenza>010</regioneResidenza>
+      <aslResidenza>010202</aslResidenza>
+      <provinciaResidenza>TO</provinciaResidenza>
+      <regioneAssistenza/>
+      <aslAssistenza>010202</aslAssistenza>
+      <indirizzoDomicilio>VIA FOLIGNO</indirizzoDomicilio>
+      <indirizzoResidenza>VIA FOLIGNO</indirizzoResidenza>
+      <cognome>SHANAJ</cognome>
+      <nome>KRESHNIK</nome>
+      <sesso>1</sesso>
+      <dataNascita>27/01/1984</dataNascita>
+      <comuneNascita>999201</comuneNascita>
+      <cittadinanza>201</cittadinanza>
+      <numeroSASN/>
+      <societaSASN/>
+      <telefono/>
+      <email/>
+      <istituzioneEstero/>
+      <statoEstero>201</statoEstero>
+      <identificazioneEstero/>
+      <tesseraEstero/>
+      <consenso>NON NOTO</consenso>
+    </paziente>
+    <ricetta>
+      <codicePoligrafico>010100404942001</codicePoligrafico>
+      <dataCompilazione>13/02/2015</dataCompilazione>
+      <tipoPrescrizione>P</tipoPrescrizione>
+      <interna>N</interna>
+      <aziendaPercorso/>
+      <strutturaPercorso/>
+      <codicePercorso/>
+      <descrizionePercorso/>
+      <oscuramento/>
+      <tipoVisita>A</tipoVisita>
+      <disposizioniRegionali/>
+      <indicazione/>
+      <altro/>
+      <priorita>B</priorita>
+      <codiceDiagnosi/>
+      <quesito/>
+      <propostaTerapeutica/>
+      <quantita>002</quantita>
+      <dettagli>
+        <dettaglio>
+          <progressivo>0</progressivo>
+          <codice>89.7</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC1</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>26</idInterno>
+          <branca/>
+          <descrizione>VISITA OCULISTICA</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA VISITA</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+        <dettaglio>
+          <progressivo>1</progressivo>
+          <codice>98.21</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC106</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>29</idInterno>
+          <branca/>
+          <descrizione>RIMOZIONE CORPO ESTRANEO</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA RIMOZ</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+      </dettagli>
+      <codiceAutenticazione/>
+    </ricetta>
+    <trasmissioneDPCM2008>S</trasmissioneDPCM2008>
+  </ePrescription>
+</ePrescriptions>
+         ]]]]>><![CDATA[</typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="DPCM-INV-P-02" id="2cbf0471-fb05-4759-863c-cfcf6d93e61e"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://10.9.11.51:9080/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string"><![CDATA[
+<ePrescriptions>
+  <credentials>
+    <login>mario.rossi.14</login>
+    <password>WsSAR001</password>
+  </credentials>
+  <ePrescription>
+    <id>E_201500000153</id>
+    <medico>
+      <rapporto>PSANAOPE</rapporto>
+      <codiceFiscale>PTRLSN51R21L219Y</codiceFiscale>
+      <regione>010</regione>
+      <asl>010202</asl>
+      <struttura>010202</struttura>
+      <cognome>MEDICO NRE</cognome>
+      <nome>NRE</nome>
+      <codiceRegionale/>
+      <indirizzo/>
+      <codiceFiscaleCompilante/>
+      <cognomeCompilante/>
+      <nomeCompilante/>
+    </medico>
+    <paziente>
+      <id>SCE2750694</id>
+      <dataScadenzaTS/>
+      <codiceEsenzione>E01</codiceEsenzione>
+      <fasciaReddito/>
+      <reddito/>
+      <codiceFiscale>SHNKSH84A27Z100H</codiceFiscale>
+      <regioneResidenza>010</regioneResidenza>
+      <aslResidenza>010202</aslResidenza>
+      <provinciaResidenza>TO</provinciaResidenza>
+      <regioneAssistenza/>
+      <aslAssistenza>010202</aslAssistenza>
+      <indirizzoDomicilio>VIA FOLIGNO</indirizzoDomicilio>
+      <indirizzoResidenza>VIA FOLIGNO</indirizzoResidenza>
+      <cognome>SHANAJ</cognome>
+      <nome>KRESHNIK</nome>
+      <sesso>1</sesso>
+      <dataNascita>27/01/1984</dataNascita>
+      <comuneNascita>999201</comuneNascita>
+      <cittadinanza>201</cittadinanza>
+      <numeroSASN/>
+      <societaSASN/>
+      <telefono/>
+      <email/>
+      <istituzioneEstero/>
+      <statoEstero>201</statoEstero>
+      <identificazioneEstero/>
+      <tesseraEstero/>
+      <consenso>NON NOTO</consenso>
+    </paziente>
+    <ricetta>
+      <codicePoligrafico>010100404942002</codicePoligrafico>
+      <dataCompilazione>13/02/2015</dataCompilazione>
+      <tipoPrescrizione>P</tipoPrescrizione>
+	 <interna>N</interna>
+      <aziendaPercorso/>
+      <strutturaPercorso/>
+      <codicePercorso/>
+      <descrizionePercorso/>
+      <oscuramento/>
+      <tipoVisita>A</tipoVisita>
+      <disposizioniRegionali/>
+      <indicazione/>
+      <altro/>
+      <priorita>B</priorita>
+      <codiceDiagnosi/>
+      <quesito/>
+      <propostaTerapeutica/>
+      <quantita>002</quantita>
+      <dettagli>
+        <dettaglio>
+          <progressivo>0</progressivo>
+          <codice>89.7</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC1</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>26</idInterno>
+          <branca/>
+          <descrizione>VISITA OCULISTICA</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA VISITA</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+        <dettaglio>
+          <progressivo>1</progressivo>
+          <codice>98.21</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC106</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>29</idInterno>
+          <branca/>
+          <descrizione>RIMOZIONE CORPO ESTRANEO</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA RIMOZ</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+      </dettagli>
+      <codiceAutenticazione/>
+    </ricetta>
+    <trasmissioneDPCM2008>S</trasmissioneDPCM2008>
+  </ePrescription>
+</ePrescriptions>
+         ]]]]>><![CDATA[</typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="DPCM-INV-P-03" id="b4ffad52-71e0-4fab-9f45-f9082179cf32"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string"><![CDATA[
+<ePrescriptions>
+  <ePrescription>
+    <id>E_201500000153</id>
+    <medico>
+      <rapporto>PSANAOPE</rapporto>
+      <codiceFiscale>PTRLSN51R21L219Y</codiceFiscale>
+      <regione>010</regione>
+      <asl>010202</asl>
+      <struttura>010202</struttura>
+      <cognome>MEDICO NRE</cognome>
+      <nome>NRE</nome>
+      <codiceRegionale/>
+      <indirizzo/>
+      <codiceFiscaleCompilante/>
+      <cognomeCompilante/>
+      <nomeCompilante/>
+    </medico>
+    <paziente>
+      <id>SCE2750694</id>
+      <dataScadenzaTS/>
+      <codiceEsenzione>013</codiceEsenzione>
+      <fasciaReddito/>
+      <reddito/>
+      <codiceFiscale>SHNKSH84A27Z100H</codiceFiscale>
+      <regioneResidenza>010</regioneResidenza>
+      <aslResidenza>010202</aslResidenza>
+      <provinciaResidenza>TO</provinciaResidenza>
+      <regioneAssistenza/>
+      <aslAssistenza>010202</aslAssistenza>
+      <indirizzoDomicilio>VIA FOLIGNO</indirizzoDomicilio>
+      <indirizzoResidenza>VIA FOLIGNO</indirizzoResidenza>
+      <cognome>SHANAJ</cognome>
+      <nome>KRESHNIK</nome>
+      <sesso>1</sesso>
+      <dataNascita>27/01/1984</dataNascita>
+      <comuneNascita>999201</comuneNascita>
+      <cittadinanza>201</cittadinanza>
+      <numeroSASN/>
+      <societaSASN/>
+      <telefono/>
+      <email/>
+      <istituzioneEstero/>
+      <statoEstero>201</statoEstero>
+      <identificazioneEstero/>
+      <tesseraEstero/>
+      <consenso>NON NOTO</consenso>
+    </paziente>
+    <ricetta>
+      <codicePoligrafico>010100404942003</codicePoligrafico>
+      <dataCompilazione>13/02/2015</dataCompilazione>
+      <tipoPrescrizione>P</tipoPrescrizione>
+	 <interna>N</interna>
+      <aziendaPercorso/>
+      <strutturaPercorso/>
+      <codicePercorso/>
+      <descrizionePercorso/>
+      <oscuramento/>
+      <tipoVisita>A</tipoVisita>
+      <disposizioniRegionali/>
+      <indicazione/>
+      <altro/>
+      <priorita>B</priorita>
+      <codiceDiagnosi>410.80</codiceDiagnosi>
+      <quesito/>
+      <propostaTerapeutica/>
+      <quantita>002</quantita>
+      <dettagli>
+        <dettaglio>
+          <progressivo>0</progressivo>
+          <codice>89.7</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC1</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>26</idInterno>
+          <branca/>
+          <descrizione>VISITA OCULISTICA</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA VISITA</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+        <dettaglio>
+          <progressivo>1</progressivo>
+          <codice>98.21</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC106</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>29</idInterno>
+          <branca/>
+          <descrizione>RIMOZIONE CORPO ESTRANEO</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA RIMOZ</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+      </dettagli>
+      <codiceAutenticazione/>
+    </ricetta>
+    <trasmissioneDPCM2008>S</trasmissioneDPCM2008>
+  </ePrescription>
+</ePrescriptions>
+         ]]]]>><![CDATA[</typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="DPCM-INV-P-04" id="0ede913d-8670-42c4-8912-5fdd85c52525"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string"><![CDATA[
+<ePrescriptions>
+  <ePrescription>
+    <id>E_201500000153</id>
+    <medico>
+      <rapporto>PSANAOPE</rapporto>
+      <codiceFiscale>PTRLSN51R21L219Y</codiceFiscale>
+      <regione>010</regione>
+      <asl>010202</asl>
+      <struttura>010202</struttura>
+      <cognome>MEDICO NRE</cognome>
+      <nome>NRE</nome>
+      <codiceRegionale/>
+      <indirizzo/>
+      <codiceFiscaleCompilante/>
+      <cognomeCompilante/>
+      <nomeCompilante/>
+    </medico>
+    <paziente>
+      <id>SCE2750694</id>
+      <dataScadenzaTS/>
+      <codiceEsenzione>013</codiceEsenzione>
+      <fasciaReddito/>
+      <reddito/>
+      <codiceFiscale>SHNKSH84A27Z100H</codiceFiscale>
+      <regioneResidenza>010</regioneResidenza>
+      <aslResidenza>010202</aslResidenza>
+      <provinciaResidenza>TO</provinciaResidenza>
+      <regioneAssistenza/>
+      <aslAssistenza>010202</aslAssistenza>
+      <indirizzoDomicilio>VIA FOLIGNO</indirizzoDomicilio>
+      <indirizzoResidenza>VIA FOLIGNO</indirizzoResidenza>
+      <cognome>SHANAJ</cognome>
+      <nome>KRESHNIK</nome>
+      <sesso>1</sesso>
+      <dataNascita>27/01/1984</dataNascita>
+      <comuneNascita>999201</comuneNascita>
+      <cittadinanza>201</cittadinanza>
+      <numeroSASN/>
+      <societaSASN/>
+      <telefono/>
+      <email/>
+      <istituzioneEstero/>
+      <statoEstero>201</statoEstero>
+      <identificazioneEstero/>
+      <tesseraEstero/>
+      <consenso>NON NOTO</consenso>
+    </paziente>
+    <ricetta>
+      <codicePoligrafico>010100404942004</codicePoligrafico>
+      <dataCompilazione>13/02/2015</dataCompilazione>
+      <tipoPrescrizione>P</tipoPrescrizione>
+	 <interna>N</interna>
+      <aziendaPercorso/>
+      <strutturaPercorso/>
+      <codicePercorso/>
+      <descrizionePercorso/>
+      <oscuramento/>
+      <tipoVisita>A</tipoVisita>
+      <disposizioniRegionali/>
+      <indicazione/>
+      <altro/>
+      <priorita>B</priorita>
+      <codiceDiagnosi/>
+      <quesito>EMICRANIA</quesito>
+      <propostaTerapeutica/>
+      <quantita>002</quantita>
+      <dettagli>
+        <dettaglio>
+          <progressivo>0</progressivo>
+          <codice>89.7</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC1</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>26</idInterno>
+          <branca/>
+          <descrizione>VISITA OCULISTICA</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA VISITA</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+        <dettaglio>
+          <progressivo>1</progressivo>
+          <codice>98.21</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC106</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>29</idInterno>
+          <branca/>
+          <descrizione>RIMOZIONE CORPO ESTRANEO</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA RIMOZ</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+      </dettagli>
+      <codiceAutenticazione/>
+    </ricetta>
+    <trasmissioneDPCM2008>S</trasmissioneDPCM2008>
+  </ePrescription>
+</ePrescriptions>
+         ]]]]>><![CDATA[</typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="DPCM-INV-P-05" id="038d6f21-d66d-4f33-9a6d-42c699ebf249"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string"><![CDATA[
+<ePrescriptions>
+  <ePrescription>
+    <id>E_201500000153</id>
+    <medico>
+      <rapporto>PSANAOPE</rapporto>
+      <codiceFiscale>PTRLSN51R21L219Y</codiceFiscale>
+      <regione>010</regione>
+      <asl>010202</asl>
+      <struttura>010202</struttura>
+      <cognome>MEDICO NRE</cognome>
+      <nome>NRE</nome>
+      <codiceRegionale/>
+      <indirizzo/>
+      <codiceFiscaleCompilante/>
+      <cognomeCompilante/>
+      <nomeCompilante/>
+    </medico>
+    <paziente>
+      <id>SCE2750694</id>
+      <dataScadenzaTS/>
+      <codiceEsenzione>013</codiceEsenzione>
+      <fasciaReddito/>
+      <reddito/>
+      <codiceFiscale>SHNKSH84A27Z100H</codiceFiscale>
+      <regioneResidenza>010</regioneResidenza>
+      <aslResidenza>010202</aslResidenza>
+      <provinciaResidenza>TO</provinciaResidenza>
+      <regioneAssistenza/>
+      <aslAssistenza>010202</aslAssistenza>
+      <indirizzoDomicilio>VIA FOLIGNO</indirizzoDomicilio>
+      <indirizzoResidenza>VIA FOLIGNO</indirizzoResidenza>
+      <cognome>SHANAJ</cognome>
+      <nome>KRESHNIK</nome>
+      <sesso>1</sesso>
+      <dataNascita>27/01/1984</dataNascita>
+      <comuneNascita>999201</comuneNascita>
+      <cittadinanza>201</cittadinanza>
+      <numeroSASN/>
+      <societaSASN/>
+      <telefono/>
+      <email/>
+      <istituzioneEstero/>
+      <statoEstero>201</statoEstero>
+      <identificazioneEstero/>
+      <tesseraEstero/>
+      <consenso>NON NOTO</consenso>
+    </paziente>
+    <ricetta>
+      <codicePoligrafico>010100404942005</codicePoligrafico>
+      <dataCompilazione>13/02/2015</dataCompilazione>
+      <tipoPrescrizione>P</tipoPrescrizione>
+	 <interna>N</interna>
+      <aziendaPercorso/>
+      <strutturaPercorso/>
+      <codicePercorso/>
+      <descrizionePercorso/>
+      <oscuramento/>
+      <tipoVisita>A</tipoVisita>
+      <disposizioniRegionali/>
+      <indicazione/>
+      <altro/>
+      <priorita>B</priorita>
+      <codiceDiagnosi/>
+      <quesito>EMICRANIA</quesito>
+      <propostaTerapeutica/>
+      <quantita>001</quantita>
+      <dettagli>
+        <dettaglio>
+          <progressivo>0</progressivo>
+          <codice>93.11.1</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC1</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>26</idInterno>
+          <branca/>
+          <descrizione>AEROSOLTERAPIA - PER SEDUTA  (CICLO DI DIECI SEDUTE)</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA VISITA</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+      </dettagli>
+      <codiceAutenticazione/>
+    </ricetta>
+    <trasmissioneDPCM2008>S</trasmissioneDPCM2008>
+  </ePrescription>
+</ePrescriptions>
+         ]]]]>><![CDATA[</typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="DPCM-INV-P-06" id="3f660e1b-7206-43ca-8ec1-ae0fa1cd8fd3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string"><![CDATA[
+<ePrescriptions>
+  <ePrescription>
+    <id>E_201500000153</id>
+    <medico>
+      <rapporto>PSANAOPE</rapporto>
+      <codiceFiscale>PTRLSN51R21L219Y</codiceFiscale>
+      <regione>010</regione>
+      <asl>010202</asl>
+      <struttura>010202</struttura>
+      <cognome>MEDICO NRE</cognome>
+      <nome>NRE</nome>
+      <codiceRegionale/>
+      <indirizzo/>
+      <codiceFiscaleCompilante/>
+      <cognomeCompilante/>
+      <nomeCompilante/>
+    </medico>
+    <paziente>
+      <id>SCE2750694</id>
+      <dataScadenzaTS/>
+      <codiceEsenzione>013</codiceEsenzione>
+      <fasciaReddito/>
+      <reddito/>
+      <codiceFiscale>STP0987262362626</codiceFiscale>
+      <regioneResidenza>010</regioneResidenza>
+      <aslResidenza>010202</aslResidenza>
+      <provinciaResidenza>TO</provinciaResidenza>
+      <regioneAssistenza/>
+      <aslAssistenza>010202</aslAssistenza>
+      <indirizzoDomicilio>VIA FOLIGNO</indirizzoDomicilio>
+      <indirizzoResidenza>VIA FOLIGNO</indirizzoResidenza>
+      <cognome>SHANAJ</cognome>
+      <nome>KRESHNIK</nome>
+      <sesso>1</sesso>
+      <dataNascita>27/01/1984</dataNascita>
+      <comuneNascita>999201</comuneNascita>
+      <cittadinanza>201</cittadinanza>
+      <numeroSASN/>
+      <societaSASN/>
+      <telefono/>
+      <email/>
+      <istituzioneEstero/>
+      <statoEstero>201</statoEstero>
+      <identificazioneEstero/>
+      <tesseraEstero/>
+      <consenso>NON NOTO</consenso>
+    </paziente>
+    <ricetta>
+      <codicePoligrafico>010100404942006</codicePoligrafico>
+      <dataCompilazione>13/02/2015</dataCompilazione>
+      <tipoPrescrizione>P</tipoPrescrizione>
+	 <interna>N</interna>
+      <aziendaPercorso/>
+      <strutturaPercorso/>
+      <codicePercorso/>
+      <descrizionePercorso/>
+      <oscuramento/>
+      <tipoRicetta>ST</tipoRicetta>
+      <tipoVisita>A</tipoVisita>
+      <disposizioniRegionali/>
+      <indicazione/>
+      <altro/>
+      <priorita>B</priorita>
+      <codiceDiagnosi/>
+      <quesito>EMICRANIA</quesito>
+      <propostaTerapeutica/>
+      <quantita>002</quantita>
+      <dettagli>
+        <dettaglio>
+          <progressivo>0</progressivo>
+          <codice>89.7</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC1</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>26</idInterno>
+          <branca/>
+          <descrizione>VISITA OCULISTICA</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA VISITA</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+        <dettaglio>
+          <progressivo>1</progressivo>
+          <codice>98.21</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC106</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>29</idInterno>
+          <branca/>
+          <descrizione>RIMOZIONE CORPO ESTRANEO</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA RIMOZ</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+      </dettagli>
+      <codiceAutenticazione/>
+    </ricetta>
+    <trasmissioneDPCM2008>S</trasmissioneDPCM2008>
+  </ePrescription>
+</ePrescriptions>
+         ]]]]>><![CDATA[</typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="DPCM-INV-P-07" id="2e4df5b3-ce9a-4f41-a82b-d29a771b34fa"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string"><![CDATA[
+<ePrescriptions>
+  <ePrescription>
+    <id>E_201500000153</id>
+    <medico>
+      <rapporto>PSANAOPE</rapporto>
+      <codiceFiscale>PTRLSN51R21L219Y</codiceFiscale>
+      <regione>010</regione>
+      <asl>010202</asl>
+      <struttura>010202</struttura>
+      <cognome>MEDICO NRE</cognome>
+      <nome>NRE</nome>
+      <codiceRegionale/>
+      <indirizzo/>
+      <codiceFiscaleCompilante/>
+      <cognomeCompilante/>
+      <nomeCompilante/>
+    </medico>
+	<paziente>
+      <id>10001804679</id>
+      <dataScadenzaTS>05/02/2015</dataScadenzaTS>
+      <codiceEsenzione/>
+      <fasciaReddito/>
+      <reddito/>
+      <codiceFiscale/>
+      <regioneResidenza/>
+      <aslResidenza/>
+      <provinciaResidenza/>
+      <regioneAssistenza/>
+      <aslAssistenza/>
+      <indirizzoDomicilio/>
+      <indirizzoResidenza/>
+      <cognome>PROVA</cognome>
+      <nome>TEAM</nome>
+      <sesso>1</sesso>
+      <dataNascita>12/06/1983</dataNascita>
+      <comuneNascita>999226</comuneNascita>
+      <cittadinanza>LU</cittadinanza>
+      <numeroSASN/>
+      <societaSASN/>
+      <telefono/>
+      <email/>
+      <istituzioneEstero>0018-CNS</istituzioneEstero>
+      <statoEstero>LU</statoEstero>
+      <identificazioneEstero>19530104330</identificazioneEstero>
+      <tesseraEstero>80442000730002526733</tesseraEstero>
+      <consenso>NON NOTO</consenso>
+    </paziente>
+    <ricetta>
+      <codicePoligrafico>010100404942007</codicePoligrafico>
+      <dataCompilazione>13/02/2015</dataCompilazione>
+      <tipoPrescrizione>P</tipoPrescrizione>
+	 <interna>N</interna>
+	 <tipoRicetta>UE</tipoRicetta>
+      <aziendaPercorso/>
+      <strutturaPercorso/>
+      <codicePercorso/>
+      <descrizionePercorso/>
+      <oscuramento/>
+      <tipoRicetta>Assist. SSN</tipoRicetta>
+      <tipoVisita>A</tipoVisita>
+      <disposizioniRegionali/>
+      <indicazione/>
+      <altro/>
+      <priorita>B</priorita>
+      <codiceDiagnosi/>
+      <quesito>EMICRANIA</quesito>
+      <propostaTerapeutica/>
+      <quantita>001</quantita>
+      <dettagli>
+        <dettaglio>
+          <progressivo>0</progressivo>
+          <codice>93.11.1</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC1</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>26</idInterno>
+          <branca/>
+          <descrizione>AEROSOLTERAPIA - PER SEDUTA  (CICLO DI DIECI SEDUTE)</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA VISITA</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+      </dettagli>
+      <codiceAutenticazione/>
+    </ricetta>
+    <trasmissioneDPCM2008>S</trasmissioneDPCM2008>
+  </ePrescription>
+</ePrescriptions>
+         ]]]]>><![CDATA[</typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="DPCM-INV-P-08" id="076f0bf3-8663-4a55-89fb-8031f1c2e352"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string"><![CDATA[
+<ePrescriptions>
+  <ePrescription>
+    <id>E_201500000153</id>
+    <medico>
+      <rapporto>PSANAOPE</rapporto>
+      <codiceFiscale>PTRLSN51R21L219Y</codiceFiscale>
+      <regione>010</regione>
+      <asl>010202</asl>
+      <struttura>010202</struttura>
+      <cognome>MEDICO NRE</cognome>
+      <nome>NRE</nome>
+      <codiceRegionale/>
+      <indirizzo/>
+      <codiceFiscaleCompilante/>
+      <cognomeCompilante/>
+      <nomeCompilante/>
+    </medico>
+    <paziente>
+      <id>SCE2750694</id>
+      <dataScadenzaTS/>
+      <codiceEsenzione/>
+      <fasciaReddito/>
+      <reddito/>
+      <codiceFiscale>SHNKSH84A27Z100H</codiceFiscale>
+      <regioneResidenza>010</regioneResidenza>
+      <aslResidenza>010202</aslResidenza>
+      <provinciaResidenza>TO</provinciaResidenza>
+      <regioneAssistenza/>
+      <aslAssistenza>010202</aslAssistenza>
+      <indirizzoDomicilio>VIA FOLIGNO</indirizzoDomicilio>
+      <indirizzoResidenza>VIA FOLIGNO</indirizzoResidenza>
+      <cognome>SHANAJ</cognome>
+      <nome>KRESHNIK</nome>
+      <sesso>1</sesso>
+      <dataNascita>27/01/1984</dataNascita>
+      <comuneNascita>999201</comuneNascita>
+      <cittadinanza>201</cittadinanza>
+      <numeroSASN/>
+      <societaSASN/>
+      <telefono/>
+      <email/>
+      <istituzioneEstero/>
+      <statoEstero>201</statoEstero>
+      <identificazioneEstero/>
+      <tesseraEstero/>
+      <consenso>NON NOTO</consenso>
+    </paziente>
+    <ricetta>
+      <codicePoligrafico>010100404942008</codicePoligrafico>
+      <dataCompilazione>13/02/2015</dataCompilazione>
+      <tipoPrescrizione>P</tipoPrescrizione>
+      <interna>N</interna>
+      <aziendaPercorso/>
+      <strutturaPercorso/>
+      <codicePercorso/>
+      <descrizionePercorso/>
+      <oscuramento/>
+      <tipoVisita>A</tipoVisita>
+      <disposizioniRegionali/>
+      <indicazione/>
+      <priorita>P</priorita>
+      <altro/>
+      <priorita>B</priorita>
+      <codiceDiagnosi/>
+      <quesito/>
+      <propostaTerapeutica/>
+      <quantita>002</quantita>
+      <dettagli>
+        <dettaglio>
+          <progressivo>0</progressivo>
+          <codice>89.7</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC1</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>26</idInterno>
+          <branca/>
+          <descrizione>VISITA OCULISTICA</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA VISITA</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+        <dettaglio>
+          <progressivo>1</progressivo>
+          <codice>98.21</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC106</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>29</idInterno>
+          <branca/>
+          <descrizione>RIMOZIONE CORPO ESTRANEO</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA RIMOZ</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+      </dettagli>
+      <codiceAutenticazione/>
+    </ricetta>
+    <trasmissioneDPCM2008>S</trasmissioneDPCM2008>
+  </ePrescription>
+</ePrescriptions>
+         ]]]]>><![CDATA[</typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="DPCM-INV-P-09" id="edf33db9-60aa-4680-85da-fa35fab2ba74"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string"><![CDATA[
+<ePrescriptions>
+  <ePrescription>
+    <id>E_201500000153</id>
+    <medico>
+      <rapporto>PSANAOPE</rapporto>
+      <codiceFiscale>PTRLSN51R21L219Y</codiceFiscale>
+      <regione>010</regione>
+      <asl>010202</asl>
+      <struttura>010202</struttura>
+      <cognome>MEDICO NRE</cognome>
+      <nome>NRE</nome>
+      <codiceRegionale/>
+      <indirizzo/>
+      <codiceFiscaleCompilante/>
+      <cognomeCompilante/>
+      <nomeCompilante/>
+    </medico>
+    <paziente>
+      <id>SCE2750694</id>
+      <dataScadenzaTS/>
+      <codiceEsenzione/>
+      <fasciaReddito/>
+      <reddito/>
+      <codiceFiscale>SHNKSH84A27Z100H</codiceFiscale>
+      <regioneResidenza>010</regioneResidenza>
+      <aslResidenza>010202</aslResidenza>
+      <provinciaResidenza>TO</provinciaResidenza>
+      <regioneAssistenza/>
+      <aslAssistenza>010202</aslAssistenza>
+      <indirizzoDomicilio>VIA FOLIGNO</indirizzoDomicilio>
+      <indirizzoResidenza>VIA FOLIGNO</indirizzoResidenza>
+      <cognome>SHANAJ</cognome>
+      <nome>KRESHNIK</nome>
+      <sesso>1</sesso>
+      <dataNascita>27/01/1984</dataNascita>
+      <comuneNascita>999201</comuneNascita>
+      <cittadinanza>201</cittadinanza>
+      <numeroSASN/>
+      <societaSASN/>
+      <telefono/>
+      <email/>
+      <istituzioneEstero/>
+      <statoEstero>201</statoEstero>
+      <identificazioneEstero/>
+      <tesseraEstero/>
+      <consenso>NON NOTO</consenso>
+    </paziente>
+    <ricetta>
+      <codicePoligrafico>010100404942009</codicePoligrafico>
+      <dataCompilazione>12/02/2015</dataCompilazione>
+      <tipoPrescrizione>P</tipoPrescrizione>
+      <interna>N</interna>
+      <aziendaPercorso/>
+      <strutturaPercorso/>
+      <codicePercorso/>
+      <descrizionePercorso/>
+      <oscuramento/>
+      <tipoVisita>A</tipoVisita>
+      <disposizioniRegionali/>
+      <indicazione/>
+      <priorita>P</priorita>
+      <altro/>
+      <priorita>B</priorita>
+      <codiceDiagnosi/>
+      <quesito/>
+      <propostaTerapeutica/>
+      <quantita>002</quantita>
+      <dettagli>
+        <dettaglio>
+          <progressivo>0</progressivo>
+          <codice>89.7</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC1</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>26</idInterno>
+          <branca/>
+          <descrizione>VISITA OCULISTICA</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA VISITA</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+        <dettaglio>
+          <progressivo>1</progressivo>
+          <codice>98.21</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC106</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>29</idInterno>
+          <branca/>
+          <descrizione>RIMOZIONE CORPO ESTRANEO</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA RIMOZ</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+      </dettagli>
+      <codiceAutenticazione/>
+    </ricetta>
+    <trasmissioneDPCM2008>S</trasmissioneDPCM2008>
+  </ePrescription>
+</ePrescriptions>
+         ]]]]>><![CDATA[</typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="DPCM-INV-P-10" id="0eec15a2-1e0e-45c4-a8cf-3f99618765df"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7088/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:trasmissione>
+         <typ:xml xsi:type="xsd:string"><![CDATA[
+<ePrescriptions>
+  <ePrescription>
+    <id>E_201500000153</id>
+    <medico>
+      <rapporto>PSANAOPE</rapporto>
+      <codiceFiscale>PTRLSN51R21L219Y</codiceFiscale>
+      <regione>010</regione>
+      <asl>010202</asl>
+      <struttura>010202</struttura>
+      <cognome>MEDICO NRE</cognome>
+      <nome>NRE</nome>
+      <codiceRegionale/>
+      <indirizzo/>
+      <codiceFiscaleCompilante/>
+      <cognomeCompilante/>
+      <nomeCompilante/>
+    </medico>
+    <paziente>
+      <id>SCE2750694</id>
+      <dataScadenzaTS/>
+      <codiceEsenzione/>
+      <fasciaReddito/>
+      <reddito/>
+      <codiceFiscale>SHNKSH84A27Z100H</codiceFiscale>
+      <regioneResidenza>010</regioneResidenza>
+      <aslResidenza>010202</aslResidenza>
+      <provinciaResidenza>TO</provinciaResidenza>
+      <regioneAssistenza/>
+      <aslAssistenza>010202</aslAssistenza>
+      <indirizzoDomicilio>VIA FOLIGNO</indirizzoDomicilio>
+      <indirizzoResidenza>VIA FOLIGNO</indirizzoResidenza>
+      <cognome>SHANAJ</cognome>
+      <nome>KRESHNIK</nome>
+      <sesso>1</sesso>
+      <dataNascita>27/01/1984</dataNascita>
+      <comuneNascita>999201</comuneNascita>
+      <cittadinanza>201</cittadinanza>
+      <numeroSASN/>
+      <societaSASN/>
+      <telefono/>
+      <email/>
+      <istituzioneEstero/>
+      <statoEstero>201</statoEstero>
+      <identificazioneEstero/>
+      <tesseraEstero/>
+      <consenso>NON NOTO</consenso>
+    </paziente>
+    <ricetta>
+      <codicePoligrafico>010100404942010</codicePoligrafico>
+      <dataCompilazione>12/02/2015</dataCompilazione>
+      <tipoPrescrizione>P</tipoPrescrizione>
+      <interna>N</interna>
+      <aziendaPercorso/>
+      <strutturaPercorso/>
+      <codicePercorso/>
+      <descrizionePercorso/>
+      <oscuramento/>
+      <tipoVisita>A</tipoVisita>
+      <disposizioniRegionali/>
+      <indicazione/>
+      <priorita>P</priorita>
+      <altro/>
+      <priorita>B</priorita>
+      <codiceDiagnosi/>
+      <quesito/>
+      <propostaTerapeutica/>
+      <quantita>002</quantita>
+      <dettagli>
+        <dettaglio>
+          <progressivo>0</progressivo>
+          <codice>89.7</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC1</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>26</idInterno>
+          <branca/>
+          <descrizione>VISITA OCULISTICA</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA VISITA</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+        <dettaglio>
+          <progressivo>1</progressivo>
+          <codice>98.21</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC106</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>29</idInterno>
+          <branca/>
+          <descrizione>RIMOZIONE CORPO ESTRANEO</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA RIMOZ</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+      </dettagli>
+      <codiceRegionale>010D04001301694</codiceRegionale>
+      <codiceAutenticazione/>
+    </ricetta>
+    <trasmissioneDPCM2008>S</trasmissioneDPCM2008>
+  </ePrescription>
+  <ePrescription>
+    <id>E_201500000153</id>
+    <medico>
+      <rapporto>PSANAOPE</rapporto>
+      <codiceFiscale>PTRLSN51R21L219Y</codiceFiscale>
+      <regione>010</regione>
+      <asl>010202</asl>
+      <struttura>010202</struttura>
+      <cognome>MEDICO NRE</cognome>
+      <nome>NRE</nome>
+      <codiceRegionale/>
+      <indirizzo/>
+      <codiceFiscaleCompilante/>
+      <cognomeCompilante/>
+      <nomeCompilante/>
+    </medico>
+    <paziente>
+      <id>SCE2750694</id>
+      <dataScadenzaTS/>
+      <codiceEsenzione/>
+      <fasciaReddito/>
+      <reddito/>
+      <codiceFiscale>SHNKSH84A27Z100H</codiceFiscale>
+      <regioneResidenza>010</regioneResidenza>
+      <aslResidenza>010202</aslResidenza>
+      <provinciaResidenza>TO</provinciaResidenza>
+      <regioneAssistenza/>
+      <aslAssistenza>010202</aslAssistenza>
+      <indirizzoDomicilio>VIA FOLIGNO</indirizzoDomicilio>
+      <indirizzoResidenza>VIA FOLIGNO</indirizzoResidenza>
+      <cognome>SHANAJ</cognome>
+      <nome>KRESHNIK</nome>
+      <sesso>1</sesso>
+      <dataNascita>27/01/1984</dataNascita>
+      <comuneNascita>999201</comuneNascita>
+      <cittadinanza>201</cittadinanza>
+      <numeroSASN/>
+      <societaSASN/>
+      <telefono/>
+      <email/>
+      <istituzioneEstero/>
+      <statoEstero>201</statoEstero>
+      <identificazioneEstero/>
+      <tesseraEstero/>
+      <consenso>NON NOTO</consenso>
+    </paziente>
+    <ricetta>
+      <dataCompilazione>13/02/2015</dataCompilazione>
+      <tipoPrescrizione>P</tipoPrescrizione>
+      <interna>N</interna>
+      <aziendaPercorso/>
+      <strutturaPercorso/>
+      <codicePercorso/>
+      <descrizionePercorso/>
+      <oscuramento/>
+      <tipoVisita>A</tipoVisita>
+      <disposizioniRegionali/>
+      <indicazione/>
+      <priorita>P</priorita>
+      <altro/>
+      <priorita>B</priorita>
+      <codiceDiagnosi/>
+      <quesito/>
+      <propostaTerapeutica/>
+      <quantita>001</quantita>
+      <dettagli>
+        <dettaglio>
+          <progressivo>1</progressivo>
+          <codice>98.21</codice>
+          <atc/>
+          <codiceCatalogoRegionale>OC106</codiceCatalogoRegionale>
+          <codiceCatalogoAziendale/>
+          <idInterno>29</idInterno>
+          <branca/>
+          <descrizione>RIMOZIONE CORPO ESTRANEO</descrizione>
+          <codicePacchetto/>
+          <codiceMotivazione/>
+          <nonSostituibile/>
+          <motivazione/>
+          <note/>
+          <testoLibero/>
+          <descrizioneTestoLibero> NOTA ESPLICATIVA RIMOZ</descrizioneTestoLibero>
+          <codiceGruppo/>
+          <descrizioneGruppo/>
+          <quantita>1</quantita>
+          <notaAIFA/>
+          <posologia/>
+        </dettaglio>
+      </dettagli>
+      <codiceAutenticazione/>
+    </ricetta>
+    <trasmissioneDPCM2008>S</trasmissioneDPCM2008>
+  </ePrescription>
+</ePrescriptions>
+         ]]]]>><![CDATA[</typ:xml>
+      </typ:trasmissione>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

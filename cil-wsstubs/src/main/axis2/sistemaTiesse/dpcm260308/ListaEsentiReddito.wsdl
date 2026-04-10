@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://ejbs" xmlns:impl="http://ejbs" xmlns:intf="http://ejbs" xmlns:tns2="http://dto" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsi="http://ws-
+i.org/profiles/basic/1.1/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<schema targetNamespace="http://ejbs" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns2="http://dto" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://dto" />
+			<element name="listaEsentiPerRedditoResponse">
+				<complexType>
+					<sequence>
+						<element name="listaEsentiPerRedditoReturn" nillable="true" type="tns2:ListaEsentiRedditoDTO" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="listaEsentiPerReddito">
+				<complexType>
+					<sequence />
+				</complexType>
+			</element>
+		</schema>
+		<schema targetNamespace="http://dto" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<complexType name="ListaEsentiRedditoDTO">
+				<sequence>
+					<element name="assistitiEsenti" nillable="true" type="tns2:ArrayOfAssistitoEsenteDTO" />
+					<element name="codiceAsl" nillable="true" type="xsd:string" />
+					<element name="codiceErrore" nillable="true" type="xsd:string" />
+					<element name="codiceRegione" nillable="true" type="xsd:string" />
+					<element name="descrizioneErrore" nillable="true" type="xsd:string" />
+					<element name="codiceFiscaleMedico" nillable="true" type="xsd:string" />
+					<element name="userId" nillable="true" type="xsd:string" />
+				</sequence>
+			</complexType>
+			<complexType name="AssistitoEsenteDTO">
+				<sequence>
+					<element name="codiceAsl" nillable="true" type="xsd:string" />
+					<element name="codiceEsenzione" nillable="true" type="xsd:string" />
+					<element name="codiceFiscaleAss" nillable="true" type="xsd:string" />
+					<element name="codiceRegione" nillable="true" type="xsd:string" />
+					<element name="cognome" nillable="true" type="xsd:string" />
+					<element name="dataA" nillable="true" type="xsd:dateTime" />
+					<element name="dataDa" nillable="true" type="xsd:dateTime" />
+					<element name="nome" nillable="true" type="xsd:string" />
+				</sequence>
+			</complexType>
+			<complexType name="ArrayOfAssistitoEsenteDTO">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0" name="AssistitoEsenteDTO" nillable="true" type="tns2:AssistitoEsenteDTO" />
+				</sequence>
+			</complexType>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="listaEsentiPerRedditoRequest">
+		<wsdl:part element="intf:listaEsentiPerReddito" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="listaEsentiPerRedditoResponse">
+		<wsdl:part element="intf:listaEsentiPerRedditoResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:portType name="ListaEsentiRedditoService">
+		<wsdl:operation name="listaEsentiPerReddito">
+			<wsdl:input message="intf:listaEsentiPerRedditoRequest" name="listaEsentiPerRedditoRequest" />
+			<wsdl:output message="intf:listaEsentiPerRedditoResponse" name="listaEsentiPerRedditoResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ListaEsentiRedditoSoapBinding" type="intf:ListaEsentiRedditoService">
+		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="listaEsentiPerReddito">
+			<wsdlsoap:operation soapAction="listaEsentiPerReddito" />
+			<wsdl:input name="listaEsentiPerRedditoRequest">
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="listaEsentiPerRedditoResponse">
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ListaEsentiRedditoService">
+		<wsdl:port binding="intf:ListaEsentiRedditoSoapBinding" name="ListaEsentiReddito">
+			<wsdlsoap:address location="https://mirservice.sanita.finanze.it/ListaEsentiRedditoWeb/services/ListaEsentiReddito" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

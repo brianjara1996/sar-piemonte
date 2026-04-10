@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://serviceanagrichiesta.xsd.dem.sanita.finanze.it" xmlns="http://serviceanagrichiesta.xsd.dem.sanita.finanze.it" xmlns:td="http://tipidatiserviceanag.xsd.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import namespace="http://tipidatiserviceanag.xsd.dem.sanita.finanze.it" schemaLocation="TipiDatiServiceAnag.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Versione 1.2</xs:documentation>
+	</xs:annotation>
+	<xs:element name="ServiceAnagRichiesta">
+		<xs:annotation>
+			<xs:documentation>Elemento base per la richiesta di anagrafica e altri servizi per la ricetta dematerializzata</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="pinCode" type="td:stringType">
+					<xs:annotation>
+						<xs:documentation>PinCode inviante</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="tipoOperazione" type="td:stringType">
+					<xs:annotation>
+						<xs:documentation>Operazione da eseguire</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="codiceRegione" type="td:stringType">
+					<xs:annotation>
+						<xs:documentation>Codice regione</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="nomeSWH" type="td:stringType">
+					<xs:annotation>
+						<xs:documentation>Nome della software house</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="mailSWH" type="td:stringType">
+					<xs:annotation>
+						<xs:documentation>Email della software house</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="opzione1" type="td:stringType">
+					<xs:annotation>
+						<xs:documentation>Campo opzionale</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="opzione2" type="td:stringType">
+					<xs:annotation>
+						<xs:documentation>Campo opzionale</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="opzione3" type="td:stringType">
+					<xs:annotation>
+						<xs:documentation>Campo opzionale</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="opzione4" type="td:stringType">
+					<xs:annotation>
+						<xs:documentation>Campo opzionale</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="opzione5" type="td:stringType">
+					<xs:annotation>
+						<xs:documentation>Campo opzionale</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

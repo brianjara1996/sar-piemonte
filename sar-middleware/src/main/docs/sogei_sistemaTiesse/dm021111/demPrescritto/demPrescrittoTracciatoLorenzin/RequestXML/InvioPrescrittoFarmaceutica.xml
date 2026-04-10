@@ -1,0 +1,65 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:inv="http://invioprescrittorichiesta.xsd.dem.sanita.finanze.it" xmlns:tip="http://tipodati.xsd.dem.sanita.finanze.it">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <inv:InvioPrescrittoRichiesta>
+         <inv:pinCode>LsQiYtf7FcpMYVKvf+51V6t1BSUk+E/dGOB2vmwNl0DhirZ8QzvTI2Ay04p6+t+eH+DjzkJpXrlEEZvKRz6wKVNOt7uYSQUYKBIFcbcEQJnqT7zTgtz7jV3BK+QaEphfKRsOP1Iejv+vKvJ/3te2xNMHPkNYZIAjxEQHftw9Swk=</inv:pinCode>
+         <inv:cfMedico1>PROVAX00X00X000Y</inv:cfMedico1>
+         <inv:cfMedico2></inv:cfMedico2>
+         <inv:codRegione>130</inv:codRegione>
+         <inv:codASLAo>204</inv:codASLAo>
+         <inv:codStruttura/>
+         <inv:codSpecializzazione>F</inv:codSpecializzazione>
+         <inv:testata1/>
+         <inv:testata2/>
+         <inv:nre/>
+         <inv:tipoRic/>
+         <inv:codiceAss>iKvd9JQntqxPBT2UA/OFfztSNLidocP8Op+NfODzfTdxFWzkcdZrJz5gvCuqv7Dh/r3Cin1ZQMmg/BofIqYCyq2PcC+PJzbvQCocDdl6FrXVXs3W5JhnX7VpWFGCLPYYY2WL+RWKxhfkGqeY8+NCVfQ1lEA15g3W5AabJ15Tthk=</inv:codiceAss>
+         <inv:cognNome>PINO MARIO</inv:cognNome>
+         <inv:indirizzo>VIA MARIO CARUCCI, 99|00143|ROMA|RM</inv:indirizzo>
+         <inv:oscuramDati>1</inv:oscuramDati>
+         <inv:numTessSasn/>
+         <inv:socNavigaz/>
+         <inv:tipoPrescrizione>F</inv:tipoPrescrizione>
+         <inv:ricettaInterna/>
+         <inv:codEsenzione></inv:codEsenzione>
+         <inv:nonEsente>1</inv:nonEsente>
+         <inv:reddito/>
+         <inv:codDiagnosi>008.1</inv:codDiagnosi>
+         <inv:descrizioneDiagnosi/>
+         <inv:dataCompilazione>2014-10-15 08:00:30</inv:dataCompilazione>
+         <inv:tipoVisita>A</inv:tipoVisita>
+         <inv:dispReg/>
+         <inv:provAssistito></inv:provAssistito>
+         <inv:aslAssistito></inv:aslAssistito>
+         <inv:indicazionePrescr/>
+         <inv:altro/>
+         <inv:classePriorita/>
+         <!--ASSISTITO ESTERO-->
+         <!--
+         <inv:statoEstero>LU</inv:statoEstero>
+         <inv:istituzCompetente>0018-CNS</inv:istituzCompetente>
+         <inv:numIdentPers>19530104330</inv:numIdentPers>
+         <inv:numIdentTess>80442000730002526733</inv:numIdentTess>
+         <inv:dataNascitaEstero>1983-06-12 00:00:00</inv:dataNascitaEstero>
+         <inv:dataScadTessera>2015-01-04 00:00:00</inv:dataScadTessera>
+		-->
+         <inv:ElencoDettagliPrescrizioni>
+            <tip:DettaglioPrescrizione>
+               <tip:codProdPrest>025940053</tip:codProdPrest>
+               <tip:descrProdPrest></tip:descrProdPrest>
+               <tip:codGruppoEquival>32A</tip:codGruppoEquival>
+               <tip:descrGruppoEquival></tip:descrGruppoEquival>
+               <tip:testoLibero></tip:testoLibero>
+               <tip:descrTestoLiberoNote></tip:descrTestoLiberoNote>
+               <tip:nonSost></tip:nonSost>
+               <tip:motivazNote></tip:motivazNote>
+               <tip:codMotivazione></tip:codMotivazione>
+               <tip:notaProd>066</tip:notaProd>
+               <tip:quantita>1</tip:quantita>
+               <tip:prescrizione1></tip:prescrizione1>
+               <tip:prescrizione2></tip:prescrizione2>
+            </tip:DettaglioPrescrizione>
+         </inv:ElencoDettagliPrescrizioni>
+      </inv:InvioPrescrittoRichiesta>
+   </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="richiestaNrePT" targetNamespace="http://richiestanre.wsdl.dem.sanita.finanze.it" xmlns:ns1="http://richiestanre.wsdl.dem.sanita.finanze.it" xmlns:ns2="http://richiestanrerichiesta.xsd.dem.sanita.finanze.it" xmlns:ns3="http://richiestanrericevuta.xsd.dem.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://tipodati.xsd.dem.sanita.finanze.it" xmlns="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:ns1="http://richiestanre.wsdl.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:import namespace="http://richiestanre.wsdl.dem.sanita.finanze.it"/>
+			<xs:element name="Comunicazione" type="ns1:comunicazioneType"/>
+			<xs:element name="ErroreRicetta" type="ns1:erroreRicettaType"/>
+			<xs:element name="codEsito" type="xs:string"/>
+			<xs:element name="codice" type="xs:string"/>
+			<xs:element name="esito" type="xs:string"/>
+			<xs:element name="messaggio" type="xs:string"/>
+			<xs:element name="progPresc" type="xs:string"/>
+			<xs:element name="tipoErrore" type="xs:string"/>
+		</xs:schema>
+		<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://richiestanrerichiesta.xsd.dem.sanita.finanze.it" xmlns="http://richiestanrerichiesta.xsd.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="cfMedico" type="xs:string"/>
+			<xs:element name="pinCode" type="xs:string"/>
+			<xs:element name="RichiestaNreRichiesta" nillable="true">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="pinCode" type="xs:string"/>
+						<xs:element form="qualified" name="cfMedico" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+		<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://richiestanrericevuta.xsd.dem.sanita.finanze.it" xmlns="http://richiestanrericevuta.xsd.dem.sanita.finanze.it" xmlns:ns1="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:ns2="http://richiestanre.wsdl.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:import namespace="http://tipodati.xsd.dem.sanita.finanze.it"/>
+			<xs:import namespace="http://richiestanre.wsdl.dem.sanita.finanze.it"/>
+			<xs:element name="RichiestaNreRicevuta">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" minOccurs="0" name="nre" type="xs:string"/>
+						<xs:element form="qualified" name="codEsitoRichiestaNre" type="xs:string"/>
+						<xs:element form="qualified" minOccurs="0" name="ElencoErroriRicette" type="ns2:elencoErroriRicetteType"/>
+						<xs:element form="qualified" minOccurs="0" name="ElencoComunicazioni" type="ns2:elencoComunicazioniType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+		<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://richiestanre.xsd.dem.sanita.finanze.it" xmlns="http://richiestanre.xsd.dem.sanita.finanze.it" xmlns:ns1="http://richiestanrerichiesta.xsd.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:import namespace="http://richiestanrerichiesta.xsd.dem.sanita.finanze.it"/>
+			<xs:element name="RichiestaNreRichiesta">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element form="qualified" name="pinCode" type="xs:string"/>
+						<xs:element form="qualified" name="cfMedico" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+		<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://richiestanre.wsdl.dem.sanita.finanze.it" xmlns:ns1="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:tns="http://richiestanre.wsdl.dem.sanita.finanze.it"  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:import namespace="http://tipodati.xsd.dem.sanita.finanze.it"/>
+			<xs:complexType name="elencoErroriRicetteType">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" ref="ns1:ErroreRicetta"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="erroreRicettaType">
+				<xs:sequence>
+					<xs:element ref="ns1:codEsito"/>
+					<xs:element minOccurs="0" ref="ns1:esito"/>
+					<xs:element minOccurs="0" ref="ns1:progPresc"/>
+					<xs:element minOccurs="0" ref="ns1:tipoErrore"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="elencoComunicazioniType">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" ref="ns1:Comunicazione"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="comunicazioneType">
+				<xs:sequence>
+					<xs:element ref="ns1:codice"/>
+					<xs:element ref="ns1:messaggio"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="richiestaNre">
+		<wsdl:part element="ns2:RichiestaNreRichiesta" name="RichiestaNreRichiesta"/>
+	</wsdl:message>
+	<wsdl:message name="richiestaNreResponse">
+		<wsdl:part element="ns3:RichiestaNreRicevuta" name="RichiestaNreRicevuta"/>
+	</wsdl:message>
+	<wsdl:portType name="richiestaNrePT">
+		<wsdl:operation name="richiestaNre">
+			<wsdl:input message="ns1:richiestaNre" name="richiestaNre"/>
+			<wsdl:output message="ns1:richiestaNreResponse" name="richiestaNreResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+</wsdl:definitions>    

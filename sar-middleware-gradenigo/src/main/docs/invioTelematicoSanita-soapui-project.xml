@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="invioTelematicoSanita" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="invioTelematicoSanitaServiceSoapBinding" type="wsdl" bindingName="{urn:attachment.ws.it}invioTelematicoSanitaServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="https://localhost:1449/RELCIL/service/invioTelematicoSanita?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://localhost:1449/RELCIL/service/invioTelematicoSanita?WSDL"><con:part><con:url>https://localhost:1449/RELCIL/service/invioTelematicoSanita?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="invioTelematicoSanitaService" targetNamespace="urn:attachment.ws.it" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:attachment.ws.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema targetNamespace="urn:attachment.ws.it" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="ParametriInvio" type="tns:ParametriInvio"/>
+      <xs:element name="inputBean" type="tns:ParametriInvio"/>
+      <xs:element name="ricevuta" type="tns:RicevutaSAC"/>
+      <xs:element name="sac" type="tns:RicevutaSAC"/>
+      <xs:complexType name="ParametriInvio">
+        <xs:sequence>
+          <xs:element name="nomeFileAllegato" type="xs:string"/>
+          <xs:element minOccurs="0" name="telematico1" type="xs:string"/>
+          <xs:element minOccurs="0" name="telematico2" type="xs:string"/>
+          <xs:element minOccurs="0" name="telematico3" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RicevutaSAC">
+        <xs:sequence>
+          <xs:element name="protocolloSAC" type="xs:string"/>
+          <xs:element name="dataAccoglienza" type="xs:string"/>
+          <xs:element name="nomeFileAllegato" type="xs:string"/>
+          <xs:element name="dimensioneFileAllegato" type="xs:string"/>
+          <xs:element name="codiceEsito" type="xs:string"/>
+          <xs:element name="descrizioneEsito" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="inviaFileSanitaResponse">
+    <wsdl:part element="tns:ricevuta" name="rispostaBean"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="inviaFileSanita">
+    <wsdl:part element="tns:inputBean" name="body"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="InvioTelematicoSanita">
+    <wsdl:operation name="inviaFileSanita">
+      <wsdl:input message="tns:inviaFileSanita" name="inviaFileSanita"></wsdl:input>
+      <wsdl:output message="tns:inviaFileSanitaResponse" name="inviaFileSanitaResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="invioTelematicoSanitaServiceSoapBinding" type="tns:InvioTelematicoSanita">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="inviaFileSanita">
+      <soap:operation soapAction="invio" style="document"/>
+      <wsdl:input name="inviaFileSanita">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="inviaFileSanitaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="invioTelematicoSanitaService">
+    <wsdl:port binding="tns:invioTelematicoSanitaServiceSoapBinding" name="invioTelematicoSanita">
+      <soap:address location="https://localhost:1449/RELCIL/service/invioTelematicoSanita"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://localhost:1449/RELCIL/service/invioTelematicoSanita</con:endpoint></con:endpoints><con:operation isOneWay="false" action="invio" name="inviaFileSanita" bindingOperationName="inviaFileSanita" type="Request-Response" outputName="inviaFileSanitaResponse" inputName="inviaFileSanita" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:1449/RELCIL/service/invioTelematicoSanita</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:attachment.ws.it">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:inputBean xmlns:urn="urn:attachment.ws.it">
+         <nomeFileAllegato>20150114103628193-LOXY_eng.zip</nomeFileAllegato>
+         <telematico1/>
+         <telematico2/>
+         <telematico3/>
+      </urn:inputBean>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>RE_ASL202_TO2</con:username><con:password>AAAAAAAA</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:attachment><con:name>20150114103628193-LOXY_eng.zip</con:name><con:contentType>application/zip</con:contentType><con:size>587</con:size><con:contentId>20150114103628193-LOXY_eng.zip</con:contentId><con:data>UEsDBBQACAgIAPKCL0YAAAAAAAAAAAAAAAAeAAAAMjAxNTAxMTQxMDM2MjgxOTMtTE9YWV9lbmcuemlwC/BmZhFh4ADCvhA9NwYkIAfERgaGpgaGhiaGBsZmRhaGlsa6Pv4RkfGpeel6Fbk5qUEH8xYbCOx9H75gzrZ2ltuKuROWBQcmiG7JfMwUm/m9TWj1pimPuKoXh+6rY+dQzFSVT7tXce9MtZnNn+r71exXI3Jf/eacv7Fz+au1N1/+elv3KerfDD11/h+8RXtDz61cruOuMbV06mqBJeuSNwefOGoTceee7kF5AY2v7SdfNZvNOM30x3BpRcZ7y9U8DzdmWRidE2KrE9/ecaDB0C5dh0dcVkegY84speyNEbb/dcJOKwiV11ska384HmUea3YqT7pWJZYrdf8h0TIl75KvYdKrC+XunHMy+zAnUaN38quKKyc6UzoUFTk3Vv6/8HvVcuEe/WU9/pUM/6Ynbb+on2v6su9XrJ/kiWMyGZm5c8vYTvPOrGh1SPme7BZ8YL+TwurM+3V+6/lPflivcOT3qahTWzJvHUw5qZ5SMeFycMyu+nU85SynjOLFz3PP494nZvOndp9KlO/8GjXP3WIlEufS55yvSP/c4XTJrKdyyrPZSZv1LttMinziazvzWdxEtfWpTyrvP9aJy9+jsnjyscj+5eYpv0059/xZm3Vda3Hh8x1fvxdZ1/9p+3dU/z9/gDc7x/TF4tPnMjIwSDIzMAR4MzKJMCCiGllOjgEd4I/4AG9WNpAqRiD0AdIvGUE8AFBLBwgKQUj7FAIAAEsCAABQSwECFAAUAAgICADygi9GCkFI+xQCAABLAgAAHgAAAAAAAAAAAAAAAAAAAAAAMjAxNTAxMTQxMDM2MjgxOTMtTE9YWV9lbmcuemlwUEsFBgAAAAABAAEATAAAAGACAAAAAA==</con:data><con:id>1ee04cd0-7c97-48e6-a095-3a7ebefc7730</con:id></con:attachment><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="invio"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

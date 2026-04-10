@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://dichiarazionesostituzionemedicorichiesta.xsd.dem.sanita.finanze.it" xmlns:td="http://tipodatidichiarazionesostituzionemedico.xsd.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://dichiarazionesostituzionemedicorichiesta.xsd.dem.sanita.finanze.it" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://tipodatidichiarazionesostituzionemedico.xsd.dem.sanita.finanze.it" schemaLocation="TipiDatiDichiarazioneSostituzioneMedico.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Versione 1.2</xs:documentation>
+	</xs:annotation>
+	<xs:element name="DichiarazioneSostituzioneMedicoRichiesta">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="pinCode" type="td:stringType">
+					<xs:annotation>
+						<xs:documentation>PinCode inviante</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="pwd" type="td:cfMedicoType">
+					<xs:annotation>
+						<xs:documentation>Campo a disposizione dei SAR</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="cfMedicoTitolare" type="td:cfMedicoType">
+					<xs:annotation>
+						<xs:documentation>Codice fiscale del medico titolare</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="codRegione" type="td:stringType3">
+					<xs:annotation>
+						<xs:documentation>Codice Regione / Provincia Autonoma del medico titolare</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="codASLAo" type="td:stringType3">
+					<xs:annotation>
+						<xs:documentation>Codice ASL del medico titolare</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="codStruttura" type="td:stringType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Codice struttura del medico titolare</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="codSpecializzazione" type="td:stringType1">
+					<xs:annotation>
+						<xs:documentation>Specializzazione del medico titolare</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="cfMedicoSostituto" type="td:cfMedicoType">
+					<xs:annotation>
+						<xs:documentation>Codice fiscale del medico sostituto</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="comunicazioneAsl" type="td:stringType2" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Indica se la sostituzione e' stata comunicata alla ASL: SI/NO”</xs:documentation>
+					</xs:annotation>
+				</xs:element>	
+				<xs:element name="dataInizioSostituzione" type="td:dataType">
+					<xs:annotation>
+						<xs:documentation>Data di inizio sostituzione</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="dataFineSostituzione" type="td:dataType">
+					<xs:annotation>
+						<xs:documentation>Data di fine sostituzione</xs:documentation>
+					</xs:annotation>
+				</xs:element>				
+				<xs:element name="nota" type="td:stringType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Note</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="opzioni" type="td:opzioniType" maxOccurs="unbounded" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Elenco campi opzionali</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

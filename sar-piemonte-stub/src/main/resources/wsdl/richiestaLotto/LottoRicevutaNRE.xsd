@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified"	elementFormDefault="qualified"	targetNamespace="http://lottoricevuta.xsd.nre.mirsac.sanita.finanze.it" xmlns="http://lottoricevuta.xsd.nre.mirsac.sanita.finanze.it"	xmlns:td="http://tipodati.xsd.nre.mirsac.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import namespace="http://tipodati.xsd.nre.mirsac.sanita.finanze.it"
+		schemaLocation="TipiDatiNRE.xsd" />
+	<xs:annotation>
+		<xs:documentation>Versione 1.2</xs:documentation>
+	</xs:annotation>
+	<xs:element name="LottoRicevutaNRE">
+		<xs:annotation>
+			<xs:documentation>Radice della ricevuta di un lotto
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="CodRegione" type="td:CodRegioneType">
+					<xs:annotation>
+						<xs:documentation>Codice regione</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="CodRagLotto" type="td:CodRagLottoType">
+					<xs:annotation>
+						<xs:documentation>Codice raggruppamento
+							lotto
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="IdentificativoLotto" type="td:integer1">
+					<xs:annotation>
+						<xs:documentation>
+							Tipologia di lotto
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="CodLotto" type="td:CodLottoType">
+					<xs:annotation>
+						<xs:documentation>Codice lotto</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="CFMedico" type="td:CFMedicoType">
+					<xs:annotation>
+						<xs:documentation>Codice fiscale medico</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="CodEsito" type="td:integer2">
+					<xs:annotation>
+						<xs:documentation>Codice esito</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="Esito" type="td:stringType">
+					<xs:annotation>
+						<xs:documentation>
+							Descrizione esito
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema> 

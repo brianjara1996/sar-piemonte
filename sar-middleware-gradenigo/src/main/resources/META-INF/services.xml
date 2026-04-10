@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file was auto-generated from WSDL -->
+<!-- by the Apache Axis2 version: 1.5.4 Built on : Dec 19, 2010 (08:18:42 CET) -->
+<serviceGroup>
+	<service name="ePrescriptionService" class="it.eng.cct.dem.sar.mw.spring.SpringInitializer">
+		<description>Emulazione servizio SOGEI DemVisualizzaErogatoService</description>
+		<module ref="sar-mw-msglogger" />
+		<messageReceivers>
+			<messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="it.eng.cct.dem.sar.piemonte.mw.schemas.SarMiddleware.EPrescriptionServiceMessageReceiverInOut" />
+		</messageReceivers>
+		<parameter name="ServiceObjectSupplier">org.apache.axis2.extensions.spring.receivers.SpringAppContextAwareObjectSupplier</parameter>
+		<parameter name="SpringBeanName">ePrescriptionService</parameter>
+		<parameter name="ServiceTCCL">composite</parameter>
+		<parameter name="useOriginalwsdl">true</parameter>
+		<parameter name="modifyUserWSDLPortAddress">true</parameter>
+		<operation name="recupero" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://cct.eng.it/piemonte/ePrescription/schemas">
+			<actionMapping>recupero</actionMapping>
+			<outputActionMapping>http://cct.eng.it/piemonte/ePrescription/schemas</outputActionMapping>
+		</operation>
+		<operation name="annullamento" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://cct.eng.it/piemonte/ePrescription/schemas">
+			<actionMapping>annullamento</actionMapping>
+			<outputActionMapping>http://cct.eng.it/piemonte/ePrescription/schemas</outputActionMapping>
+		</operation>
+		<operation name="trasmissione" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://cct.eng.it/piemonte/ePrescription/schemas">
+			<actionMapping>trasmissione</actionMapping>
+			<outputActionMapping>http://cct.eng.it/piemonte/ePrescription/schemas</outputActionMapping>
+		</operation>
+		<operation name="interroga" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://cct.eng.it/piemonte/ePrescription/schemas">
+			<actionMapping>interroga</actionMapping>
+			<outputActionMapping>http://cct.eng.it/piemonte/ePrescription/schemas</outputActionMapping>
+		</operation>
+		<operation name="esiti" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://cct.eng.it/piemonte/ePrescription/schemas">
+			<actionMapping>esiti</actionMapping>
+			<outputActionMapping>http://cct.eng.it/piemonte/ePrescription/schemas</outputActionMapping>
+		</operation>
+	</service>
+	<service name="nreRequestService" class="it.eng.cct.dem.sar.mw.spring.SpringInitializer">
+		<description>Servizio Richiesta NRE</description>
+		<module ref="sar-mw-msglogger" />
+		<messageReceivers>
+			<messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="it.csi.rel.relbl.interfacews.frontend.other.nre.RichiestaNreImplServiceMessageReceiverInOut" />
+		</messageReceivers>
+		<parameter name="ServiceObjectSupplier">org.apache.axis2.extensions.spring.receivers.SpringAppContextAwareObjectSupplier</parameter>
+		<parameter name="SpringBeanName">nreRequestService</parameter>
+		<parameter name="ServiceTCCL">composite</parameter>
+		<parameter name="useOriginalwsdl">true</parameter>
+		<parameter name="modifyUserWSDLPortAddress">true</parameter>
+		<operation name="richiestaNre" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://nre.other.frontend.interfacews.relbl.rel.csi.it/">
+			<actionMapping>richiestaNre</actionMapping>
+		</operation>
+	</service>
+	<service name="demAnnullaErogato" class="it.eng.cct.dem.sar.mw.spring.SpringInitializer">
+		<description>Servizio Annulla Erogato</description>
+		<module ref="sar-mw-msglogger" />
+		<messageReceivers>
+			<messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="it.finanze.sanita.dem.wsdl.annullaerogato.DemAnnullaErogatoMessageReceiverInOut" />
+		</messageReceivers>
+		<parameter name="ServiceObjectSupplier">org.apache.axis2.extensions.spring.receivers.SpringAppContextAwareObjectSupplier</parameter>
+		<parameter name="SpringBeanName">annullaErogatoService</parameter>
+		<parameter name="ServiceTCCL">composite</parameter>
+		<parameter name="useOriginalwsdl">true</parameter>
+		<parameter name="modifyUserWSDLPortAddress">true</parameter>
+		<operation name="annullaErogato" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://annullaerogato.wsdl.dem.sanita.finanze.it/">
+			<actionMapping>annullaErogato</actionMapping>
+		</operation>
+	</service>
+	
+	<service name="demSospendiErogato" class="it.eng.cct.dem.sar.mw.spring.SpringInitializer">
+		<description>Servizio Sospendi Erogato</description>
+		<module ref="sar-mw-msglogger" />
+		<messageReceivers>
+			<messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="it.finanze.sanita.dem.wsdl.sospendierogato.DemSospendiErogatoMessageReceiverInOut" />
+		</messageReceivers>
+		<parameter name="ServiceObjectSupplier">org.apache.axis2.extensions.spring.receivers.SpringAppContextAwareObjectSupplier</parameter>
+		<parameter name="SpringBeanName">sospendiErogatoService</parameter>
+		<parameter name="ServiceTCCL">composite</parameter>
+		<parameter name="useOriginalwsdl">true</parameter>
+		<parameter name="modifyUserWSDLPortAddress">true</parameter>
+		<operation name="sospendiErogato" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sospendierogato.wsdl.dem.sanita.finanze.it/">
+			<actionMapping>sospendiErogato</actionMapping>
+		</operation>
+	</service>
+	
+	<service name="demInvioErogato" class="it.eng.cct.dem.sar.mw.spring.SpringInitializer">
+		<description>Servizio Invio Erogato</description>
+		<module ref="sar-mw-msglogger" />
+		<messageReceivers>
+			<messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="it.finanze.sanita.dem.wsdl.invioerogato.DemInvioErogatoMessageReceiverInOut" />
+		</messageReceivers>
+		<parameter name="ServiceObjectSupplier">org.apache.axis2.extensions.spring.receivers.SpringAppContextAwareObjectSupplier</parameter>
+		<parameter name="SpringBeanName">invioErogatoService</parameter>
+		<parameter name="ServiceTCCL">composite</parameter>
+		<parameter name="useOriginalwsdl">true</parameter>
+		<parameter name="modifyUserWSDLPortAddress">true</parameter>
+		<operation name="invioErogato" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://invioerogato.wsdl.dem.sanita.finanze.it/InvioErogato/">
+			<actionMapping>invioErogato</actionMapping>
+		</operation>
+	</service>
+	
+	<service name="demVisualizzaErogato" class="it.eng.cct.dem.sar.mw.spring.SpringInitializer">
+		<description>Servizio Visualizza Erogato</description>
+		<module ref="sar-mw-msglogger" />
+		<messageReceivers>
+			<messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="it.finanze.sanita.dem.wsdl.visualizzaerogato.DemVisualizzaErogatoMessageReceiverInOut" />
+		</messageReceivers>
+		<parameter name="ServiceObjectSupplier">org.apache.axis2.extensions.spring.receivers.SpringAppContextAwareObjectSupplier</parameter>
+		<parameter name="SpringBeanName">visualizzaErogatoService</parameter>
+		<parameter name="ServiceTCCL">composite</parameter>
+		<parameter name="useOriginalwsdl">true</parameter>
+		<parameter name="modifyUserWSDLPortAddress">true</parameter>
+		<operation name="visualizzaErogato" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://visualizzaerogato.wsdl.dem.sanita.finanze.it/VisualizzaErogato/">
+			<actionMapping>visualizzaErogato</actionMapping>
+		</operation>
+	</service>
+	
+</serviceGroup>

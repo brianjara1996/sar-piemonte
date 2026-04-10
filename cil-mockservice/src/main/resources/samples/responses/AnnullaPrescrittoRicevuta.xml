@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnnullaPrescrittoRicevuta xsi:schemaLocation="http://annullaprescrittoricevuta.xsd.dem.sanita.finanze.it AnnullaPrescrittoRicevuta.xsd" xmlns="http://annullaprescrittoricevuta.xsd.dem.sanita.finanze.it" xmlns:td="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<nre>CODNRERIC</nre>
+	<codEsitoAnnullamento>0000</codEsitoAnnullamento>
+	<ElencoComunicazioni>
+		<td:Comunicazione>
+			<td:codice>0100</td:codice>
+			<td:messaggio>Nessuna comunicazione</td:messaggio>
+		</td:Comunicazione>
+	</ElencoComunicazioni>
+</AnnullaPrescrittoRicevuta>

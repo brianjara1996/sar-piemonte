@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://invioerogatoricevuta.xsd.dem.sanita.finanze.it" xmlns="http://invioerogatoricevuta.xsd.dem.sanita.finanze.it" xmlns:td="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://tipodati.xsd.dem.sanita.finanze.it" schemaLocation="InvioErogato_1.xsd"/>
+  <xs:annotation>
+    <xs:documentation>Versione 1.2</xs:documentation>
+  </xs:annotation>
+  <xs:element name="InvioErogatoRicevuta">
+    <xs:annotation>
+      <xs:documentation>Elemento base della ricevuta per la richiesta di invio della ricetta da parte dell'erogatore</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nre" type="td:nreType">
+          <xs:annotation>
+            <xs:documentation>Numero Ricetta Elettronica</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="dataRicezione" type="td:dataOraType">
+          <xs:annotation>
+            <xs:documentation>Data di ricezione</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="codAutenticazione" type="td:stringType">
+          <xs:annotation>
+            <xs:documentation>Codice di autenticazione per l’erogatore che certifica l’avvenuta transazione</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="codEsitoInserimento" type="td:codEsitoType">
+          <xs:annotation>
+            <xs:documentation>Codice dell'esito dell'invio</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="ElencoErroriRicette" type="td:elencoErroriRicetteType">
+          <xs:annotation>
+            <xs:documentation>Ripetizione di ErroreRicetta</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="ElencoComunicazioni" type="td:elencoComunicazioniType">
+          <xs:annotation>
+            <xs:documentation>Ripetizione di Comunicazioni</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="calcoloEffettuato" type="td:stringType">
+          <xs:annotation>
+            <xs:documentation>Codice dell’esito del calcolo del ticket effettuato dal SAC</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="ticketTotale" type="td:stringType">
+          <xs:annotation>
+            <xs:documentation>Ammontare della quota di compartecipazione alla spesa sanitaria per farmaceutica calcolato dal SAC</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="ElencoDettagliTicket" type="td:elencoDettagliTicketType">
+          <xs:annotation>
+            <xs:documentation>Ripartizione valori ticket per singolo farmaco calcolati dal SAC</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

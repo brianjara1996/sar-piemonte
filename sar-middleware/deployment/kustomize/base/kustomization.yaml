@@ -1,0 +1,5 @@
+generatorOptions:
+  disableNameSuffixHash: true
+namespace: default
+resources:
+  - sar-mw-cil.yaml

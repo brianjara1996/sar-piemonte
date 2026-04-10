@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions targetNamespace="http://serviceanag.wsdl.dem.sanita.finanze.it" xmlns:ricevutans="http://serviceanagricevuta.xsd.dem.sanita.finanze.it" xmlns:richiestans="http://serviceanagrichiesta.xsd.dem.sanita.finanze.it" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://serviceanag.wsdl.dem.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified">
+			<xsd:import namespace="http://serviceanagrichiesta.xsd.dem.sanita.finanze.it" schemaLocation="ServiceAnagRichiesta.xsd"/>
+		</xsd:schema>
+		<xsd:schema elementFormDefault="qualified">
+			<xsd:import namespace="http://serviceanagricevuta.xsd.dem.sanita.finanze.it" schemaLocation="ServiceAnagRicevuta.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="ricevuta">
+		<wsdl:part element="ricevutans:ServiceAnagRicevuta" name="ServiceAnagRicevuta"/>
+	</wsdl:message>
+	<wsdl:message name="richiesta">
+		<wsdl:part element="richiestans:ServiceAnagRichiesta" name="ServiceAnagRichiesta"/>
+	</wsdl:message>
+	<wsdl:portType name="serviceAnagPT">
+		<wsdl:operation name="serviceAnag">
+			<wsdl:input message="tns:richiesta"/>
+			<wsdl:output message="tns:ricevuta"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="serviceAnagBinding" type="tns:serviceAnagPT">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="serviceAnag">
+			<soap:operation soapAction="http://serviceanag.wsdl.dem.sanita.finanze.it/ServiceAnag"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="demServiceAnag">
+		<wsdl:port binding="tns:serviceAnagBinding" name="demServiceAnag">
+			<soap:address location="http://localhost:9080/DemRicettaServiceAnagServicesWeb/services/demServiceAnag"/>
+		</wsdl:port>
+	</wsdl:service>
+	<wsdl:documentation>Versione 1.2</wsdl:documentation>
+</wsdl:definitions>

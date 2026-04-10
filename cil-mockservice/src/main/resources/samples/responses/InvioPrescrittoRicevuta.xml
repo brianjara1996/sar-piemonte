@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<InvioPrescrittoRicevuta xsi:schemaLocation="http://invioprescrittoricevuta.xsd.dem.sanita.finanze.it InvioPrescrittoRicevuta.xsd" xmlns="http://invioprescrittoricevuta.xsd.dem.sanita.finanze.it" xmlns:td="http://tipodati.xsd.dem.sanita.finanze.it" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<nre>CODNRERICETTA</nre>
+	<codAutenticazione>CODAUTSAC</codAutenticazione>
+	<dataInserimento>2014-04-03 08:30:00</dataInserimento>
+	<codEsitoInserimento>0000</codEsitoInserimento>
+	<ElencoComunicazioni>
+		<td:Comunicazione>
+			<td:codice>0100</td:codice>
+			<td:messaggio>Nessuna comunicazione</td:messaggio>
+		</td:Comunicazione>
+	</ElencoComunicazioni>
+</InvioPrescrittoRicevuta>

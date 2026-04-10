@@ -1,0 +1,16 @@
+AMBIENTE DI TEST:
+---------------------------------------------------------------------------------------------------------------------------
+https://demservicetest.sanita.finanze.it/DemRicettaPrescrittoServicesWeb/services/demVisualizzaPrescritto
+https://demservicetest.sanita.finanze.it/DemRicettaPrescrittoServicesWeb/services/demInvioPrescritto  
+https://demservicetest.sanita.finanze.it/DemRicettaPrescrittoServicesWeb/services/demAnnullaPrescritto   
+https://demservicetest.sanita.finanze.it/DemRicettaInterrogazioniServicesWeb/services/demInterrogaNreUtilizzati 
+https://demservicetest.sanita.finanze.it/DemRicettaServiceAnagServicesWeb/services/demServiceAnag
+https://demservicetest.sanita.finanze.it/DemRicettaServiceMedicoWeb/services/invioDichiarazioneSostituzioneMedico
+
+AMBIENTE DI PRODUZIONE:
+---------------------------------------------------------------------------------------------------------------------------
+https://demservice.sanita.finanze.it/DemRicettaPrescrittoServicesWeb/services/demVisualizzaPrescritto
+https://demservice.sanita.finanze.it/DemRicettaPrescrittoServicesWeb/services/demInvioPrescritto  
+https://demservice.sanita.finanze.it/DemRicettaPrescrittoServicesWeb/services/demAnnullaPrescritto   
+https://demservice.sanita.finanze.it/DemRicettaInterrogazioniServicesWeb/services/demInterrogaNreUtilizzati 
+https://demservice.sanita.finanze.it/DemRicettaServiceMedicoWeb/services/invioDichiarazioneSostituzioneMedico

@@ -1,0 +1,17 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:ePrescription>
+         <typ:id>123456789</typ:id>
+         <typ:medico>
+            <typ:codiceFiscale>CMPVCNMEDICO509G</typ:codiceFiscale>
+         </typ:medico>
+         <typ:paziente>
+            <typ:codiceFiscale>CMPVCNPAZIENTE9G</typ:codiceFiscale>
+         </typ:paziente>
+         <typ:ricetta>
+            <typ:NRE>NUMELETTRRICETTA</typ:NRE>
+         </typ:ricetta>
+      </typ:ePrescription>
+   </soapenv:Body>
+</soapenv:Envelope>

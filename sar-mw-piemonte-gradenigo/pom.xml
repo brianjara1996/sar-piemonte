@@ -1,0 +1,107 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>it.eng.cct.dem.sar.piemonte</groupId>
+	<artifactId>sar-mw-piemonte</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+	<name>sar-mw-piemonte</name>
+	<url>http://maven.apache.org</url>
+
+	<parent>
+		<groupId>it.eng.cct.dem.sar</groupId>
+		<artifactId>sar-mw-base</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../sar-mw-base</relativePath>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<hibernate.connection.url>jdbc:postgresql://localhost:5432/sarp</hibernate.connection.url>
+		<hibernate.connection.username>sarp</hibernate.connection.username>
+		<hibernate.connection.password>sarp</hibernate.connection.password>
+		<hibernate.showsql>true</hibernate.showsql>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>it.eng.cct.dem.sar</groupId>
+			<artifactId>sar-mw-core</artifactId>
+			<version>1.0.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>it.eng.cct.dem.sar.piemonte</groupId>
+			<artifactId>cil-wsstubs</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>it.eng.cct.dem.sar.piemonte.mw</groupId>
+			<artifactId>sarpiemonte-mw-skeleton</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>it.eng.cct.dem.sar</groupId>
+			<artifactId>sar-piemonte-stub</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<!-- Hibernate framework -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>3.3.2.GA</version>
+		</dependency>
+		<!-- Hibernate annotation -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.3.1.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<version>3.0.0.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>2.5.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>2.5.6</version>
+		</dependency>
+		<dependency>
+			<artifactId>slf4j-api</artifactId>
+			<groupId>org.slf4j</groupId>
+			<version>1.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4-1202-jdbc41</version>
+		</dependency>
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.12.1.GA</version>
+		</dependency>
+	</dependencies>
+
+</project>

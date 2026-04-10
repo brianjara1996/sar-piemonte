@@ -1,0 +1,14 @@
+Il seguente documento riporta i passi da effettuare per deployare il servizio edotto-middleware in una webapp axis2:
+- Scaricare axis2-1.6.2-war.zip
+- Creare una cartella denominata axis2
+- Unzippare axis2.war nella cartella axis2 creata
+- Aggiungere le librerie:
+    axis2/WEB-INF/lib/bcprov-jdk15-140.jar
+    axis2/WEB-INF/lib/rampart-core-1.6.2.jar
+    axis2/WEB-INF/lib/rampart-policy-1.6.2.jar
+    axis2/WEB-INF/lib/rampart-trust-1.6.2.jar
+    axis2/WEB-INF/lib/wss4j-1.6.4.jar
+    axis2/WEB-INF/lib/xmlsec-1.4.6.jar
+- Copiare il file edotto-mockservice-1.0.0.aar nella cartella axis2/WEB-INF/services
+- Aggiungere al file axis2/WEB-INF/services/services.list una riga contenente il nome esatto del file aar distribuito
+- Configurare il file di log ${catalina.home}/logs/axis2.log e attivare il logger LOGFILE nel file /WEB-INF/classes/log4j.properties

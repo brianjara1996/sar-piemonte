@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:ricevutans="http://dichiarazionesostituzionemedicoricevuta.xsd.dem.sanita.finanze.it" xmlns:richiestans="http://dichiarazionesostituzionemedicorichiesta.xsd.dem.sanita.finanze.it" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://dichiarazionesostituzionemedico.wsdl.dem.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://dichiarazionesostituzionemedico.wsdl.dem.sanita.finanze.it">
+	<wsdl:types>
+		<xsd:schema elementFormDefault="qualified">
+			<xsd:import namespace="http://dichiarazionesostituzionemedicorichiesta.xsd.dem.sanita.finanze.it" schemaLocation="DichiarazioneSostituzioneMedicoRichiesta.xsd"/>
+		</xsd:schema>
+		<xsd:schema elementFormDefault="qualified">
+			<xsd:import namespace="http://dichiarazionesostituzionemedicoricevuta.xsd.dem.sanita.finanze.it" schemaLocation="DichiarazioneSostituzioneMedicoRicevuta.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="ricevuta">
+		<wsdl:part name="DichiarazioneSostituzioneMedicoRicevuta" element="ricevutans:DichiarazioneSostituzioneMedicoRicevuta"/>
+	</wsdl:message>
+	<wsdl:message name="richiesta">
+		<wsdl:part name="DichiarazioneSostituzioneMedicoRichiesta" element="richiestans:DichiarazioneSostituzioneMedicoRichiesta"/>
+	</wsdl:message>
+	<wsdl:portType name="dichiarazioneSostituzioneMedicoPT">
+		<wsdl:operation name="dichiarazioneSostituzioneMedico">
+			<wsdl:input message="tns:richiesta"/>
+			<wsdl:output message="tns:ricevuta"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="dichiarazioneSostituzioneMedicoBinding" type="tns:dichiarazioneSostituzioneMedicoPT">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="dichiarazioneSostituzioneMedico">
+			<soap:operation soapAction="http://dichiarazionesostituzionemedico.wsdl.dem.sanita.finanze.it/DichiarazioneSostituzioneMedico"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="invioDichiarazioneSostituzioneMedico">
+		<wsdl:port name="invioDichiarazioneSostituzioneMedico" binding="tns:dichiarazioneSostituzioneMedicoBinding">
+			<soap:address location="http://localhost:9080/DemRicettaServiceMedicoWeb/services/invioDichiarazioneSostituzioneMedico"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

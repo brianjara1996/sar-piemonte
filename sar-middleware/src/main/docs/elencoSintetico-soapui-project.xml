@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="elencoSintetico" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="ElencoSinteticoServiceSoapBinding" type="wsdl" bindingName="{http://elencosinteticostatoinvii.ejb.auxservices.mir.sanita.finanze.it}ElencoSinteticoServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="https://localhost:1449/RELCIL/service/elencoSintetico?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://localhost:1449/RELCIL/service/elencoSintetico?WSDL"><con:part><con:url>https://localhost:1449/RELCIL/service/elencoSintetico?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="ElencoSinteticoService" targetNamespace="http://elencosinteticostatoinvii.ejb.auxservices.mir.sanita.finanze.it" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://elencosinteticostatoinvii.ejb.auxservices.mir.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://elencosinteticostatoinvii.ejb.auxservices.mir.sanita.finanze.it" version="1.0" xmlns:ns1="http://elencosinteticostatoinvii.dto.auxservices.mir.sanita.finanze.it" xmlns:ns2="http://DTO.simossSsa.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://elencosinteticostatoinvii.dto.auxservices.mir.sanita.finanze.it"/>
+      <xs:import namespace="http://DTO.simossSsa.sanita.finanze.it"/>
+      <xs:element name="visualizzaElencoStatoInvii">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="elencoSinteticoStatoInviiDTO" nillable="true" type="ns1:ElencoSinteticoStatoInviiDTO"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="visualizzaElencoStatoInviiResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="visualizzaElencoStatoInviiReturn" nillable="true" type="ns1:ElencoSinteticoStatoInviiDTO"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="ArrayOf_tns3_nillable_MessageObj">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="MessageObj" nillable="true" type="ns2:MessageObj"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="http://elencosinteticostatoinvii.dto.auxservices.mir.sanita.finanze.it" version="1.0" xmlns:ns1="http://DTO.simossSsa.sanita.finanze.it" xmlns:ns2="http://elencosinteticostatoinvii.ejb.auxservices.mir.sanita.finanze.it" xmlns:tns="http://elencosinteticostatoinvii.dto.auxservices.mir.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://DTO.simossSsa.sanita.finanze.it"/>
+      <xs:import namespace="http://elencosinteticostatoinvii.ejb.auxservices.mir.sanita.finanze.it"/>
+      <xs:element name="visualizzaElencoStatoInvii">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="elencoSinteticoStatoInviiDTO" nillable="true" type="tns:ElencoSinteticoStatoInviiDTO"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="visualizzaElencoStatoInviiResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="visualizzaElencoStatoInviiReturn" nillable="true" type="tns:ElencoSinteticoStatoInviiDTO"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="ElencoSinteticoStatoInviiDTO">
+        <xs:complexContent>
+          <xs:extension base="ns1:BustaTS">
+            <xs:sequence>
+              <xs:element name="dataFineRange" nillable="true" type="xs:string"/>
+              <xs:element name="dataIniRange" nillable="true" type="xs:string"/>
+              <xs:element name="isOperazioneValida" nillable="true" type="xs:boolean"/>
+              <xs:element name="listaMessaggi" nillable="true" type="ns2:ArrayOf_tns3_nillable_MessageObj"/>
+              <xs:element name="operazione" nillable="true" type="xs:string"/>
+              <xs:element name="pinCodeIn" nillable="true" type="xs:string"/>
+              <xs:element name="protocolloSac" nillable="true" type="xs:string"/>
+              <xs:element name="arrayRecordStatoInvii" nillable="true" type="tns:ArrayOfElencoStatoInviiRecord"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfElencoStatoInviiRecord">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ElencoStatoInviiRecord" nillable="true" type="tns:ElencoStatoInviiRecord"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ElencoStatoInviiRecord">
+        <xs:sequence>
+          <xs:element name="dataInvio" nillable="true" type="xs:string"/>
+          <xs:element name="protocolloSac" nillable="true" type="xs:string"/>
+          <xs:element name="statoInvio" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="http://elencoanaliticoesitoricette.dto.auxservices.mir.sanita.finanze.it" version="1.0" xmlns:ns1="http://DTO.simossSsa.sanita.finanze.it" xmlns:ns2="http://elencosinteticostatoinvii.ejb.auxservices.mir.sanita.finanze.it" xmlns:tns="http://elencoanaliticoesitoricette.dto.auxservices.mir.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://DTO.simossSsa.sanita.finanze.it"/>
+      <xs:import namespace="http://elencosinteticostatoinvii.ejb.auxservices.mir.sanita.finanze.it"/>
+      <xs:complexType name="ElencoAnaliticoEsitoRicetteDTO">
+        <xs:complexContent>
+          <xs:extension base="ns1:BustaTS">
+            <xs:sequence>
+              <xs:element name="elencoEsitoRicetteRecords" nillable="true" type="tns:ArrayOfElencoEsitoRicetteRecord"/>
+              <xs:element name="dataFineRange" nillable="true" type="xs:string"/>
+              <xs:element name="dataIniRange" nillable="true" type="xs:string"/>
+              <xs:element name="isOperazioneValida" nillable="true" type="xs:boolean"/>
+              <xs:element name="listaMessaggi" nillable="true" type="ns2:ArrayOf_tns3_nillable_MessageObj"/>
+              <xs:element name="operazione" nillable="true" type="xs:string"/>
+              <xs:element name="pinCodeIn" nillable="true" type="xs:string"/>
+              <xs:element name="protocolloSac" nillable="true" type="xs:string"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfElencoEsitoRicetteRecord">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ElencoEsitoRicetteRecord" nillable="true" type="tns:ElencoEsitoRicetteRecord"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ElencoEsitoRicetteRecord">
+        <xs:sequence>
+          <xs:element name="codRicetta" nillable="true" type="xs:string"/>
+          <xs:element name="dataAccoglienza" nillable="true" type="xs:string"/>
+          <xs:element name="protocolloSac" nillable="true" type="xs:string"/>
+          <xs:element name="errori" nillable="true" type="tns:ArrayOfErrori"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfErrori">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Errori" nillable="true" type="tns:Errori"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Errori">
+        <xs:sequence>
+          <xs:element name="codice" nillable="true" type="xs:string"/>
+          <xs:element name="descrizione" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="http://DTO.simossSsa.sanita.finanze.it" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="BustaTS">
+        <xs:sequence>
+          <xs:element name="pwd" nillable="true" type="xs:string"/>
+          <xs:element name="username" nillable="true" type="xs:string"/>
+          <xs:element name="codiceAslUtente" nillable="true" type="xs:string"/>
+          <xs:element name="codiceRegioneUtente" nillable="true" type="xs:string"/>
+          <xs:element name="idUtenteRichiedente" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="MessageObj">
+        <xs:sequence>
+          <xs:element name="riferimento" nillable="true" type="xs:string"/>
+          <xs:element name="codiceMessaggio" nillable="true" type="xs:string"/>
+          <xs:element name="descrizioneMessaggio" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="visualizzaElencoStatoInvii">
+    <wsdl:part element="tns:visualizzaElencoStatoInvii" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="visualizzaElencoStatoInviiResponse">
+    <wsdl:part element="tns:visualizzaElencoStatoInviiResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ElencoSinteticoStatoInvii">
+    <wsdl:operation name="visualizzaElencoStatoInvii">
+      <wsdl:input message="tns:visualizzaElencoStatoInvii" name="visualizzaElencoStatoInvii"></wsdl:input>
+      <wsdl:output message="tns:visualizzaElencoStatoInviiResponse" name="visualizzaElencoStatoInviiResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ElencoSinteticoServiceSoapBinding" type="tns:ElencoSinteticoStatoInvii">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="visualizzaElencoStatoInvii">
+      <soap:operation soapAction="visualizzaElencoStatoInvii" style="document"/>
+      <wsdl:input name="visualizzaElencoStatoInvii">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="visualizzaElencoStatoInviiResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ElencoSinteticoService">
+    <wsdl:port binding="tns:ElencoSinteticoServiceSoapBinding" name="ElencoSinteticoStatoInviiPort">
+      <soap:address location="https://localhost:1449/RELCIL/service/elencoSintetico"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://localhost:1449/RELCIL/service/elencoSintetico</con:endpoint></con:endpoints><con:operation isOneWay="false" action="visualizzaElencoStatoInvii" name="visualizzaElencoStatoInvii" bindingOperationName="visualizzaElencoStatoInvii" type="Request-Response" outputName="visualizzaElencoStatoInviiResponse" inputName="visualizzaElencoStatoInvii" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:1449/RELCIL/service/elencoSintetico</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:elen="http://elencosinteticostatoinvii.ejb.auxservices.mir.sanita.finanze.it">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <elen:visualizzaElencoStatoInvii>
+         <elencoSinteticoStatoInviiDTO>
+            <pinCodeIn>12345678</pinCodeIn>
+            <protocolloSac>10000000000000009550030</protocolloSac>
+         </elencoSinteticoStatoInviiDTO>
+      </elen:visualizzaElencoStatoInvii>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>RE_ASL202_TO2</con:username><con:password>AAAAAAAA</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:preemptive>true</con:preemptive><con:authType>Preemptive</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="visualizzaElencoStatoInvii"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

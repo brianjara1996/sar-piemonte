@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:td="http://tipodati.xsd.mirsac.sanita.finanze.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import namespace="http://tipodati.xsd.mirsac.sanita.finanze.it" schemaLocation="TipiDatiMIR.xsd" />
+	<xs:annotation>
+		<xs:documentation>Versione 2.1 </xs:documentation>
+	</xs:annotation>
+	<xs:element name="RicetteMIR">
+		<xs:annotation>
+			<xs:documentation>Elenco di n ricette</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Testata" />
+				<xs:choice maxOccurs="10000">
+					<xs:element ref="RicettaI" />
+					<xs:element ref="RicettaV" />
+					<xs:element ref="RicettaC" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Testata">
+		<xs:annotation>
+			<xs:documentation>
+				Elemento strutturale che comprende solo i dati comuni a tutte
+				le ricette indicate di seguito
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PinCode" />
+				<xs:element ref="TipoInvio" />
+				<xs:element ref="Testata1" minOccurs="0" />
+				<xs:element ref="Testata2" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RicettaI">
+		<xs:annotation>
+			<xs:documentation>
+				Tracciato della ricetta per il primo inserimento nella
+				base dati
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Bar1" />
+				<xs:element ref="Bar2" />
+				<xs:element ref="Altro" minOccurs="0" />
+				<xs:element ref="NoteInvio" minOccurs="0" />
+				<xs:element ref="CodiceAss" minOccurs="0" />
+				<xs:element ref="TipoPrescrizione" />
+				<xs:element ref="CodEsenzione" minOccurs="0" />
+				<xs:element ref="NonEsente" minOccurs="0" />
+				<xs:element ref="Reddito" minOccurs="0" />
+				<xs:element ref="CodiceDiagnosi" minOccurs="0" />
+				<xs:element ref="DescrizioneDiagnosi" minOccurs="0" />
+				<xs:element ref="TotPezzi" />
+				<xs:element ref="TipoRic" minOccurs="0" />
+				<xs:element ref="DataCompilazione" />
+				<xs:element ref="TipoVisita" />
+				<xs:element ref="DispReg" minOccurs="0" />
+				<xs:element ref="ProvAssistito" minOccurs="0" />
+				<xs:element ref="AslAssistito" minOccurs="0" />
+				<xs:element ref="IndicazionePrescr" minOccurs="0" />
+				<xs:element ref="ClassePriorita" minOccurs="0" />
+				<xs:element ref="StatoEstero" minOccurs="0" />
+				<xs:element ref="IstituzCompetente" minOccurs="0" />
+				<xs:element ref="NumIdentPers" minOccurs="0" />
+				<xs:element ref="NumIdentTess" minOccurs="0" />
+				<xs:element ref="DataNascitaEstero" minOccurs="0" />
+				<xs:element ref="DataScadTessera" minOccurs="0" />
+				<xs:element ref="Ricetta1" minOccurs="0" />
+				<xs:element ref="Ricetta2" minOccurs="0" />
+				<xs:element ref="Prescrizione" maxOccurs="20" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RicettaC">
+		<xs:annotation>
+			<xs:documentation>
+				Tracciato della ricetta per la sua cancellazione dalla
+				base dati
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ProtocolloSAC" />
+				<xs:element ref="Bar1" />
+				<xs:element ref="Bar2" />
+				<xs:element ref="Ricetta1" minOccurs="0" />
+				<xs:element ref="Ricetta2" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RicettaV">
+		<xs:annotation>
+			<xs:documentation>
+				Tracciato della ricetta per indicare le variazioni
+				intervenute successivamente al primo inserimento nella base dati
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ProtocolloSAC" />
+				<xs:element ref="Bar1" />
+				<xs:element ref="Bar2" />
+				<xs:element ref="NoteInvio" minOccurs="0" />
+				<xs:element ref="CodiceAss" minOccurs="0" />
+				<xs:element ref="TipoPrescrizione" minOccurs="0" />
+				<xs:element ref="CodEsenzione" minOccurs="0" />
+				<xs:element ref="NonEsente" minOccurs="0" />
+				<xs:element ref="Reddito" minOccurs="0" />
+				<xs:element ref="CodiceDiagnosi" minOccurs="0" />
+				<xs:element ref="DescrizioneDiagnosi" minOccurs="0" />
+				<xs:element ref="TotPezzi" minOccurs="0" />
+				<xs:element ref="TipoRic" minOccurs="0" />
+				<xs:element ref="DataCompilazione" minOccurs="0" />
+				<xs:element ref="TipoVisita" minOccurs="0" />
+				<xs:element ref="DispReg" minOccurs="0" />
+				<xs:element ref="ProvAssistito" minOccurs="0" />
+				<xs:element ref="AslAssistito" minOccurs="0" />
+				<xs:element ref="IndicazionePrescr" minOccurs="0" />
+				<xs:element ref="ClassePriorita" minOccurs="0" />
+				<xs:element ref="StatoEstero" minOccurs="0" />
+				<xs:element ref="IstituzCompetente" minOccurs="0" />
+				<xs:element ref="NumIdentPers" minOccurs="0" />
+				<xs:element ref="NumIdentTess" minOccurs="0" />
+				<xs:element ref="DataNascitaEstero" minOccurs="0" />
+				<xs:element ref="DataScadTessera" minOccurs="0" />
+				<xs:element ref="Ricetta1" minOccurs="0" />
+				<xs:element ref="Ricetta2" minOccurs="0" />
+				<xs:element ref="Prescrizione" minOccurs="0" maxOccurs="20" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Prescrizione">
+		<xs:annotation>
+			<xs:documentation>Tracciato della prescrizione associata alla
+				ricetta
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CodProdPrest" minOccurs="0" />
+				<xs:element ref="DescrProdPrest" minOccurs="0" />
+				<xs:element ref="NotaProd" minOccurs="0" />
+				<xs:element ref="Quantita" />
+				<xs:element ref="Prescrizione1" minOccurs="0" />
+				<xs:element ref="Prescrizione2" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- definizione elementi tracciato testata -->
+	<xs:element name="CodOperazione" type="td:CodOperazioneType">
+		<xs:annotation>
+			<xs:documentation>Tipo di operazione</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ProtocolloSAC" type="td:ProtocolloSACType">
+		<xs:annotation>
+			<xs:documentation>Protocollo di accoglienza, obbligatorio in
+				caso di operazioni V e C
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Bar1" type="td:Bar1Type">
+		<xs:annotation>
+			<xs:documentation>Codice bar1 della ricetta</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Bar2" type="td:Bar2Type">
+		<xs:annotation>
+			<xs:documentation>Codice bar2 della ricetta</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="PinCode" type="td:PinCodeType">
+		<xs:annotation>
+			<xs:documentation>PinCode</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TipoInvio" type="td:TipoInvioType">
+		<xs:annotation>
+			<xs:documentation>Tipo Invio</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NoteInvio" type="td:string256Type">
+		<xs:annotation>
+			<xs:documentation>Note Invio</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- definizione elementi tracciato ricetta -->
+	<xs:element name="CodiceAss" type="td:string256Type">
+		<xs:annotation>
+			<xs:documentation>Codice identificativo assistito ( crittato)
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TipoPrescrizione" type="td:TipoPrescrizioneType">
+		<xs:annotation>
+			<xs:documentation>Tipo prescrizione</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CodEsenzione" type="td:CodEsenzioneType">
+		<xs:annotation>
+			<xs:documentation>Codice esenzione</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NonEsente" type="td:CasellaType">
+		<xs:annotation>
+			<xs:documentation>Esenzione</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Reddito" type="td:CasellaType">
+		<xs:annotation>
+			<xs:documentation>Reddito</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CodiceDiagnosi" type="td:CodiceDiagnosiType">
+		<xs:annotation>
+			<xs:documentation>Codice della diagnosi o del sospetto
+				diagnostico
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DescrizioneDiagnosi" type="td:string256Type">
+		<xs:annotation>
+			<xs:documentation>Descrizione della diagnosi o del sospetto
+				diagnostico
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TotPezzi" type="td:integer3">
+		<xs:annotation>
+			<xs:documentation>Numero totale di pezzi</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TipoRic" type="td:TipoRicType">
+		<xs:annotation>
+			<xs:documentation>Tipo ric</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DataCompilazione" type="td:DataType">
+		<xs:annotation>
+			<xs:documentation>Data compilazione ricetta</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TipoVisita" type="td:TipoVisitaType">
+		<xs:annotation>
+			<xs:documentation>Tipo visita</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DispReg" type="td:DispRegType">
+		<xs:annotation>
+			<xs:documentation>Disp Reg</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ProvAssistito" type="td:ProvAssistitoType">
+		<xs:annotation>
+			<xs:documentation>Provincia assistitto</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AslAssistito" type="td:AslType">
+		<xs:annotation>
+			<xs:documentation>ASL assistitto</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IndicazionePrescr" type="td:IndicazionePrescrType">
+		<xs:annotation>
+			<xs:documentation>Indicaziopne pescrizione</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ClassePriorita" type="td:ClassePrioritaType">
+		<xs:annotation>
+			<xs:documentation>Classe priorita</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="StatoEstero" type="td:StatoEsteroType">
+		<xs:annotation>
+			<xs:documentation>Stato estero</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IstituzCompetente" type="td:IstituzCompetenteType">
+		<xs:annotation>
+			<xs:documentation>Istituzione competente</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NumIdentPers" type="td:string20Type">
+		<xs:annotation>
+			<xs:documentation>Numero identificativo
+				persona
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NumIdentTess" type="td:string20Type">
+		<xs:annotation>
+			<xs:documentation>Numero identificativo
+				tessera
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DataNascitaEstero" type="td:DataTypeOpt">
+		<xs:annotation>
+			<xs:documentation>Data nascita</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DataScadTessera" type="td:DataTypeOpt">
+		<xs:annotation>
+			<xs:documentation>Data scadenza tessera</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- definizione elementi tracciato prescrizione -->
+	<xs:element name="CodProdPrest" type="td:CodProdPrestType">
+		<xs:annotation>
+			<xs:documentation>Codice prescrizione</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DescrProdPrest" type="td:string256Type">
+		<xs:annotation>
+			<xs:documentation>Descrizione prescrizione</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NotaProd" type="td:string3Type">
+		<xs:annotation>
+			<xs:documentation>Nota</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Quantita" type="td:integer3">
+		<xs:annotation>
+			<xs:documentation>Quantità di prodotto o prestazione
+				prescritta
+			</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Ricetta1" type="td:string256Type">
+		<xs:annotation>
+			<xs:documentation>campo per futuro utilizzo</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Ricetta2" type="td:string256Type">
+		<xs:annotation>
+			<xs:documentation>campo per futuro utilizzo</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Testata1" type="td:string256Type">
+		<xs:annotation>
+			<xs:documentation>campo per futuro utilizzo</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Testata2" type="td:string256Type">
+		<xs:annotation>
+			<xs:documentation>campo per futuro utilizzo</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Prescrizione1" type="td:string256Type">
+		<xs:annotation>
+			<xs:documentation>campo per futuro utilizzo</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Prescrizione2" type="td:string256Type">
+		<xs:annotation>
+			<xs:documentation>campo per futuro utilizzo</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Altro" type="td:string1Type">
+		<xs:annotation>
+			<xs:documentation>Dichiarazione ricette doppie (D)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

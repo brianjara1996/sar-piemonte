@@ -1,0 +1,93 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans spring-beans-2.5.xsd
+http://www.springframework.org/schema/context spring-context-2.5.xsd">
+
+	<!-- DAO -->	
+	<bean id="spLottiNreDao" class="it.eng.cct.dem.sar.mw.piemonte.db.dao.impl.SpLottiNreDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="spNreDao" class="it.eng.cct.dem.sar.mw.piemonte.db.dao.impl.SpNreDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="spTransactionDao" class="it.eng.cct.dem.sar.mw.piemonte.db.dao.impl.SpTransactionDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="spTransactionErrorDao" class="it.eng.cct.dem.sar.mw.piemonte.db.dao.impl.SpTransactionErrorDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="siKeyradDao" class="it.eng.cct.dem.sar.mw.piemonte.db.dao.impl.SiKeyradDaoImpl">
+		<property name="sessionFactory" ref="sessionFactoryIride"/>
+	</bean>
+	<bean id="siKeyradDatiDao" class="it.eng.cct.dem.sar.mw.piemonte.db.dao.impl.SiKeyradDatiDaoImpl">
+		<property name="sessionFactory" ref="sessionFactoryIride"/>
+	</bean>
+
+	
+	
+	<!-- SERVICE -->
+	<bean id="spLottiNreService" class="it.eng.cct.dem.sar.mw.piemonte.db.service.impl.SpLottiNreServiceImpl">
+		<property name="spLottiNreDao" ref="spLottiNreDao"/>
+	</bean>
+	<bean id="spNreService" class="it.eng.cct.dem.sar.mw.piemonte.db.service.impl.SpNreServiceImpl">
+		<property name="spLottiNreDao" ref="spLottiNreDao"/>
+		<property name="spNreDao" ref="spNreDao"/>
+	</bean>
+	<bean id="spTransactionErrorService" class="it.eng.cct.dem.sar.mw.piemonte.db.service.impl.SpTransactionErrorServiceImpl">
+		<property name="spTransactionErrorDao" ref="spTransactionErrorDao"/>
+	</bean>
+	<bean id="spTransactionService" class="it.eng.cct.dem.sar.mw.piemonte.db.service.impl.SpTransactionServiceImpl">
+		<property name="spTransactionDao" ref="spTransactionDao"/>
+	</bean>
+	<bean id="siKeyradService" class="it.eng.cct.dem.sar.mw.piemonte.db.service.impl.SiKeyradServiceImpl">
+		<property name="siKeyradDao" ref="siKeyradDao"/>
+	</bean>
+	<bean id="siKeyradDatiService" class="it.eng.cct.dem.sar.mw.piemonte.db.service.impl.SiKeyradDatiServiceImpl">
+		<property name="siKeyradDatiDao" ref="siKeyradDatiDao"/>
+	</bean>
+	
+	<!-- SESSION FACTORY -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${config.ws.target.db.dialect}</prop>
+				<prop key="hibernate.show_sql">${config.ws.target.db.showsql}</prop>
+			</props>
+		</property>
+
+		<property name="annotatedClasses">
+			<list>
+				<value>it.eng.cct.dem.sar.mw.piemonte.db.model.SpLottiNre</value>
+				<value>it.eng.cct.dem.sar.mw.piemonte.db.model.SpNre</value>
+				<value>it.eng.cct.dem.sar.mw.piemonte.db.model.SpNrePk</value>
+				<value>it.eng.cct.dem.sar.mw.piemonte.db.model.SpTransaction</value>
+				<value>it.eng.cct.dem.sar.mw.piemonte.db.model.SpTransactionError</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sessionFactoryIride"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSourceIride" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${config.ws.target.db.iride.dialect}</prop>
+				<prop key="hibernate.show_sql">${config.ws.target.db.iride.showsql}</prop>
+			</props>
+		</property>
+
+		<property name="annotatedClasses">
+			<list>
+				<value>it.eng.cct.dem.sar.mw.piemonte.db.model.IrideSiKeyrad</value>
+				<value>it.eng.cct.dem.sar.mw.piemonte.db.model.IrideSiKeyradDati</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>    

@@ -1,0 +1,7 @@
+cfMedico -> PROVAX00X00X000Y
+password -> Salve123
+pincode cifrato -> LsQiYtf7FcpMYVKvf+51V6t1BSUk+E/dGOB2vmwNl0DhirZ8QzvTI2Ay04p6+t+eH+DjzkJpXrlEEZvKRz6wKVNOt7uYSQUYKBIFcbcEQJnqT7zTgtz7jV3BK+QaEphfKRsOP1Iejv+vKvJ/3te2xNMHPkNYZIAjxEQHftw9Swk=
+pincode chiaro -> 1234567890
+codRegioneMed -> 130
+codAslMed -> 202
+codSpecializzazione -> F

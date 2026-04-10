@@ -1,0 +1,10 @@
+generatorOptions:
+  disableNameSuffixHash: true
+nameSuffix: -prod
+namespace: ellipse
+resources:
+  - ../base
+configMapGenerator:
+  - name: cm-sar-mw-cil-env
+    envs:
+    - confs/env/sar-mw-cil.env

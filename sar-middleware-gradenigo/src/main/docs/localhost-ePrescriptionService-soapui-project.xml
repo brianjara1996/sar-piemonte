@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="0a7763aa-f052-4cca-8126-cadb25a9d26b" activeEnvironment="Default" name="localhost ePrescriptionService" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="db9a6eba-4867-43e0-92f3-1e689b1ca8b2" wsaVersion="NONE" name="ePrescription_binding" type="wsdl" bindingName="{http://cct.eng.it/piemonte/ePrescription/schemas}ePrescription_binding" soapVersion="1_1" anonymous="optional" definition="http://127.0.0.1:8080/axis2/services/ePrescriptionService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://127.0.0.1:8080/axis2/services/ePrescriptionService?wsdl"><con:part><con:url>http://127.0.0.1:8080/axis2/services/ePrescriptionService?wsdl</con:url><con:content><![CDATA[<definitions name="SarMiddleware" targetNamespace="http://cct.eng.it/piemonte/ePrescription/schemas" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:cct="http://cct.eng.it/piemonte/ePrescription/types" xmlns:tns="http://cct.eng.it/piemonte/ePrescription/schemas" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://cct.eng.it/piemonte/ePrescription/types" schemaLocation="ePrescriptionService?xsd=ePrescription_types.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="ServizioEsiti_request">
+    <part name="esiti" element="cct:esiti"></part>
+  </message>
+  <message name="ServizioTrasmissione_request">
+    <part name="trasmissione" element="cct:trasmissione"></part>
+  </message>
+  <message name="ServizioRecupero_response">
+    <part name="recupero" element="cct:recupero"></part>
+  </message>
+  <message name="ServizioTrasmissione_response">
+    <part name="trasmissione" element="cct:trasmissione"></part>
+  </message>
+  <message name="ServizioEsiti_response">
+    <part name="esiti" element="cct:esiti"></part>
+  </message>
+  <message name="ServizioRecupero_request">
+    <part name="recupero" element="cct:recupero"></part>
+  </message>
+  <message name="ServizioInterroga_response">
+    <part name="interroga" element="cct:interroga"></part>
+  </message>
+  <message name="ServizioAnnullamento_request">
+    <part name="annullamento" element="cct:annullamento"></part>
+  </message>
+  <message name="ServizioAnnullamento_response">
+    <part name="annullamento" element="cct:annullamento"></part>
+  </message>
+  <message name="ServiceFault">
+    <part name="Fault" element="cct:Fault"></part>
+  </message>
+  <message name="ServizioInterroga_request">
+    <part name="interroga" element="cct:interroga"></part>
+  </message>
+  <portType name="ePrescription_port">
+    <operation name="trasmissione">
+      <input message="tns:ServizioTrasmissione_request"></input>
+      <output message="tns:ServizioTrasmissione_response"></output>
+      <fault name="ServiceFault" message="tns:ServiceFault"></fault>
+    </operation>
+    <operation name="recupero">
+      <input message="tns:ServizioRecupero_request"></input>
+      <output message="tns:ServizioRecupero_response"></output>
+      <fault name="ServiceFault" message="tns:ServiceFault"></fault>
+    </operation>
+    <operation name="annullamento">
+      <input message="tns:ServizioAnnullamento_request"></input>
+      <output message="tns:ServizioAnnullamento_response"></output>
+      <fault name="ServiceFault" message="tns:ServiceFault"></fault>
+    </operation>
+    <operation name="interroga">
+      <input message="tns:ServizioInterroga_request"></input>
+      <output message="tns:ServizioInterroga_response"></output>
+      <fault name="ServiceFault" message="tns:ServiceFault"></fault>
+    </operation>
+    <operation name="esiti">
+      <input message="tns:ServizioEsiti_request"></input>
+      <output message="tns:ServizioEsiti_response"></output>
+      <fault name="ServiceFault" message="tns:ServiceFault"></fault>
+    </operation>
+  </portType>
+  <binding name="ePrescription_binding" type="tns:ePrescription_port">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="trasmissione">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="ServiceFault">
+        <soap:fault name="ServiceFault" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="recupero">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="ServiceFault">
+        <soap:fault name="ServiceFault" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="annullamento">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="ServiceFault">
+        <soap:fault name="ServiceFault" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="interroga">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="ServiceFault">
+        <soap:fault name="ServiceFault" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="esiti">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="ServiceFault">
+        <soap:fault name="ServiceFault" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="ePrescriptionService">
+    <port name="ePrescriptionPort" binding="tns:ePrescription_binding">
+      <soap:address location="http://127.0.0.1:8080/axis2/services/ePrescriptionService/"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://127.0.0.1:8080/axis2/services/ePrescriptionService?xsd=ePrescription_types.xsd</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://cct.eng.it/piemonte/ePrescription/types" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cct="http://cct.eng.it/piemonte/ePrescription/types">
+  <xs:element name="Fault" type="cct:T_fault_ePrescription"/>
+  <xs:element name="trasmissione" type="cct:T_trasmissione_ePrescription"/>
+  <xs:element name="recupero" type="cct:T_recupero_ePrescription"/>
+  <xs:element name="annullamento" type="cct:T_annullamento_ePrescription"/>
+  <xs:element name="interroga" type="cct:T_interroga_ePrescription"/>
+  <xs:element name="esiti" type="cct:T_esiti_ePrescription"/>
+  <xs:element name="xml" type="xs:string"/>
+  <xs:complexType name="T_trasmissione_ePrescription">
+    <xs:sequence>
+      <xs:element ref="cct:xml"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_recupero_ePrescription">
+    <xs:sequence>
+      <xs:element ref="cct:xml"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_annullamento_ePrescription">
+    <xs:sequence>
+      <xs:element ref="cct:xml"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_interroga_ePrescription">
+    <xs:sequence>
+      <xs:element ref="cct:xml"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_esiti_ePrescription">
+    <xs:sequence>
+      <xs:element ref="cct:xml"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="T_fault_ePrescription">
+    <xs:sequence>
+      <xs:element ref="cct:xml"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://127.0.0.1:8080/axis2/services/ePrescriptionService/</con:endpoint></con:endpoints><con:operation id="0c5a4887-4055-4fa9-a70e-9e4a94caa06e" isOneWay="false" action="" name="annullamento" bindingOperationName="annullamento" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="933ca678-c945-4362-b294-5bff1d8987df" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:8080/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <typ:annullamento>\r
+         <typ:xml><![CDATA[&lt;ePrescription&gt;
+	&lt;id/&gt;
+	&lt;medico&gt;
+		&lt;tipo/&gt;
+		&lt;codiceFiscale/&gt;
+	&lt;/medico&gt;
+	&lt;paziente&gt;
+		&lt;id/&gt;
+	&lt;/paziente&gt;
+	&lt;ricetta&gt;
+		&lt;NRE/&gt;
+		&lt;codiceAutenticazione/&gt;
+		&lt;protocolloSAC/&gt;
+		&lt;tipoPrescrizione/&gt;
+		&lt;interna/&gt;
+		&lt;aziendaPercorso/&gt;
+		&lt;strutturaPercorso/&gt;
+		&lt;codicePercorso/&gt;
+		&lt;descrizionePercorso/&gt;
+		&lt;codiceRegionale/&gt;
+		&lt;oscuramento/&gt;
+		&lt;tipoRicetta/&gt;
+		&lt;tipoVisita/&gt;
+		&lt;disposizioniRegionali/&gt;
+		&lt;indicazione/&gt;
+		&lt;altro/&gt;
+		&lt;priorita/&gt;
+		&lt;codiceDiagnosi/&gt;
+		&lt;quesito/&gt;
+		&lt;propostaTerapeutica/&gt;
+		&lt;quantita/&gt;
+		&lt;dettagli&gt;
+			&lt;dettaglio&gt;
+				&lt;progressivo/&gt;
+				&lt;codice/&gt;
+				&lt;atc/&gt;
+				&lt;codiceCatalogoRegionale/&gt;
+				&lt;codiceCatalogoAziendale/&gt;
+				&lt;branca/&gt;
+				&lt;descrizione/&gt;
+				&lt;codicePacchetto/&gt;
+				&lt;nonSostituibile/&gt;
+				&lt;motivazione/&gt;
+				&lt;note/&gt;
+				&lt;testoLibero/&gt;
+				&lt;descrizioneTestoLibero/&gt;
+				&lt;codiceGruppo/&gt;
+				&lt;descrizioneGruppo/&gt;
+				&lt;quantita/&gt;
+				&lt;notaAIFA/&gt;
+				&lt;posologia/&gt;
+			&lt;/dettaglio&gt;
+		&lt;/dettagli&gt;
+	&lt;/ricetta&gt;
+&lt;/ePrescription&gt;]]]]>><![CDATA[</typ:xml>\r
+      </typ:annullamento>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/annullamentoRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="c8a46de4-da23-4113-bbb7-52e31586b428" isOneWay="false" action="" name="esiti" bindingOperationName="esiti" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ebdc24f4-d77f-4fbf-9431-69ef3feae600" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:8080/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <typ:esiti>\r
+         <typ:xml>?</typ:xml>\r
+      </typ:esiti>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/esitiRequest"/></con:call></con:operation><con:operation id="c7d71e3c-ec76-43bf-b677-4790c8aff668" isOneWay="false" action="" name="interroga" bindingOperationName="interroga" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="96d359c6-fc1b-4c7a-92a1-ff2b2846205b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:8080/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <typ:interroga>\r
+         <typ:xml>?</typ:xml>\r
+      </typ:interroga>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/interrogaRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="e5b67382-3ccb-4a04-aae7-d90980ba451e" isOneWay="false" action="" name="recupero" bindingOperationName="recupero" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d57d0c5e-9e9d-4fd7-b62d-78af086c21b1" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:8080/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <typ:recupero>\r
+         <typ:xml>?</typ:xml>\r
+      </typ:recupero>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/recuperoRequest"/></con:call></con:operation><con:operation id="887b5804-3671-46d0-9cc9-1f6cd7e538ff" isOneWay="false" action="" name="trasmissione" bindingOperationName="trasmissione" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="46275a12-6b9e-4f93-bd04-ee77473cfd98" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://127.0.0.1:8080/axis2/services/ePrescriptionService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://cct.eng.it/piemonte/ePrescription/types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <typ:trasmissione>\r
+         <typ:xml>&lt;ePrescriptions&gt;
+	&lt;ePrescription&gt;
+		&lt;id&gt;123456789_1&lt;/id&gt;
+		&lt;medico&gt;
+			&lt;rapporto&gt;H&lt;/rapporto&gt;
+			&lt;codiceFiscale&gt;PTRLSN51R21L219Y&lt;/codiceFiscale&gt;
+			&lt;regione&gt;010&lt;/regione&gt;
+			&lt;asl&gt;202&lt;/asl&gt;
+			&lt;struttura&gt;202&lt;/struttura&gt;
+			&lt;cognome&gt;COGNMED&lt;/cognome&gt;
+			&lt;nome&gt;NOMEMED&lt;/nome&gt;
+			&lt;codiceRegionale&gt;CODREGMEDICO&lt;/codiceRegionale&gt;
+			&lt;codiceSpecializzazione&gt;H&lt;/codiceSpecializzazione&gt;
+			&lt;indirizzo&gt;fraz. Santa Lucia 22, 83010 Tufo(AV)&lt;/indirizzo&gt;
+		&lt;/medico&gt;
+		&lt;paziente&gt;
+			&lt;id&gt;PZ_ID&lt;/id&gt;
+			&lt;!-- dataScadenzaTS&gt;20151231235959&lt;/dataScadenzaTS --&gt;
+			&lt;codiceEsenzione&gt;E01&lt;/codiceEsenzione&gt;
+			&lt;!-- fasciaReddito&gt;FASCIA_REDDITO&lt;/fasciaReddito --&gt;
+			&lt;!-- reddito&gt;10000&lt;/reddito --&gt;
+			&lt;codiceFiscale&gt;SHNKSH84A27Z100H&lt;/codiceFiscale&gt;
+			&lt;regioneResidenza&gt;010&lt;/regioneResidenza&gt;
+			&lt;aslResidenza&gt;010201&lt;/aslResidenza&gt;
+			&lt;provinciaResidenza&gt;TO&lt;/provinciaResidenza&gt;
+			&lt;regioneAssistenza&gt;010&lt;/regioneAssistenza&gt;
+			&lt;aslAssistenza&gt;201&lt;/aslAssistenza&gt;
+			&lt;indirizzoDomicilio&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoDomicilio&gt;
+			&lt;indirizzoResidenza&gt;Corso Svizzera 164, 10149 TORINO (TO)&lt;/indirizzoResidenza&gt;
+			&lt;cognome&gt;COGNPAZ&lt;/cognome&gt;
+			&lt;nome&gt;NOMEPAZ&lt;/nome&gt;
+			&lt;sesso&gt;M&lt;/sesso&gt;
+			&lt;dataNascita&gt;19800909&lt;/dataNascita&gt;
+			&lt;comuneNascita&gt;TORINO&lt;/comuneNascita&gt;
+			&lt;cittadinanza&gt;100&lt;/cittadinanza&gt;
+			&lt;!-- numeroSASN&gt;NUMTESSSASN&lt;/numeroSASN --&gt;
+			&lt;!-- societaSASN&gt;SOCASSSASN&lt;/societaSASN --&gt;
+			&lt;telefono&gt;3938823341&lt;/telefono&gt;
+			&lt;email&gt;vincenzo.campanile@eng.it&lt;/email&gt;
+			&lt;!-- istituzioneEstero&gt;ISTITUZEST&lt;/istituzioneEstero --&gt;
+			&lt;!-- statoEstero&gt;STATOESTERO&lt;/statoEstero --&gt;
+			&lt;!-- identificazioneEstero&gt;NUMIDTESSTEAM&lt;/identificazioneEstero --&gt;
+			&lt;!-- tesseraEstero&gt;TESSTEAM&lt;/tesseraEstero --&gt;
+			&lt;consenso&gt;SI&lt;/consenso&gt;
+		&lt;/paziente&gt;
+		&lt;ricetta&gt;
+			&lt;dataCompilazione&gt;26/04/2016&lt;/dataCompilazione&gt;
+			&lt;tipoPrescrizione&gt;P&lt;/tipoPrescrizione&gt;
+			&lt;interna&gt;N&lt;/interna&gt;
+			&lt;!-- tipoRicetta&gt;UE&lt;/tipoRicetta--&gt;
+			&lt;tipoVisita&gt;A&lt;/tipoVisita&gt;
+			&lt;indicazione&gt;S&lt;/indicazione&gt;
+			&lt;priorita&gt;P&lt;/priorita&gt;
+			&lt;codiceDiagnosi&gt;346.90&lt;/codiceDiagnosi&gt;
+			&lt;quesito&gt;DESCDIAGNOSI&lt;/quesito&gt;
+			&lt;propostaTerapeutica&gt;PROPOSTATERAPEUTICA&lt;/propostaTerapeutica&gt;
+			&lt;quantita&gt;1&lt;/quantita&gt;
+			&lt;dettagli&gt;
+				&lt;dettaglio&gt;
+					&lt;progressivo&gt;1&lt;/progressivo&gt;
+					&lt;codice&gt;89.7&lt;/codice&gt;
+					&lt;codiceCatalogoRegionale&gt;897.01&lt;/codiceCatalogoRegionale&gt;
+					&lt;codiceCatalogoAziendale&gt;897.01&lt;/codiceCatalogoAziendale&gt;
+					&lt;branca&gt;001&lt;/branca&gt;
+					&lt;descrizione&gt;prima visita cardiologica&lt;/descrizione&gt;
+					&lt;!-- testoLibero&gt;1&lt;/testoLibero --&gt;
+					&lt;!-- descrizioneTestoLibero&gt;TESTO_LIBERO_DESCRIZIONE_PRESTAZIONE1&lt;/descrizioneTestoLibero --&gt;
+					&lt;quantita&gt;1&lt;/quantita&gt;
+				&lt;/dettaglio&gt;
+			&lt;/dettagli&gt;
+		&lt;/ricetta&gt;
+	&lt;/ePrescription&gt;
+&lt;/ePrescriptions&gt;</typ:xml>\r
+      </typ:trasmissione>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://cct.eng.it/piemonte/ePrescription/schemas/ePrescription_port/trasmissioneRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

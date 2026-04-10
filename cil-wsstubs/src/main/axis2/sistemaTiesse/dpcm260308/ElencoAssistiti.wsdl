@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://elencoassistiti.ejb.auxservices.mir.sanita.finanze.it" xmlns:impl="http://elencoassistiti.ejb.auxservices.mir.sanita.finanze.it" xmlns:intf="http://elencoassistiti.ejb.auxservices.mir.sanita.finanze.it" xmlns:tns2="http://elencoassistiti.dto.auxservices.mir.sanita.finanze.it" xmlns:tns3="http://DTO.simossSsa.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsi="http://ws- i.org/profiles/basic/1.1/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<schema targetNamespace="http://elencoassistiti.dto.auxservices.mir.sanita.finanze.it" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns3="http://DTO.simossSsa.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://DTO.simossSsa.sanita.finanze.it"/>
+			<complexType name="ElencoAssistitiDTO">
+				<complexContent>
+					<extension base="tns3:BustaTS">
+						<sequence>
+							<element name="assistito" nillable="true" type="tns2:ElencoAssistitiRecord"/>
+							<element name="arrayRecordAssistitiOut" nillable="true" type="tns2:ArrayOfElencoAssistitiRecord"/>
+							<element name="listaMessaggi" nillable="true" type="tns2:ArrayOf_tns3_nillable_MessageObj"/>
+							<element name="isOperazioneValida" nillable="true" type="xsd:boolean"/>
+							<element name="operazione" nillable="true" type="xsd:string"/>
+							<element name="codAslMedIn" nillable="true" type="xsd:string"/>
+							<element name="codRegMedIn" nillable="true" type="xsd:string"/>
+							<element name="pinCodeIn" nillable="true" type="xsd:string"/>
+							<element name="codFiscMed" nillable="true" type="xsd:string"/>
+						</sequence>
+					</extension>
+				</complexContent>
+			</complexType>
+			<complexType name="ElencoAssistitiRecord">
+				<sequence>
+					<element name="codFiscAss" nillable="true" type="xsd:string"/>
+					<element name="cognome" nillable="true" type="xsd:string"/>
+					<element name="nome" nillable="true" type="xsd:string"/>
+					<element name="codAsl" nillable="true" type="xsd:string"/>
+					<element name="codAslResASL" nillable="true" type="xsd:string"/>
+					<element name="codAslResAT" nillable="true" type="xsd:string"/>
+					<element name="codReg" nillable="true" type="xsd:string"/>
+					<element name="codRegResASL" nillable="true" type="xsd:string"/>
+					<element name="codRegResAT" nillable="true" type="xsd:string"/>
+					<element name="dataInizioAssistenza" nillable="true" type="xsd:string"/>
+					<element name="dataFineAssistenza" nillable="true" type="xsd:string"/>
+					<element name="dataFineAssistenzaSSN" nillable="true" type="xsd:string"/>
+				</sequence>
+			</complexType>
+			<complexType name="ArrayOfElencoAssistitiRecord">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0" name="ElencoAssistitiRecord" nillable="true" type="tns2:ElencoAssistitiRecord"/>
+				</sequence>
+			</complexType>
+			<complexType name="ArrayOf_tns3_nillable_MessageObj">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0" name="MessageObj" nillable="true" type="tns3:MessageObj"/>
+				</sequence>
+			</complexType>
+		</schema>
+		<schema targetNamespace="http://DTO.simossSsa.sanita.finanze.it" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<complexType name="BustaTS">
+				<sequence>
+					<element name="pwd" nillable="true" type="xsd:string"/>
+					<element name="username" nillable="true" type="xsd:string"/>
+					<element name="codiceAslUtente" nillable="true" type="xsd:string"/>
+					<element name="codiceRegioneUtente" nillable="true" type="xsd:string"/>
+					<element name="idUtenteRichiedente" nillable="true" type="xsd:string"/>
+				</sequence>
+			</complexType>
+			<complexType name="MessageObj">
+				<sequence>
+					<element name="riferimento" nillable="true" type="xsd:string"/>
+					<element name="codiceMessaggio" nillable="true" type="xsd:string"/>
+					<element name="descrizioneMessaggio" nillable="true" type="xsd:string"/>
+				</sequence>
+			</complexType>
+		</schema>
+		<schema targetNamespace="http://elencoassistiti.ejb.auxservices.mir.sanita.finanze.it" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns2="http://elencoassistiti.dto.auxservices.mir.sanita.finanze.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://elencoassistiti.dto.auxservices.mir.sanita.finanze.it"/>
+			<element name="visualizzaElencoAssistitiResponse">
+				<complexType>
+					<sequence>
+						<element name="visualizzaElencoAssistitiReturn" nillable="true" type="tns2:ElencoAssistitiDTO"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element name="visualizzaElencoAssistiti">
+				<complexType>
+					<sequence>
+						<element name="elencoAssistitiDTO" nillable="true" type="tns2:ElencoAssistitiDTO"/>
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="visualizzaElencoAssistitiRequest">
+		<wsdl:part element="intf:visualizzaElencoAssistiti" name="parameters"/>
+	</wsdl:message>
+	<wsdl:message name="visualizzaElencoAssistitiResponse">
+		<wsdl:part element="intf:visualizzaElencoAssistitiResponse" name="parameters"/>
+	</wsdl:message>
+	<wsdl:portType name="ElencoAssistiti">
+		<wsdl:operation name="visualizzaElencoAssistiti">
+			<wsdl:input message="intf:visualizzaElencoAssistitiRequest" name="visualizzaElencoAssistitiRequest"/>
+			<wsdl:output message="intf:visualizzaElencoAssistitiResponse" name="visualizzaElencoAssistitiResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ElencoAssistitiSoapBinding" type="intf:ElencoAssistiti">
+		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="visualizzaElencoAssistiti">
+			<wsdlsoap:operation soapAction="visualizzaElencoAssistiti"/>
+			<wsdl:input name="visualizzaElencoAssistitiRequest">
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="visualizzaElencoAssistitiResponse">
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ElencoAssistitiService">
+		<wsdl:port binding="intf:ElencoAssistitiSoapBinding" name="ElencoAssistiti">
+			<wsdlsoap:address location="https://mirsactest.sanita.finanze.it/MediciInReteAuxServicesWeb/services/ElencoAs sistiti"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

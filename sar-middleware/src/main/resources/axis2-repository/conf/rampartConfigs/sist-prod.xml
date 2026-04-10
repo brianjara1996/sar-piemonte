@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ramp:RampartConfig xmlns:ramp="http://ws.apache.org/rampart/policy">
+	<ramp:user>sgpsist.ausl.le.it</ramp:user>
+	<ramp:userCertAlias>sgpsist.ausl.le.it</ramp:userCertAlias>
+	<ramp:passwordCallbackClass>it.eng.cct.dem.sar.generic.wsclient.commons.axis2.PWCBHandler</ramp:passwordCallbackClass>
+	<ramp:signatureCrypto>
+		<ramp:crypto provider="org.apache.ws.security.components.crypto.Merlin">
+			<ramp:property name="org.apache.ws.security.crypto.merlin.keystore.type">jks</ramp:property>
+			<ramp:property name="org.apache.ws.security.crypto.merlin.file">keystores/asl_lecce_20140708/sgpsist.ausl.le.it.jks</ramp:property>
+			<ramp:property name="org.apache.ws.security.crypto.merlin.keystore.password">changeit</ramp:property>
+		</ramp:crypto>
+	</ramp:signatureCrypto>
+</ramp:RampartConfig>

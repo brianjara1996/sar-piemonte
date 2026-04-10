@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceGroup>
+	<service name="demAnnullaPrescritto">
+		<parameter name="ServiceClass" locked="false">it.eng.cct.dem.sar.piemonte.services.echo.DemAnnullaPrescritto</parameter>
+		<operation name="annullaPrescritto" mep="http://www.w3.org/2004/08/wsdl/in-out">
+			<actionMapping>http://annullaprescritto.wsdl.dem.sanita.finanze.it/AnnullaPrescritto</actionMapping>
+			<messageReceiver class="it.finanze.sanita.dem.dm.wsdl.annullaprescritto.service.DemAnnullaPrescrittoMessageReceiverInOut" />
+		</operation>
+	</service>
+	<service name="demInvioPrescritto">
+		<parameter name="ServiceClass" locked="false">it.eng.cct.dem.sar.piemonte.services.echo.DemInvioPrescritto</parameter>
+		<operation name="invioPrescritto" mep="http://www.w3.org/2004/08/wsdl/in-out">
+			<actionMapping>http://invioprescritto.wsdl.dem.sanita.finanze.it/InvioPrescritto</actionMapping>
+			<messageReceiver class="it.finanze.sanita.dem.dm.wsdl.invioprescritto.service.DemInvioPrescrittoMessageReceiverInOut" />
+		</operation>
+	</service>
+	<service name="demVisualizzaPrescritto">
+		<parameter name="ServiceClass" locked="false">it.eng.cct.dem.sar.piemonte.services.echo.DemVisualizzaPrescritto</parameter>
+		<operation name="visualizzaPrescritto" mep="http://www.w3.org/2004/08/wsdl/in-out">
+			<actionMapping>http://visualizzaprescritto.wsdl.dem.sanita.finanze.it/VisualizzaPrescritto</actionMapping>
+			<messageReceiver class="it.finanze.sanita.dem.dm.wsdl.visualizzaprescritto.service.DemVisualizzaPrescrittoMessageReceiverInOut" />
+		</operation>
+	</service>
+	<service name="RichiestaNreImplService" scope="application">
+		<parameter name="ServiceClass" locked="false">it.eng.cct.dem.sar.piemonte.services.echo.RichiestaNreImplService</parameter>
+		<operation name="richiestaNre" mep="http://www.w3.org/2004/08/wsdl/in-out">
+			<actionMapping>http://richiestanre.wsdl.dem.sanita.finanze.it/richiestaNre</actionMapping>
+			<messageReceiver class="it.csi.rel.relbl.interfacews.frontend.other.nre.RichiestaNreImplServiceMessageReceiverInOut" />
+		</operation>
+	</service>
+</serviceGroup>
+

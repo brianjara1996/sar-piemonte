@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:attachment.ws.it" xmlns:types="urn:attachment.ws.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="invioTelematicoSanitaService" targetNamespace="urn:attachment.ws.it">
+	<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Servizio di invio telematico forniture sanita' MIR versione: 1.2 - 27/10/2009</wsdl:documentation>
+	<wsdl:types>
+		<xsd:schema targetNamespace="urn:attachment.ws.it" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:simpleType name="TipoNomeFileAllegato">
+				<xsd:restriction base="xsd:string">
+					<xsd:pattern value="(\p{IsBasicLatin}{6,60})"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="TipoTelematico">
+				<xsd:restriction base="xsd:string">
+					<xsd:pattern value="(\p{IsBasicLatin}{1,255})"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:complexType name="ParametriInvio">
+				<xsd:sequence>
+					<xsd:element name="nomeFileAllegato" type="tns:TipoNomeFileAllegato"/>
+					<xsd:element minOccurs="0" name="telematico1" type="tns:TipoTelematico"/>
+					<xsd:element minOccurs="0" name="telematico2" type="tns:TipoTelematico"/>
+					<xsd:element minOccurs="0" name="telematico3" type="tns:TipoTelematico"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="inputBean" type="types:ParametriInvio"/>
+			<xsd:complexType name="RicevutaSAC">
+				<xsd:sequence>
+					<xsd:element name="protocolloSAC" type="xsd:string"/>
+					<xsd:element name="dataAccoglienza" type="xsd:string"/>
+					<xsd:element name="nomeFileAllegato" type="xsd:string"/>
+					<xsd:element name="dimensioneFileAllegato" type="xsd:string"/>
+					<xsd:element name="codiceEsito" type="xsd:string"/>
+					<xsd:element name="descrizioneEsito" type="xsd:string"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="ricevuta" type="tns:RicevutaSAC"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="responseMsg">
+		<wsdl:part element="tns:ricevuta" name="rispostaBean"/>
+	</wsdl:message>
+	<wsdl:message name="attachmentMsg">
+		<wsdl:part element="tns:inputBean" name="body"/>
+		<wsdl:part name="zipAttachment" type="xsd:hexBinary"/>
+	</wsdl:message>
+	<wsdl:portType name="invioTelematicoSanita">
+		<wsdl:operation name="inviaFileSanita">
+			<wsdl:input message="tns:attachmentMsg"/>
+			<wsdl:output message="tns:responseMsg"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="invioTelematicoSanitaBinding" type="tns:invioTelematicoSanita">
+		<soapbind:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="inviaFileSanita">
+			<soapbind:operation soapAction="invio"/>
+			<wsdl:input>
+				<mime:multipartRelated>
+					<mime:part>
+						<soapbind:body parts="body" use="literal"/>
+					</mime:part>
+					<mime:part>
+						<mime:content part="zipAttachment" type="application/zip"/>
+					</mime:part>
+				</mime:multipartRelated>
+			</wsdl:input>
+			<wsdl:output>
+				<soapbind:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="invioTelematicoSanitaService">
+		<wsdl:port binding="tns:invioTelematicoSanitaBinding" name="invioTelematicoSanita">
+			<soapbind:address location="https://mirsac.sanita.finanze.it/invioTelematicoSwaWeb/services/invioTelematicoSanita"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xsi:schemaLocation="http://www.springframework.org/schema/beans spring-beans-2.5.xsd">
+	<import resource="./DataSource.xml"/>
+	<import resource="./Hibernate.xml"/>
+	<bean id="applicationContext" class="org.apache.axis2.extensions.spring.receivers.ApplicationContextHolder" />
+	
+	<bean id="nreRequestService" class="it.eng.cct.dem.sar.mw.piemonte.services.ServizioRichiestaNre">
+		<property name="services" ref="serviceRegistry" />
+		<property name="spLottiNreService" ref="spLottiNreService"/>
+		<property name="spNreService" ref="spNreService"/>
+	</bean>
+	
+	<bean id="annullaErogatoService" class="it.eng.cct.dem.sar.mw.piemonte.services.ServizioAnnullaErogato">
+		<constructor-arg ref="serviceContext" />
+		<property name="siKeyradService" ref="siKeyradService"/>
+		<property name="siKeyradDatiService" ref="siKeyradDatiService"/>
+	</bean>
+	
+	<bean id="sospendiErogatoService" class="it.eng.cct.dem.sar.mw.piemonte.services.ServizioSospendiErogato">
+		<constructor-arg ref="serviceContext" />
+		<property name="siKeyradService" ref="siKeyradService"/>
+		<property name="siKeyradDatiService" ref="siKeyradDatiService"/>
+	</bean>
+	
+	<bean id="invioErogatoService" class="it.eng.cct.dem.sar.mw.piemonte.services.ServizioInvioErogato">
+		<constructor-arg ref="serviceContext" />
+		<property name="siKeyradService" ref="siKeyradService"/>
+		<property name="siKeyradDatiService" ref="siKeyradDatiService"/>
+	</bean>
+	
+	<bean id="visualizzaErogatoService" class="it.eng.cct.dem.sar.mw.piemonte.services.ServizioVisualizzaErogato">
+		<constructor-arg ref="serviceContext" />
+		<property name="siKeyradService" ref="siKeyradService"/>
+		<property name="siKeyradDatiService" ref="siKeyradDatiService"/>
+	</bean>
+
+	<bean id="ePrescriptionService" class="it.eng.cct.dem.sar.mw.piemonte.services.ServizioEPrescriptionImpl">
+		<property name="services" ref="serviceRegistry" />
+	</bean>
+
+	<bean id="serviceRegistry" class="it.eng.cct.dem.sar.mw.services.ServiceRegistry" scope="prototype" depends-on="securityInit">
+		<constructor-arg ref="serviceContext" />
+		<constructor-arg>
+			<map>
+				<entry key="demAnnullaPrescritto" value="it.finanze.sanita.dem.dm.wsdl.annullaprescritto.service.DemAnnullaPrescrittoStub" />
+				<entry key="demInvioPrescritto" value="it.finanze.sanita.dem.dm.wsdl.invioprescritto.service.DemInvioPrescrittoStub" />
+				<entry key="demVisualizzaPrescritto" value="it.finanze.sanita.dem.dm.wsdl.visualizzaprescritto.service.DemVisualizzaPrescrittoStub" />
+				<entry key="demInterrogaNreUtilizzati" value="it.finanze.sanita.dem.dm.wsdl.interroganreutilizzati.service.DemInterrogaNreUtilizzatiStub" />
+				<entry key="richiestaNreImplService" value="it.csi.rel.relbl.interfacews.frontend.other.nre.RichiestaNreImplServiceStub" />
+				<entry key="invioTelematicoSanitaService" value="it.eng.cct.dem.sar.mw.piemonte.services.stubs.InvioTelematicoSanitaServiceStub" />
+				<entry key="ElencoSinteticoStatoInviiService" value="it.finanze.sanita.dem.dpcm.wsdl.elencoSinteticoStatoInvii.service.ElencoSinteticoStatoInviiServiceStub" />
+				<entry key="ElencoAnaliticoEsitoRicetteService" value="it.finanze.sanita.dem.dpcm.wsdl.elencoAnaliticoEsitoRicette.service.ElencoAnaliticoEsitoRicetteServiceStub" />
+				<entry key="nreRichiestaLottoPort" value="it.finanze.sanita.dem.dpcm.wsdl.richiestaLottiNre.service.NreRichiestaLottoPortStub" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="serviceContext" class="it.eng.cct.dem.sar.generic.wsclient.commons.context.impl.SimpleServiceContext" depends-on="moduleConfig" />
+
+	<bean id="moduleConfig" class="it.eng.cct.dem.sar.generic.wsclient.commons.utils.ModuleConfig" factory-method="getInstance">
+		<property name="properties" value="webServiceClient.properties" />
+	</bean>
+
+	<bean id="securityInit" class="org.apache.xml.security.Init" init-method="init" />
+	
+	<bean id="applicationContextProvider" class="it.eng.cct.dem.sar.mw.spring.ApplicationContextProvider"/>
+
+</beans>
