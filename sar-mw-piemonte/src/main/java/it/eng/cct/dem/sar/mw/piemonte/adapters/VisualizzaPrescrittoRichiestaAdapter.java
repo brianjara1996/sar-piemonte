@@ -39,15 +39,18 @@ public class VisualizzaPrescrittoRichiestaAdapter extends SistemaTiesseAdapter i
 		serviceInput.setAction(new Action(ModuleConfig.getProperty(DemVisualizzaPrescrittoConstants.CONFIG_CIL_DEMVISUALIZZAPRESCRITTO_SERVICE_NAME), ModuleConfig.getProperty(DemVisualizzaPrescrittoConstants.CONFIG_CIL_DEMVISUALIZZAPRESCRITTO_OPERATION_NAME), ModuleConfig.getProperty(DemVisualizzaPrescrittoConstants.CONFIG_CIL_DEMVISUALIZZAPRESCRITTO_SERVICE_ENDPOINT)));
 		serviceInput.setSecurityConfigId(ModuleConfig.getProperty(DemVisualizzaPrescrittoConstants.CONFIG_CIL_DEMVISUALIZZAPRESCRITTO_SECCONFIGID));
 		serviceInput.setRequestMessage(this.toInputMessage(this.epRequest));
-		serviceInput.setLogin(new Login(ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_USERNAME), ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD)));
-		serviceInput.setCustomProps(ModuleConfig.getPropertiesByPrefix(DemVisualizzaPrescrittoConstants.CONFIG_CIL_DEMVISUALIZZAPRESCRITTO_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true));
+		if (!this.isOAuth2Request(this.epRequest)) {
+			serviceInput.setLogin(new Login(ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_USERNAME), ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD)));
+		}
+		serviceInput.setCustomProps(this.enrichCustomPropsWithTransportAuth(ModuleConfig.getPropertiesByPrefix(DemVisualizzaPrescrittoConstants.CONFIG_CIL_DEMVISUALIZZAPRESCRITTO_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true), this.epRequest));
 		return serviceInput;
 	}
 
 	private String toInputMessage(TEPrescription request) throws MwReqAdapterException {
 		VisualizzaPrescrittoRichiestaDocument visualizzaPrescrittoRichiestaDocument = VisualizzaPrescrittoRichiestaDocument.Factory.newInstance();
 		VisualizzaPrescrittoRichiesta visualizzaPrescrittoRichiesta = visualizzaPrescrittoRichiestaDocument.addNewVisualizzaPrescrittoRichiesta();
-		this.setMandatory(visualizzaPrescrittoRichiesta, "pinCode", ModuleConfig.getProperty(DemVisualizzaPrescrittoConstants.CONFIG_CIL_PINCODE));		
+		this.propagateSessionToken(visualizzaPrescrittoRichiesta, request);
+		this.setMandatory(visualizzaPrescrittoRichiesta, "pinCode", this.getPinCodeForRequest(ModuleConfig.getProperty(DemVisualizzaPrescrittoConstants.CONFIG_CIL_PINCODE), request));
 		TMedico medico = request.getMedico();
 		if (medico== null) {
 			throw new MwReqAdapterException("Property medico cannot be null!");

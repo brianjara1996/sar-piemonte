@@ -49,15 +49,18 @@ public class InvioPrescrittoRichiestaAdapter extends SistemaTiesseAdapter implem
 		serviceInput.setAction(new Action(ModuleConfig.getProperty(DemInvioPrescrittoConstants.CONFIG_CIL_DEMINVIOPRESCRITTO_SERVICE_NAME), ModuleConfig.getProperty(DemInvioPrescrittoConstants.CONFIG_CIL_DEMINVIOPRESCRITTO_OPERATION_NAME), ModuleConfig.getProperty(DemInvioPrescrittoConstants.CONFIG_CIL_DEMINVIOPRESCRITTO_SERVICE_ENDPOINT)));
 		serviceInput.setSecurityConfigId(ModuleConfig.getProperty(DemInvioPrescrittoConstants.CONFIG_CIL_DEMINVIOPRESCRITTO_SECCONFIGID));
 		serviceInput.setRequestMessage(this.toInputMessage(request));
-		serviceInput.setLogin(new Login(ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_USERNAME), ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD)));
-		serviceInput.setCustomProps(ModuleConfig.getPropertiesByPrefix(DemInvioPrescrittoConstants.CONFIG_CIL_DEMINVIOPRESCRITTO_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true));
+		if (!this.isOAuth2Request(request)) {
+			serviceInput.setLogin(new Login(ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_USERNAME), ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD)));
+		}
+		serviceInput.setCustomProps(this.enrichCustomPropsWithTransportAuth(ModuleConfig.getPropertiesByPrefix(DemInvioPrescrittoConstants.CONFIG_CIL_DEMINVIOPRESCRITTO_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true), request));
 		return serviceInput;
 	}
 
 	private String toInputMessage(TEPrescription ePrescription) throws MwReqAdapterException {
 		InvioPrescrittoRichiestaDocument invioPrescrittoRichiestaDocument = InvioPrescrittoRichiestaDocument.Factory.newInstance();
 		InvioPrescrittoRichiesta invioPrescrittoRichiesta = invioPrescrittoRichiestaDocument.addNewInvioPrescrittoRichiesta();
-		this.setMandatory(invioPrescrittoRichiesta, "pinCode", ModuleConfig.getProperty(DemInvioPrescrittoConstants.CONFIG_CIL_PINCODE));
+		this.propagateSessionToken(invioPrescrittoRichiesta, ePrescription);
+		this.setMandatory(invioPrescrittoRichiesta, "pinCode", this.getPinCodeForRequest(ModuleConfig.getProperty(DemInvioPrescrittoConstants.CONFIG_CIL_PINCODE), ePrescription));
 		TMedico medico = ePrescription.getMedico();
 		String cfMedico1 = medico.getCodiceFiscale();
 		this.setMandatory(invioPrescrittoRichiesta, "cfMedico1", cfMedico1);
