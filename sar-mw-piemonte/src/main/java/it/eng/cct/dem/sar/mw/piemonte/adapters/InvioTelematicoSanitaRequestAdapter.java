@@ -85,16 +85,19 @@ public class InvioTelematicoSanitaRequestAdapter extends SistemaTiesseAdapter im
 		serviceInput.setAction(new Action(ModuleConfig.getProperty(InvioTelematicoSanitaConstants.CONFIG_CIL_INVIOTELEMATICOSANITA_SERVICE_NAME), ModuleConfig.getProperty(InvioTelematicoSanitaConstants.CONFIG_CIL_INVIOTELEMATICOSANITA_OPERATION_NAME), ModuleConfig.getProperty(InvioTelematicoSanitaConstants.CONFIG_CIL_INVIOTELEMATICOSANITA_SERVICE_ENDPOINT)));
 		serviceInput.setSecurityConfigId(ModuleConfig.getProperty(InvioTelematicoSanitaConstants.CONFIG_CIL_INVIOTELEMATICOSANITA_SECCONFIGID));
 		serviceInput.setRequestMessage(this.buildRequestMessage(this.ePrescriptions));
-		serviceInput.setLogin(new Login(ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_USERNAME), ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD)));
+		if (!this.isOAuth2Request(this.ePrescriptions)) {
+			serviceInput.setLogin(new Login(ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_USERNAME), ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD)));
+		}
 		serviceInput.setAttachment(this.buildAttachement(this.ePrescriptions));
 		serviceInput.setUuid(StringUtils.left(this.nomeFileAllegato + ".zip", 17));
-		serviceInput.setCustomProps(ModuleConfig.getPropertiesByPrefix(InvioTelematicoSanitaConstants.CONFIG_CIL_INVIOTELEMATICOSANITA_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true));
+		serviceInput.setCustomProps(this.enrichCustomPropsWithTransportAuth(ModuleConfig.getPropertiesByPrefix(InvioTelematicoSanitaConstants.CONFIG_CIL_INVIOTELEMATICOSANITA_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true), this.ePrescriptions));
 		return serviceInput;
 	}
 
 	private String buildRequestMessage(TEPrescriptions ePrescriptions) throws MwReqAdapterException {
 		InputBeanDocument inputBeanDocument = InputBeanDocument.Factory.newInstance();
 		ParametriInvio inputBean = inputBeanDocument.addNewInputBean();
+		this.propagateSessionToken(inputBean, ePrescriptions);
 		inputBean.setNomeFileAllegato(this.nomeFileAllegato + ".zip");
 		inputBean.setTelematico1("");
 		inputBean.setTelematico2("");
@@ -106,7 +109,7 @@ public class InvioTelematicoSanitaRequestAdapter extends SistemaTiesseAdapter im
 		RicetteMIRDocument ricetteMIRDocument = RicetteMIRDocument.Factory.newInstance();
 		RicetteMIR ricetteMIR = ricetteMIRDocument.addNewRicetteMIR();
 		Testata testata = ricetteMIR.addNewTestata();
-		testata.setPinCode(ModuleConfig.getProperty(DemInvioPrescrittoConstants.CONFIG_CIL_PINCODE));
+		testata.setPinCode(this.getPinCodeForRequest(ModuleConfig.getProperty(DemInvioPrescrittoConstants.CONFIG_CIL_PINCODE), ePrescriptions));
 
 		TEPrescription[] ePrescriptionArray = ePrescriptions.getEPrescriptionArray();
 		RicettaI[] ricettaIArray = new RicettaI[ePrescriptionArray.length];

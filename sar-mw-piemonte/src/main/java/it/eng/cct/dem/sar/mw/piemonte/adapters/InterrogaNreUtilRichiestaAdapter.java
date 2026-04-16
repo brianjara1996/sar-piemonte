@@ -39,15 +39,18 @@ public class InterrogaNreUtilRichiestaAdapter extends SistemaTiesseAdapter imple
 		serviceInput.setAction(new Action(ModuleConfig.getProperty(DemInterrogaNreUtilizzatiConstants.CONFIG_CIL_DEMINTERROGANREUTILIZZATI_SERVICE_NAME), ModuleConfig.getProperty(DemInterrogaNreUtilizzatiConstants.CONFIG_CIL_DEMINTERROGANREUTILIZZATI_OPERATION_NAME), ModuleConfig.getProperty(DemInterrogaNreUtilizzatiConstants.CONFIG_CIL_DEMINTERROGANREUTILIZZATI_SERVICE_ENDPOINT)));
 		serviceInput.setSecurityConfigId(ModuleConfig.getProperty(DemInterrogaNreUtilizzatiConstants.CONFIG_CIL_DEMINTERROGANREUTILIZZATI_SECCONFIGID));
 		serviceInput.setRequestMessage(this.toInputMessage(epRequest));
-		serviceInput.setLogin(new Login(ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_USERNAME), ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD)));
-		serviceInput.setCustomProps(ModuleConfig.getPropertiesByPrefix(DemInterrogaNreUtilizzatiConstants.CONFIG_CIL_DEMINTERROGANREUTILIZZATI_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true));
+		if (!this.isOAuth2Request(epRequest)) {
+			serviceInput.setLogin(new Login(ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_USERNAME), ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD)));
+		}
+		serviceInput.setCustomProps(this.enrichCustomPropsWithTransportAuth(ModuleConfig.getPropertiesByPrefix(DemInterrogaNreUtilizzatiConstants.CONFIG_CIL_DEMINTERROGANREUTILIZZATI_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true), epRequest));
 		return serviceInput;
 	}
 
 	private String toInputMessage(TEPrescriptions request) throws MwReqAdapterException {
 		InterrogaNreUtilRichiestaDocument interrogaNreUtilDocument = InterrogaNreUtilRichiestaDocument.Factory.newInstance();
 		InterrogaNreUtilRichiesta interrogaNreUtil = interrogaNreUtilDocument.addNewInterrogaNreUtilRichiesta();
-		
+		this.propagateSessionToken(interrogaNreUtil, request);
+
 		this.setMandatory(interrogaNreUtil, "cfMedico", request.getCfMedico());
 		this.setDateIfNotEmpty(interrogaNreUtil, "dataCompilazioneRicettaAl", request.getDataCompilazioneRicettaAl());
 		this.setDateIfNotEmpty(interrogaNreUtil, "dataCompilazioneRicettaDal", request.getDataCompilazioneRicettaDal());

@@ -90,14 +90,17 @@ public class VisualizzaPrescrittoRichiestaAdapter extends SistemaTiesseAdapter i
 			httpBasicPassword = ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD);
 		}
 		
-		serviceInput.setLogin(new Login(httpBasicUsername, httpBasicPassword));
-		serviceInput.setCustomProps(ModuleConfig.getPropertiesByPrefix(DemVisualizzaPrescrittoConstants.CONFIG_CIL_DEMVISUALIZZAPRESCRITTO_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true));
+		if (!this.isOAuth2Request(this.epRequest)) {
+			serviceInput.setLogin(new Login(httpBasicUsername, httpBasicPassword));
+		}
+		serviceInput.setCustomProps(this.enrichCustomPropsWithTransportAuth(ModuleConfig.getPropertiesByPrefix(DemVisualizzaPrescrittoConstants.CONFIG_CIL_DEMVISUALIZZAPRESCRITTO_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true), this.epRequest));
 		return serviceInput;
 	}
 
 	private String toInputMessage(TEPrescription request) throws MwReqAdapterException, DatabaseException {
 		VisualizzaPrescrittoRichiestaDocument visualizzaPrescrittoRichiestaDocument = VisualizzaPrescrittoRichiestaDocument.Factory.newInstance();
 		VisualizzaPrescrittoRichiesta visualizzaPrescrittoRichiesta = visualizzaPrescrittoRichiestaDocument.addNewVisualizzaPrescrittoRichiesta();
+		this.propagateSessionToken(visualizzaPrescrittoRichiesta, request);
 		
 		
 		String pinCode = "";
@@ -117,7 +120,7 @@ public class VisualizzaPrescrittoRichiestaAdapter extends SistemaTiesseAdapter i
 				throw new MwReqAdapterException(e);
 			}
 		}
-		this.setMandatory(visualizzaPrescrittoRichiesta, "pinCode", pinCode);
+		this.setMandatory(visualizzaPrescrittoRichiesta, "pinCode", this.getPinCodeForRequest(pinCode, request));
 		
 		
 		TMedico medico = request.getMedico();

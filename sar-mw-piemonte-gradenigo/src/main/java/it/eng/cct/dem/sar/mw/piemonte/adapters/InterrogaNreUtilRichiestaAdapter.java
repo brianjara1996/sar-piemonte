@@ -81,15 +81,18 @@ public class InterrogaNreUtilRichiestaAdapter extends SistemaTiesseAdapter imple
 			httpBasicPassword = ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD);
 		}
 		
-		serviceInput.setLogin(new Login(httpBasicUsername, httpBasicPassword));
+		if (!this.isOAuth2Request(epRequest)) {
+			serviceInput.setLogin(new Login(httpBasicUsername, httpBasicPassword));
+		}
 		
-		serviceInput.setCustomProps(ModuleConfig.getPropertiesByPrefix(DemInterrogaNreUtilizzatiConstants.CONFIG_CIL_DEMINTERROGANREUTILIZZATI_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true));
+		serviceInput.setCustomProps(this.enrichCustomPropsWithTransportAuth(ModuleConfig.getPropertiesByPrefix(DemInterrogaNreUtilizzatiConstants.CONFIG_CIL_DEMINTERROGANREUTILIZZATI_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true), epRequest));
 		return serviceInput;
 	}
 
 	private String toInputMessage(TEPrescriptions request) throws MwReqAdapterException {
 		InterrogaNreUtilRichiestaDocument interrogaNreUtilDocument = InterrogaNreUtilRichiestaDocument.Factory.newInstance();
 		InterrogaNreUtilRichiesta interrogaNreUtil = interrogaNreUtilDocument.addNewInterrogaNreUtilRichiesta();
+		this.propagateSessionToken(interrogaNreUtil, request);
 		
 		this.setMandatory(interrogaNreUtil, "cfMedico", request.getCfMedico());
 		this.setDateIfNotEmpty(interrogaNreUtil, "dataCompilazioneRicettaAl", request.getDataCompilazioneRicettaAl());

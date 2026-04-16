@@ -102,14 +102,17 @@ public class InvioPrescrittoRichiestaAdapter extends SistemaTiesseAdapter implem
 			httpBasicPassword = ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD);
 		}
 		
-		serviceInput.setLogin(new Login(httpBasicUsername, httpBasicPassword));
-		serviceInput.setCustomProps(ModuleConfig.getPropertiesByPrefix(DemInvioPrescrittoConstants.CONFIG_CIL_DEMINVIOPRESCRITTO_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true));
+		if (!this.isOAuth2Request(request)) {
+			serviceInput.setLogin(new Login(httpBasicUsername, httpBasicPassword));
+		}
+		serviceInput.setCustomProps(this.enrichCustomPropsWithTransportAuth(ModuleConfig.getPropertiesByPrefix(DemInvioPrescrittoConstants.CONFIG_CIL_DEMINVIOPRESCRITTO_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true), request));
 		return serviceInput;
 	}
 
 	private String toInputMessage(TEPrescription ePrescription) throws MwReqAdapterException, DatabaseException {
 		InvioPrescrittoRichiestaDocument invioPrescrittoRichiestaDocument = InvioPrescrittoRichiestaDocument.Factory.newInstance();
 		InvioPrescrittoRichiesta invioPrescrittoRichiesta = invioPrescrittoRichiestaDocument.addNewInvioPrescrittoRichiesta();
+		this.propagateSessionToken(invioPrescrittoRichiesta, ePrescription);
 		
 		String pinCode = "";
 		if(this.sarCredFromDb){
@@ -129,7 +132,7 @@ public class InvioPrescrittoRichiestaAdapter extends SistemaTiesseAdapter implem
 				throw new MwReqAdapterException(e);
 			}
 		}
-		this.setMandatory(invioPrescrittoRichiesta, "pinCode", pinCode);
+		this.setMandatory(invioPrescrittoRichiesta, "pinCode", this.getPinCodeForRequest(pinCode, ePrescription));
 		TMedico medico = ePrescription.getMedico();
 		String cfMedico1 = medico.getCodiceFiscale();
 		this.setMandatory(invioPrescrittoRichiesta, "cfMedico1", cfMedico1);

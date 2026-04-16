@@ -37,16 +37,19 @@ public class ElencoAnaliticoEsitoRicetteRequestAdapter extends SistemaTiesseAdap
 		serviceInput.setAction(new Action(ModuleConfig.getProperty(ElencoAnaliticoEsitoRicetteConstants.CONFIG_CIL_ELENCOANALITICOESITORICETTE_SERVICE_NAME), ModuleConfig.getProperty(ElencoAnaliticoEsitoRicetteConstants.CONFIG_CIL_ELENCOANALITICOESITORICETTE_OPERATION_NAME), ModuleConfig.getProperty(ElencoAnaliticoEsitoRicetteConstants.CONFIG_CIL_ELENCOANALITICOESITORICETTE_SERVICE_ENDPOINT)));
 		serviceInput.setSecurityConfigId(ModuleConfig.getProperty(ElencoAnaliticoEsitoRicetteConstants.CONFIG_CIL_ELENCOANALITICOESITORICETTE_SECCONFIGID));
 		serviceInput.setRequestMessage(this.toInputMessage(epRequest));
-		serviceInput.setLogin(new Login(ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_USERNAME), ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD)));
-		serviceInput.setCustomProps(ModuleConfig.getPropertiesByPrefix(ElencoAnaliticoEsitoRicetteConstants.CONFIG_CIL_ELENCOANALITICOESITORICETTE_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true));
+		if (!this.isOAuth2Request(epRequest)) {
+			serviceInput.setLogin(new Login(ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_USERNAME), ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD)));
+		}
+		serviceInput.setCustomProps(this.enrichCustomPropsWithTransportAuth(ModuleConfig.getPropertiesByPrefix(ElencoAnaliticoEsitoRicetteConstants.CONFIG_CIL_ELENCOANALITICOESITORICETTE_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true), epRequest));
 		return serviceInput;
 	}
 
 	private String toInputMessage(TEPrescriptions request) throws MwReqAdapterException {
 		VisualizzaElencoStatoRicetteDocument visualizzaElencoStatoRicetteDocument = VisualizzaElencoStatoRicetteDocument.Factory.newInstance();
 		VisualizzaElencoStatoRicette visualizzaElencoStatoRicette = visualizzaElencoStatoRicetteDocument.addNewVisualizzaElencoStatoRicette();
+		this.propagateSessionToken(visualizzaElencoStatoRicette, request);
 		ElencoAnaliticoEsitoRicetteDTO elencoAnaliticoEsitoRicetteDTO = visualizzaElencoStatoRicette.addNewElencoAnaliticoEsitoRicetteDTO();
-		this.setMandatory(elencoAnaliticoEsitoRicetteDTO, "pinCodeIn", ModuleConfig.getProperty(ElencoAnaliticoEsitoRicetteConstants.CONFIG_CIL_PINCODE));
+		this.setMandatory(elencoAnaliticoEsitoRicetteDTO, "pinCodeIn", this.getPinCodeForRequest(ModuleConfig.getProperty(ElencoAnaliticoEsitoRicetteConstants.CONFIG_CIL_PINCODE), request));
 		String protocolloSac = request.getProtocolloSAC();
 		if (StringUtils.isNotEmpty(protocolloSac)) {
 			this.setMandatory(elencoAnaliticoEsitoRicetteDTO, "protocolloSac", protocolloSac);

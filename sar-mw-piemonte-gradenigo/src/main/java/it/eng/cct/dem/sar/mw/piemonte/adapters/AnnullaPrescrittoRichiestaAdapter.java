@@ -89,14 +89,17 @@ public class AnnullaPrescrittoRichiestaAdapter extends SistemaTiesseAdapter impl
 			httpBasicPassword = ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD);
 		}
 		
-		serviceInput.setLogin(new Login(httpBasicUsername, httpBasicPassword));
-		serviceInput.setCustomProps(ModuleConfig.getPropertiesByPrefix(DemAnnullaPrescrittoConstants.CONFIG_CIL_DEMANNULLAPRESCRITTO_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true));
+		if (!this.isOAuth2Request(this.epRequest)) {
+			serviceInput.setLogin(new Login(httpBasicUsername, httpBasicPassword));
+		}
+		serviceInput.setCustomProps(this.enrichCustomPropsWithTransportAuth(ModuleConfig.getPropertiesByPrefix(DemAnnullaPrescrittoConstants.CONFIG_CIL_DEMANNULLAPRESCRITTO_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true), this.epRequest));
 		return serviceInput;
 	}
 
 	private String toInputMessage(TEPrescription epRequest) throws MwReqAdapterException, DatabaseException {
 		AnnullaPrescrittoRichiestaDocument annullaPrescrittoRichiestaDocument = AnnullaPrescrittoRichiestaDocument.Factory.newInstance();
 		AnnullaPrescrittoRichiesta annullaPrescrittoRichiesta = annullaPrescrittoRichiestaDocument.addNewAnnullaPrescrittoRichiesta();
+		this.propagateSessionToken(annullaPrescrittoRichiesta, epRequest);
 		String pinCode = "";
 		if(this.sarCredFromDb){
 			IrideSiKeyrad siKeyrad = siKeyradService.getByKrNome(ModuleConfig.getProperty(IrideConstants.SAR_INTEG_PIN));
@@ -114,7 +117,7 @@ public class AnnullaPrescrittoRichiestaAdapter extends SistemaTiesseAdapter impl
 				throw new MwReqAdapterException(e);
 			}
 		}
-		this.setMandatory(annullaPrescrittoRichiesta, "pinCode", pinCode);
+		this.setMandatory(annullaPrescrittoRichiesta, "pinCode", this.getPinCodeForRequest(pinCode, epRequest));
 		TMedico medico = epRequest.getMedico();
 		if (medico== null) {
 			throw new MwReqAdapterException("Property medico cannot be null!");

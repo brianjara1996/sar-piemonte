@@ -38,16 +38,19 @@ public class ElencoSinteticoStatoInviiRequestAdapter extends SistemaTiesseAdapte
 		serviceInput.setAction(new Action(ModuleConfig.getProperty(ElencoSinteticoStatoInviiConstants.CONFIG_CIL_ELENCOSINTETICOSTATOINVII_SERVICE_NAME), ModuleConfig.getProperty(ElencoSinteticoStatoInviiConstants.CONFIG_CIL_ELENCOSINTETICOSTATOINVII_OPERATION_NAME), ModuleConfig.getProperty(ElencoSinteticoStatoInviiConstants.CONFIG_CIL_ELENCOSINTETICOSTATOINVII_SERVICE_ENDPOINT)));
 		serviceInput.setSecurityConfigId(ModuleConfig.getProperty(ElencoSinteticoStatoInviiConstants.CONFIG_CIL_ELENCOSINTETICOSTATOINVII_SECCONFIGID));
 		serviceInput.setRequestMessage(this.toInputMessage(epRequest));
-		serviceInput.setLogin(new Login(ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_USERNAME), ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD)));
-		serviceInput.setCustomProps(ModuleConfig.getPropertiesByPrefix(ElencoSinteticoStatoInviiConstants.CONFIG_CIL_ELENCOSINTETICOSTATOINVII_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true));
+		if (!this.isOAuth2Request(epRequest)) {
+			serviceInput.setLogin(new Login(ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_USERNAME), ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD)));
+		}
+		serviceInput.setCustomProps(this.enrichCustomPropsWithTransportAuth(ModuleConfig.getPropertiesByPrefix(ElencoSinteticoStatoInviiConstants.CONFIG_CIL_ELENCOSINTETICOSTATOINVII_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true), epRequest));
 		return serviceInput;
 	}
 
 	private String toInputMessage(TEPrescriptions request) throws MwReqAdapterException {
 		VisualizzaElencoStatoInviiDocument visualizzaElencoStatoInviiDocument = VisualizzaElencoStatoInviiDocument.Factory.newInstance();
 		VisualizzaElencoStatoInvii visualizzaElencoStatoInvii = visualizzaElencoStatoInviiDocument.addNewVisualizzaElencoStatoInvii();
+		this.propagateSessionToken(visualizzaElencoStatoInvii, request);
 		ElencoSinteticoStatoInviiDTO elencoSinteticoStatoInviiDTO = visualizzaElencoStatoInvii.addNewElencoSinteticoStatoInviiDTO();
-		this.setMandatory(elencoSinteticoStatoInviiDTO, "pinCodeIn", ModuleConfig.getProperty(ElencoSinteticoStatoInviiConstants.CONFIG_CIL_PINCODE));
+		this.setMandatory(elencoSinteticoStatoInviiDTO, "pinCodeIn", this.getPinCodeForRequest(ModuleConfig.getProperty(ElencoSinteticoStatoInviiConstants.CONFIG_CIL_PINCODE), request));
 		String protocolloSac = request.getProtocolloSAC();
 		if (StringUtils.isNotEmpty(protocolloSac)) {
 			this.setMandatory(elencoSinteticoStatoInviiDTO, "protocolloSac", protocolloSac);

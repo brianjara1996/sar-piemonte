@@ -37,15 +37,18 @@ public class AnnullaPrescrittoRichiestaAdapter extends SistemaTiesseAdapter impl
 		serviceInput.setAction(new Action(ModuleConfig.getProperty(DemAnnullaPrescrittoConstants.CONFIG_CIL_DEMANNULLAPRESCRITTO_SERVICE_NAME), ModuleConfig.getProperty(DemAnnullaPrescrittoConstants.CONFIG_CIL_DEMANNULLAPRESCRITTO_OPERATION_NAME), ModuleConfig.getProperty(DemAnnullaPrescrittoConstants.CONFIG_CIL_DEMANNULLAPRESCRITTO_SERVICE_ENDPOINT)));
 		serviceInput.setSecurityConfigId(ModuleConfig.getProperty(DemAnnullaPrescrittoConstants.CONFIG_CIL_DEMANNULLAPRESCRITTO_SECCONFIGID));
 		serviceInput.setRequestMessage(this.toInputMessage(this.request));
-		serviceInput.setLogin(new Login(ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_USERNAME), ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD)));
-		serviceInput.setCustomProps(ModuleConfig.getPropertiesByPrefix(DemAnnullaPrescrittoConstants.CONFIG_CIL_DEMANNULLAPRESCRITTO_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true));
+		if (!this.isOAuth2Request(this.request)) {
+			serviceInput.setLogin(new Login(ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_USERNAME), ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD)));
+		}
+		serviceInput.setCustomProps(this.enrichCustomPropsWithTransportAuth(ModuleConfig.getPropertiesByPrefix(DemAnnullaPrescrittoConstants.CONFIG_CIL_DEMANNULLAPRESCRITTO_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true), this.request));
 		return serviceInput;
 	}
 
 	private String toInputMessage(TEPrescription epRequest) throws MwReqAdapterException {
 		AnnullaPrescrittoRichiestaDocument annullaPrescrittoRichiestaDocument = AnnullaPrescrittoRichiestaDocument.Factory.newInstance();
 		AnnullaPrescrittoRichiesta annullaPrescrittoRichiesta = annullaPrescrittoRichiestaDocument.addNewAnnullaPrescrittoRichiesta();
-		this.setMandatory(annullaPrescrittoRichiesta, "pinCode", ModuleConfig.getProperty(DemAnnullaPrescrittoConstants.CONFIG_CIL_PINCODE));		
+		this.propagateSessionToken(annullaPrescrittoRichiesta, epRequest);
+		this.setMandatory(annullaPrescrittoRichiesta, "pinCode", this.getPinCodeForRequest(ModuleConfig.getProperty(DemAnnullaPrescrittoConstants.CONFIG_CIL_PINCODE), epRequest));
 		TMedico medico = epRequest.getMedico();
 		if (medico== null) {
 			throw new MwReqAdapterException("Property medico cannot be null!");

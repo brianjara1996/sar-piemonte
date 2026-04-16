@@ -90,15 +90,18 @@ public class ElencoAnaliticoEsitoRicetteRequestAdapter extends SistemaTiesseAdap
 			httpBasicPassword = ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD);
 		}
 		
-		serviceInput.setLogin(new Login(httpBasicUsername, httpBasicPassword));
+		if (!this.isOAuth2Request(epRequest)) {
+			serviceInput.setLogin(new Login(httpBasicUsername, httpBasicPassword));
+		}
 		
-		serviceInput.setCustomProps(ModuleConfig.getPropertiesByPrefix(ElencoAnaliticoEsitoRicetteConstants.CONFIG_CIL_ELENCOANALITICOESITORICETTE_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true));
+		serviceInput.setCustomProps(this.enrichCustomPropsWithTransportAuth(ModuleConfig.getPropertiesByPrefix(ElencoAnaliticoEsitoRicetteConstants.CONFIG_CIL_ELENCOANALITICOESITORICETTE_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true), epRequest));
 		return serviceInput;
 	}
 
 	private String toInputMessage(TEPrescriptions request) throws MwReqAdapterException, DatabaseException {
 		VisualizzaElencoStatoRicetteDocument visualizzaElencoStatoRicetteDocument = VisualizzaElencoStatoRicetteDocument.Factory.newInstance();
 		VisualizzaElencoStatoRicette visualizzaElencoStatoRicette = visualizzaElencoStatoRicetteDocument.addNewVisualizzaElencoStatoRicette();
+		this.propagateSessionToken(visualizzaElencoStatoRicette, request);
 		ElencoAnaliticoEsitoRicetteDTO elencoAnaliticoEsitoRicetteDTO = visualizzaElencoStatoRicette.addNewElencoAnaliticoEsitoRicetteDTO();
 		String pinCode = "";
 		if(this.sarCredFromDb){
@@ -116,7 +119,7 @@ public class ElencoAnaliticoEsitoRicetteRequestAdapter extends SistemaTiesseAdap
 				throw new MwReqAdapterException(e);
 			}
 		}
-		this.setMandatory(elencoAnaliticoEsitoRicetteDTO, "pinCodeIn", pinCode);
+		this.setMandatory(elencoAnaliticoEsitoRicetteDTO, "pinCodeIn", this.getPinCodeForRequest(pinCode, request));
 		String protocolloSac = request.getProtocolloSAC();
 		if (StringUtils.isNotEmpty(protocolloSac)) {
 			this.setMandatory(elencoAnaliticoEsitoRicetteDTO, "protocolloSac", protocolloSac);

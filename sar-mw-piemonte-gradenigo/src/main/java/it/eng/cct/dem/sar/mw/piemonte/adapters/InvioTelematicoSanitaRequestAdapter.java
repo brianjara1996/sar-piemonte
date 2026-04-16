@@ -134,7 +134,9 @@ public class InvioTelematicoSanitaRequestAdapter extends SistemaTiesseAdapter im
 			httpBasicPassword = ModuleConfig.getProperty(ConfigKeys.CONFIG_AXIS2_CLIENT_HTTP_AUTH_BASIC_PASSWORD);
 		}
 		
-		serviceInput.setLogin(new Login(httpBasicUsername, httpBasicPassword));
+		if (!this.isOAuth2Request(this.ePrescriptions)) {
+			serviceInput.setLogin(new Login(httpBasicUsername, httpBasicPassword));
+		}
 		
 		try {
 			serviceInput.setAttachment(this.buildAttachement(this.ePrescriptions));
@@ -142,13 +144,14 @@ public class InvioTelematicoSanitaRequestAdapter extends SistemaTiesseAdapter im
 			throw new MwReqAdapterException(e);
 		}
 		serviceInput.setUuid(StringUtils.left(this.nomeFileAllegato + ".zip", 17));
-		serviceInput.setCustomProps(ModuleConfig.getPropertiesByPrefix(InvioTelematicoSanitaConstants.CONFIG_CIL_INVIOTELEMATICOSANITA_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true));
+		serviceInput.setCustomProps(this.enrichCustomPropsWithTransportAuth(ModuleConfig.getPropertiesByPrefix(InvioTelematicoSanitaConstants.CONFIG_CIL_INVIOTELEMATICOSANITA_ROOT + ServiceInputAdapter.CUSTOM_PROPS_KEY, true), this.ePrescriptions));
 		return serviceInput;
 	}
 
 	private String buildRequestMessage(TEPrescriptions ePrescriptions) throws MwReqAdapterException {
 		InputBeanDocument inputBeanDocument = InputBeanDocument.Factory.newInstance();
 		ParametriInvio inputBean = inputBeanDocument.addNewInputBean();
+		this.propagateSessionToken(inputBean, ePrescriptions);
 		inputBean.setNomeFileAllegato(this.nomeFileAllegato + ".zip");
 		inputBean.setTelematico1("");
 		inputBean.setTelematico2("");
@@ -180,7 +183,7 @@ public class InvioTelematicoSanitaRequestAdapter extends SistemaTiesseAdapter im
 			}
 		}		
 		
-		testata.setPinCode(pinCode);
+		testata.setPinCode(this.getPinCodeForRequest(pinCode, ePrescriptions));
 
 		TEPrescription[] ePrescriptionArray = ePrescriptions.getEPrescriptionArray();
 		RicettaI[] ricettaIArray = new RicettaI[ePrescriptionArray.length];
