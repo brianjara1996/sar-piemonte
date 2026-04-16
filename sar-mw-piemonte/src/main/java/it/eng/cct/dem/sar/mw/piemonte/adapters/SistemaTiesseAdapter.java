@@ -164,6 +164,18 @@ public class SistemaTiesseAdapter extends MessageAdapter {
 			if (value instanceof String) {
 				return (String) value;
 			}
+			if (value != null) {
+				try {
+					Method getStringValue = value.getClass().getMethod("getStringValue");
+					Object stringValue = getStringValue.invoke(value);
+					if (stringValue instanceof String) {
+						return (String) stringValue;
+					}
+				} catch (NoSuchMethodException e) {
+					// NOP
+				}
+				return String.valueOf(value);
+			}
 		} catch (NoSuchMethodException e) {
 			// NOP
 		} catch (IllegalAccessException e) {
